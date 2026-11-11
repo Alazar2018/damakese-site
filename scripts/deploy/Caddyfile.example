@@ -1,0 +1,13 @@
+# Replace YOUR_DOMAIN, then on the VPS:
+#   sudo cp scripts/deploy/Caddyfile.example /etc/caddy/Caddyfile
+#   sudo systemctl reload caddy
+#
+# The site listens on 127.0.0.1:3456. The API listens on 127.0.0.1:4000.
+
+YOUR_DOMAIN, www.YOUR_DOMAIN {
+	reverse_proxy 127.0.0.1:3456
+}
+
+api.YOUR_DOMAIN {
+	reverse_proxy 127.0.0.1:4000
+}

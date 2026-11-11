@@ -1,0 +1,476 @@
+@import "tailwindcss";
+
+:root {
+  --green: #12341d;
+  --lime: #9cca3b;
+  --ivory: #f6f7f3;
+  --sand: #ede7da;
+  --stone: #d6d3c6;
+  --ink: #171a18;
+  --forest: #1d5a33;
+  --clay: #b4543a;
+  --amber: #d9a03f;
+  --petrol: #17565f;
+  --wine: #6e2436;
+  --white: #ffffff;
+  --green-80: color-mix(in srgb, var(--green) 80%, var(--ivory));
+  --green-60: color-mix(in srgb, var(--green) 60%, var(--ivory));
+  --green-40: color-mix(in srgb, var(--green) 40%, var(--ivory));
+  --green-20: color-mix(in srgb, var(--green) 20%, var(--ivory));
+  --measure: 65ch;
+}
+
+@theme inline {
+  --color-green: var(--green);
+  --color-lime: var(--lime);
+  --color-ivory: var(--ivory);
+  --color-sand: var(--sand);
+  --color-stone: var(--stone);
+  --color-ink: var(--ink);
+  --color-forest: var(--forest);
+  --color-clay: var(--clay);
+  --color-amber: var(--amber);
+  --color-petrol: var(--petrol);
+  --color-wine: var(--wine);
+  --color-white: var(--white);
+  --font-display: var(--font-montserrat);
+  --font-serif: var(--font-source);
+}
+
+html {
+  background: var(--ivory);
+  scroll-behavior: smooth;
+}
+
+html,
+body {
+  background: var(--ivory);
+  color: var(--ink);
+}
+
+body {
+  font-family: var(--font-source), "Source Serif 4", Georgia, serif;
+  font-weight: 400;
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--green) 18%, var(--ivory));
+  color: var(--green);
+}
+
+:focus-visible {
+  outline: 2px solid var(--forest);
+  outline-offset: 3px;
+}
+
+.on-green :focus-visible {
+  outline-color: var(--lime);
+}
+
+.display {
+  font-family: var(--font-montserrat), Montserrat, sans-serif;
+  font-weight: 600;
+  letter-spacing: -0.012em;
+  line-height: 1.05;
+}
+
+.ui {
+  font-family: var(--font-montserrat), Montserrat, sans-serif;
+  letter-spacing: -0.012em;
+}
+
+.eyebrow {
+  font-family: var(--font-montserrat), Montserrat, sans-serif;
+  font-weight: 500;
+  font-size: 0.75rem;
+  line-height: 1.2;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--forest);
+}
+
+.on-green .eyebrow {
+  color: color-mix(in srgb, var(--ivory) 78%, transparent);
+}
+
+.rule {
+  display: block;
+  height: 2px;
+  width: 7.5rem;
+  background: var(--green);
+  border: 0;
+}
+
+.on-green .rule {
+  background: var(--lime);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  min-height: 44px;
+  padding: 0.7rem 1.2rem;
+  font-family: var(--font-montserrat), Montserrat, sans-serif;
+  font-weight: 500;
+  font-size: 0.875rem;
+  letter-spacing: -0.012em;
+  line-height: 1;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition:
+    background-color 200ms cubic-bezier(0.4, 0, 0.2, 1),
+    color 200ms cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 200ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-solid {
+  background: var(--green);
+  color: var(--ivory);
+}
+
+.btn-solid:hover {
+  background: var(--forest);
+}
+
+.btn-inverse {
+  background: var(--ivory);
+  color: var(--green);
+}
+
+.btn-inverse:hover {
+  background: var(--white);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: inherit;
+  border-color: currentColor;
+}
+
+.btn-ghost:hover {
+  background: color-mix(in srgb, currentColor 8%, transparent);
+}
+
+.btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
+}
+
+.roll {
+  display: block;
+  height: 1.15em;
+  overflow: hidden;
+}
+
+.roll-track {
+  display: flex;
+  flex-direction: column;
+  transition: transform 500ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.group:hover .roll-track,
+.group:focus-visible .roll-track {
+  transform: translateY(-50%);
+}
+
+.roll-arrow {
+  transition: transform 500ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.group:hover .roll-arrow,
+.group:focus-visible .roll-arrow {
+  transform: rotate(-45deg);
+}
+
+.card-open {
+  display: inline-flex;
+  height: 2.75rem;
+  max-width: 2.75rem;
+  align-items: center;
+  overflow: hidden;
+  background: var(--green);
+  color: var(--ivory);
+  transition: max-width 300ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.group:hover .card-open,
+.group:focus-visible .card-open {
+  max-width: 11rem;
+}
+
+.card-open span {
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 200ms ease 80ms;
+}
+
+.lean-card {
+  transform: rotate(var(--lean, 0deg));
+  transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.lean-card:hover,
+.lean-card:focus-visible,
+.lean-card[aria-pressed="true"] {
+  transform: rotate(0deg) translateY(-10px);
+}
+
+.lean-card .rule {
+  transform-origin: left center;
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.group:hover .card-open span,
+.group:focus-visible .card-open span {
+  opacity: 1;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.field span {
+  font-family: var(--font-montserrat), Montserrat, sans-serif;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--forest);
+}
+
+.field input,
+.field select,
+.field textarea {
+  width: 100%;
+  min-height: 44px;
+  padding: 0.7rem 0.85rem;
+  background: var(--white);
+  color: var(--ink);
+  border: 1px solid var(--stone);
+  border-radius: 0;
+  font-family: var(--font-source), Georgia, serif;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.field textarea {
+  min-height: 9rem;
+  resize: vertical;
+}
+
+.field input:hover,
+.field select:hover,
+.field textarea:hover {
+  border-color: var(--green-60);
+}
+
+.field .error {
+  color: var(--wine);
+  font-size: 0.875rem;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition:
+    opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.reveal.is-in {
+  opacity: 1;
+  transform: none;
+}
+
+.line-rise {
+  display: block;
+  animation: rise 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.rule-draw {
+  transform-origin: left center;
+  animation: draw 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.4s both;
+}
+
+.rule-center {
+  margin-inline: auto;
+  transform-origin: center;
+}
+
+.fade-up {
+  animation: fadeup 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.hero-settle {
+  animation: settle 1.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.photo-zoom {
+  transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.group:hover .photo-zoom {
+  transform: scale(1.045);
+}
+
+.stripe-in {
+  animation: fade 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.15s both;
+}
+
+.sheen {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.sheen::after {
+  content: "";
+  position: absolute;
+  top: -25%;
+  bottom: -25%;
+  left: 0;
+  width: 30%;
+  background: linear-gradient(90deg, transparent, color-mix(in srgb, white 50%, transparent), transparent);
+  transform: translateX(-180%) skewX(-16deg);
+  animation: sheen 1.7s cubic-bezier(0.22, 1, 0.36, 1) 0.45s both;
+}
+
+
+@keyframes rise {
+  from {
+    transform: translateY(110%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes draw {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeup {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes settle {
+  from {
+    transform: scale(1.08);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+@keyframes sheen {
+  to {
+    transform: translateX(460%) skewX(-16deg);
+  }
+}
+
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .reveal,
+  .line-rise,
+  .rule-draw,
+  .stripe-in,
+  .fade-up,
+  .hero-settle,
+  .photo-zoom,
+  .roll-track,
+  .roll-arrow {
+    animation: none;
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .sheen::after {
+    animation: none;
+    opacity: 0;
+  }
+
+  .card-open {
+    max-width: 11rem;
+    transition: none;
+  }
+
+  .lean-card,
+  .lean-card:hover,
+  .lean-card[aria-pressed="true"] {
+    transform: none;
+    transition: none;
+  }
+
+  .card-open span {
+    opacity: 1;
+    transition: none;
+  }
+}
+
+.table-wrap {
+  width: 100%;
+  overflow-x: auto;
+}
+
+table.data {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+
+table.data th {
+  background: var(--stone);
+  color: var(--green);
+  font-family: var(--font-montserrat), Montserrat, sans-serif;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  text-align: left;
+  padding: 0.75rem 0.85rem;
+}
+
+table.data td {
+  padding: 0.85rem;
+  border-bottom: 1px solid var(--stone);
+  vertical-align: top;
+}
+
+table.data tr:hover td {
+  background: color-mix(in srgb, var(--sand) 55%, var(--ivory));
+}
