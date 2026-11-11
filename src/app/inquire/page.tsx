@@ -5,7 +5,9 @@ import { SiteHeader } from "@/components/site-header";
 
 export const metadata: Metadata = {
   title: "Inquire",
-  description: "Tell Damakese what the day has to achieve. A date we confirm is a date we keep.",
+  description:
+    "Request a proposal from Damakese in Addis Ababa. Send the date, the kind of event, and what the day has to achieve.",
+  alternates: { canonical: "/inquire" },
 };
 
 export default function InquirePage() {

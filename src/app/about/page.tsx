@@ -5,12 +5,14 @@ import { CallReasons } from "@/components/call-reasons";
 import { Reveal } from "@/components/marks";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
+import { audiences } from "@/lib/content";
 import { frames } from "@/lib/photos";
 
 export const metadata: Metadata = {
   title: "About",
   description:
-    "Damakese Marketing & Events is the Addis Ababa team named for a remedy that works quickly. Nine years on Ethiopia’s largest stages.",
+    "Damakese Marketing & Events produces conferences, concerts, state occasions, exhibitions and launches in Addis Ababa. Nine years on Ethiopia’s largest stages.",
+  alternates: { canonical: "/about" },
 };
 
 export default function AboutPage() {
@@ -46,6 +48,26 @@ export default function AboutPage() {
                 </p>
               </div>
             </article>
+          </div>
+        </section>
+
+        <section className="bg-ivory">
+          <div className="mx-auto max-w-[90rem] px-5 py-16 md:px-12 md:py-24">
+            <Reveal>
+              <p className="eyebrow">Who hires the house</p>
+              <h2 className="display mt-4 max-w-3xl text-4xl text-green md:text-5xl">A day a client cannot afford to get wrong.</h2>
+              <p className="mt-6 max-w-[var(--measure)] text-lg leading-relaxed">
+                Companies come for a conference or a launch. Ministries and embassies come for a protocol day. Promoters come for a concert. Brands come for an activation that was written for them, not lifted from last season. Concept, production, and the crew on the day sit in one house.
+              </p>
+            </Reveal>
+            <ul className="mt-12 grid gap-8 md:grid-cols-2">
+              {audiences.map((audience) => (
+                <li key={audience.title} className="border-t border-stone pt-6">
+                  <h3 className="display text-2xl text-green">{audience.title}</h3>
+                  <p className="mt-3 max-w-[var(--measure)] text-lg leading-relaxed">{audience.body}</p>
+                </li>
+              ))}
+            </ul>
           </div>
         </section>
 

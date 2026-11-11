@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Montserrat, Source_Serif_4 } from "next/font/google";
 import { DeskProvider } from "@/lib/store";
+import { siteUrl } from "@/lib/site";
 import "./globals.css";
 
 const montserrat = Montserrat({
@@ -18,13 +19,31 @@ const sourceSerif = Source_Serif_4({
   display: "swap",
 });
 
+const description =
+  "Damakese is an event production company in Addis Ababa. Conferences, state occasions, concerts, exhibitions, trade fairs, and product launches, planned and produced by one crew.";
+
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: {
-    default: "Damakese Marketing & Events",
+    default: "Event production in Addis Ababa",
     template: "%s · Damakese",
   },
-  description:
-    "Damakese Marketing & Events plans and produces conferences, state occasions, concerts, exhibitions and trade fairs in Addis Ababa. Designing the moment. Delivering the day.",
+  description,
+  applicationName: "Damakese",
+  openGraph: {
+    type: "website",
+    locale: "en_ET",
+    url: siteUrl,
+    siteName: "Damakese Marketing & Events",
+    title: "Damakese · Event production in Addis Ababa",
+    description,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Damakese · Event production in Addis Ababa",
+    description,
+  },
+  robots: { index: true, follow: true },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -37,6 +56,31 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         >
           Skip to content
         </a>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "ProfessionalService",
+              name: "Damakese Marketing & Events",
+              url: siteUrl,
+              description,
+              areaServed: { "@type": "City", name: "Addis Ababa" },
+              address: {
+                "@type": "PostalAddress",
+                addressLocality: "Addis Ababa",
+                addressCountry: "ET",
+              },
+              knowsAbout: [
+                "Conference production",
+                "Concert production",
+                "State occasions",
+                "Exhibitions and trade fairs",
+                "Product launches",
+              ],
+            }),
+          }}
+        />
         <DeskProvider>{children}</DeskProvider>
       </body>
     </html>

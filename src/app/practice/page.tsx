@@ -6,7 +6,8 @@ import { SiteHeader } from "@/components/site-header";
 export const metadata: Metadata = {
   title: "Practice",
   description:
-    "Damakese plans and produces conferences, state occasions, concerts, exhibitions, trade fairs, launches and activations, end to end.",
+    "Hire Damakese for conference production, concerts, state occasions, exhibitions and product launches in Addis Ababa. Concept, crew, and the day itself.",
+  alternates: { canonical: "/practice" },
 };
 
 export default function PracticePage() {

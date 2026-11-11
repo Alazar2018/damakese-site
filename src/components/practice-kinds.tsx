@@ -49,7 +49,14 @@ export function PracticeKinds() {
               >
                 <div className="overflow-hidden">
                   <div className="grid items-center gap-6 pb-8 pl-0 sm:pl-14 md:grid-cols-[1.4fr_1fr]">
-                    <p className="max-w-[var(--measure)] text-lg leading-relaxed">{item.detail}</p>
+                    <div>
+                      <p className="max-w-[var(--measure)] text-lg leading-relaxed">{item.detail}</p>
+                      <ul className="mt-4 space-y-1 text-ink/80">
+                        {item.includes.map((point) => (
+                          <li key={point}>{point}</li>
+                        ))}
+                      </ul>
+                    </div>
                     <img src={item.image} alt={item.imageAlt} className="aspect-[4/3] w-full object-cover" />
                   </div>
                 </div>

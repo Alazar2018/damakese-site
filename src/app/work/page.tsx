@@ -8,7 +8,9 @@ import { frames } from "@/lib/photos";
 
 export const metadata: Metadata = {
   title: "Work",
-  description: "Days on the Damakese book. Conferences, state occasions, concerts, exhibitions and launches in Addis Ababa.",
+  description:
+    "Selected Damakese events in Addis Ababa: conferences, state occasions, concerts, exhibitions and launches that can carry a client’s name.",
+  alternates: { canonical: "/work" },
 };
 
 export default function WorkPage() {

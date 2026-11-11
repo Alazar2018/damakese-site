@@ -15,7 +15,7 @@ export function SiteFooter({ line = true }: { line?: boolean }) {
           <div className="md:col-span-4">
             <Logo className="h-auto w-40" />
             <p className="mt-6 max-w-xs text-[1.05rem] leading-relaxed">
-              Damakese Marketing & Events is an Addis Ababa event, marketing and entertainment company.
+              Event production in Addis Ababa. Conferences, concerts, state occasions, exhibitions, and launches.
             </p>
           </div>
           <div className="md:col-span-3">
@@ -31,6 +31,9 @@ export function SiteFooter({ line = true }: { line?: boolean }) {
             <p className="eyebrow">Where</p>
             <p className="mt-4 text-[1.05rem]">Addis Ababa, Ethiopia</p>
             <p className="mt-2 text-[1.05rem]">Nine years on the country’s largest stages.</p>
+            <Link className="ui mt-4 inline-block text-sm underline decoration-green decoration-2 underline-offset-4" href="/inquire">
+              Start a brief
+            </Link>
           </div>
           <div className="md:col-span-2">
             <p className="eyebrow">Desk</p>

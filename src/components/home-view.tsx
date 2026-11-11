@@ -8,7 +8,7 @@ import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { rooms, SpaceMarquee } from "@/components/space-marquee";
 import { PracticeKinds } from "@/components/practice-kinds";
-import { values } from "@/lib/content";
+import { audiences, faqs, offers, values } from "@/lib/content";
 import { formatDay } from "@/lib/format";
 import { frames } from "@/lib/photos";
 import { useDesk } from "@/lib/store";
@@ -42,8 +42,9 @@ export function HomeView() {
         <SpaceMarquee slides={rooms} topClass="text-green" />
 
         <section className="mx-auto max-w-2xl px-5 pt-2 pb-8 text-center sm:px-6">
-          <p className="text-base leading-relaxed text-ink sm:text-lg md:text-xl">
-            We plan and produce conferences, state occasions, concerts, exhibitions and launches from a blank page. No recycled floor. No borrowed run sheet.
+          <h2 className="display text-3xl text-green sm:text-4xl">Event production in Addis Ababa.</h2>
+          <p className="mt-4 text-base leading-relaxed text-ink sm:text-lg md:text-xl">
+            Damakese plans and produces conferences, state occasions, concerts, exhibitions and launches from a blank page. No recycled floor. No borrowed run sheet.
           </p>
           <div className="mt-6 flex flex-col items-center justify-center gap-4 sm:mt-8 sm:flex-row sm:gap-8">
             <Link href="/inquire" className="ui font-semibold text-green underline decoration-stone underline-offset-4 transition-colors hover:decoration-green">
@@ -52,6 +53,31 @@ export function HomeView() {
             <Link href="/work" className="ui font-semibold text-green underline decoration-stone underline-offset-4 transition-colors hover:decoration-green">
               See the book
             </Link>
+          </div>
+        </section>
+
+        <section className="bg-white">
+          <div className="mx-auto max-w-[90rem] px-5 py-16 md:px-12 md:py-24">
+            <Reveal>
+              <p className="eyebrow">Hire the house</p>
+              <h2 className="display mt-4 max-w-3xl text-4xl text-green md:text-5xl">The work, named the way a client asks for it.</h2>
+            </Reveal>
+            <ul className="mt-12 grid gap-px bg-stone sm:grid-cols-2 lg:grid-cols-3">
+              {offers.map((offer) => (
+                <li key={offer.title} className="bg-white p-6 md:p-8">
+                  <h3 className="display text-2xl text-green">{offer.title}</h3>
+                  <p className="mt-3 leading-relaxed">{offer.body}</p>
+                </li>
+              ))}
+            </ul>
+            <ul className="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+              {audiences.map((audience) => (
+                <li key={audience.title}>
+                  <h3 className="text-lg text-green">{audience.title}</h3>
+                  <p className="mt-2 leading-relaxed text-ink/80">{audience.body}</p>
+                </li>
+              ))}
+            </ul>
           </div>
         </section>
 
@@ -144,6 +170,25 @@ export function HomeView() {
                 ))}
               </ul>
             </Reveal>
+          </div>
+        </section>
+
+        <section className="bg-sand">
+          <div className="mx-auto max-w-[90rem] px-5 py-16 md:px-12 md:py-24">
+            <Reveal>
+              <p className="eyebrow">Before you write</p>
+              <h2 className="display mt-4 max-w-3xl text-4xl text-green md:text-5xl">Questions clients ask first.</h2>
+            </Reveal>
+            <div className="mt-12 divide-y divide-stone border-y border-stone">
+              {faqs.map((item) => (
+                <details key={item.question} className="group py-5">
+                  <summary className="cursor-pointer list-none text-xl text-green [&::-webkit-details-marker]:hidden">
+                    {item.question}
+                  </summary>
+                  <p className="mt-3 max-w-[var(--measure)] text-lg leading-relaxed">{item.answer}</p>
+                </details>
+              ))}
+            </div>
           </div>
         </section>
 

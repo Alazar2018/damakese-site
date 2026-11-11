@@ -57,6 +57,11 @@ export function PracticeStack({
             <span className="rule mt-5" />
             <p className="mt-5 text-xl text-green">{current.line}</p>
             <p className="mt-4 max-w-[var(--measure)] text-lg">{current.detail}</p>
+            <ul className="mt-6 space-y-2">
+              {current.includes.map((point) => (
+                <li key={point} className="border-t border-stone pt-2">{point}</li>
+              ))}
+            </ul>
           </div>
         </article>
       </div>
