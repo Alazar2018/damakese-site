@@ -35,15 +35,15 @@ export function AdminShell({ children }: { children: ReactNode }) {
   }
 
   return (
-    <div className="min-h-screen bg-ivory text-ink md:grid md:grid-cols-[16.5rem_1fr]">
-      <aside className="on-green flex flex-col bg-green text-ivory md:min-h-screen">
-        <div className="px-5 pt-6">
+    <div className="min-h-screen bg-ivory text-ink md:pl-[16.5rem]">
+      <aside className="on-green sticky top-0 z-30 flex flex-col bg-green text-ivory md:fixed md:inset-y-0 md:left-0 md:h-dvh md:w-[16.5rem]">
+        <div className="shrink-0 px-5 pt-6">
           <Link href="/" aria-label="Damakese site" className="inline-flex w-fit">
             <Logo ink="#F6F7F3" className="h-auto w-36" />
           </Link>
           <p className="eyebrow mt-6">Studio desk</p>
         </div>
-        <nav className="mt-6 flex gap-2 overflow-x-auto px-3 pb-4 md:flex-col md:overflow-visible md:px-3" aria-label="Desk">
+        <nav className="mt-6 flex gap-2 overflow-x-auto px-3 pb-4 md:min-h-0 md:flex-1 md:flex-col md:overflow-x-hidden md:overflow-y-auto md:px-3" aria-label="Desk">
           {links.map((link) => {
             const active = pathname === link.href;
             const Icon = link.icon;
@@ -62,19 +62,10 @@ export function AdminShell({ children }: { children: ReactNode }) {
               </Link>
             );
           })}
-          <button
-            type="button"
-            className="ui flex min-h-11 shrink-0 items-center px-3 text-sm md:hidden"
-            onClick={() => {
-              void signOut().then(() => router.push("/admin/login"));
-            }}
-          >
-            Leave
-          </button>
         </nav>
         <button
           type="button"
-          className="ui m-3 mt-auto hidden min-h-11 px-3 text-left text-sm md:block"
+          className="ui m-3 min-h-11 shrink-0 px-3 text-left text-sm"
           onClick={() => {
             void signOut().then(() => router.push("/admin/login"));
           }}

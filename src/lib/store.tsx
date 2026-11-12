@@ -5,6 +5,7 @@ import {
   useCallback,
   useContext,
   useEffect,
+  useLayoutEffect,
   useMemo,
   useState,
   type ReactNode,
@@ -87,6 +88,28 @@ const empty: DeskData = { events: [], inquiries: [], clients: [], run: [] };
 const API_URL = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:4000";
 const STORAGE = "damakese-desk-v2";
 const LEGACY = "damakese-desk-v1";
+const DAYS_CACHE = "damakese-public-days";
+const DAYS_MAX_AGE = 10 * 60 * 1000;
+
+function readCachedDays(): StudioEvent[] | null {
+  try {
+    const raw = sessionStorage.getItem(DAYS_CACHE);
+    if (!raw) return null;
+    const parsed = JSON.parse(raw) as { at: number; events: StudioEvent[] };
+    if (!Array.isArray(parsed.events) || Date.now() - parsed.at > DAYS_MAX_AGE) return null;
+    return parsed.events;
+  } catch {
+    return null;
+  }
+}
+
+function writeCachedDays(events: StudioEvent[]) {
+  try {
+    sessionStorage.setItem(DAYS_CACHE, JSON.stringify({ at: Date.now(), events }));
+  } catch {
+    /* this browser may be blocking storage */
+  }
+}
 
 type Desk = {
   ready: boolean;
@@ -201,7 +224,15 @@ export function DeskProvider({ children }: { children: ReactNode }) {
 
   const loadPublic = useCallback(async () => {
     const days = await call<{ events: StudioEvent[] }>("/days");
-    setData({ ...empty, events: days.events.map(dress) });
+    const events = days.events.map(dress);
+    setData({ ...empty, events });
+    writeCachedDays(events);
+  }, []);
+
+  useLayoutEffect(() => {
+    const events = readCachedDays();
+    if (!events?.length) return;
+    setData((current) => (current.events.length ? current : { ...current, events }));
   }, []);
 
   const loadDesk = useCallback(async () => {
@@ -222,7 +253,9 @@ export function DeskProvider({ children }: { children: ReactNode }) {
         } else {
           const days = await call<{ events: StudioEvent[] }>("/days");
           if (!live) return;
-          setData({ ...empty, events: days.events.map(dress) });
+          const events = days.events.map(dress);
+          setData({ ...empty, events });
+          writeCachedDays(events);
         }
       } catch {
         if (!live) return;
