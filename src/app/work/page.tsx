@@ -7,9 +7,9 @@ import { WorkBook } from "@/components/work-book";
 import { frames } from "@/lib/photos";
 
 export const metadata: Metadata = {
-  title: "Work",
+  title: "Selected events",
   description:
-    "Selected Damakese events in Addis Ababa: conferences, state occasions, concerts, exhibitions and launches that can carry a client’s name.",
+    "Damakese events in Ethiopia: conferences, state occasions, concerts, exhibitions and launches that can carry a client’s name.",
   alternates: { canonical: "/work" },
 };
 

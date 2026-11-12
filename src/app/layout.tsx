@@ -20,27 +20,27 @@ const sourceSerif = Source_Serif_4({
 });
 
 const description =
-  "Damakese is an event production company in Addis Ababa. Conferences, state occasions, concerts, exhibitions, trade fairs, and product launches, planned and produced by one crew.";
+  "Damakese Events produces conferences, concerts, state occasions, exhibitions and launches in Ethiopia. The crew is based in Addis Ababa.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Event production in Addis Ababa",
-    template: "%s · Damakese",
+    default: "Damakese Events in Ethiopia",
+    template: "%s · Damakese Events",
   },
   description,
-  applicationName: "Damakese",
+  applicationName: "Damakese Events",
   openGraph: {
     type: "website",
     locale: "en_ET",
     url: siteUrl,
-    siteName: "Damakese Marketing & Events",
-    title: "Damakese · Event production in Addis Ababa",
+    siteName: "Damakese Events",
+    title: "Damakese Events | Events in Ethiopia",
     description,
   },
   twitter: {
     card: "summary_large_image",
-    title: "Damakese · Event production in Addis Ababa",
+    title: "Damakese Events | Events in Ethiopia",
     description,
   },
   robots: { index: true, follow: true },
@@ -62,10 +62,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "ProfessionalService",
-              name: "Damakese Marketing & Events",
+              name: "Damakese Events",
+              alternateName: ["Damakese Marketing & Events", "Damakese"],
               url: siteUrl,
               description,
-              areaServed: { "@type": "City", name: "Addis Ababa" },
+              areaServed: [
+                { "@type": "Country", name: "Ethiopia" },
+                { "@type": "City", name: "Addis Ababa" },
+              ],
               address: {
                 "@type": "PostalAddress",
                 addressLocality: "Addis Ababa",

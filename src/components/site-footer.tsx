@@ -15,7 +15,7 @@ export function SiteFooter({ line = true }: { line?: boolean }) {
           <div className="md:col-span-4">
             <Logo className="h-auto w-40" />
             <p className="mt-6 max-w-xs text-[1.05rem] leading-relaxed">
-              Event production in Addis Ababa. Conferences, concerts, state occasions, exhibitions, and launches.
+              Damakese Events. Conferences, concerts, state occasions, exhibitions and launches in Ethiopia.
             </p>
           </div>
           <div className="md:col-span-3">

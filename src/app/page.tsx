@@ -3,9 +3,9 @@ import { HomeView } from "@/components/home-view";
 import { faqs } from "@/lib/content";
 
 export const metadata: Metadata = {
-  title: { absolute: "Damakese · Event production in Addis Ababa" },
+  title: { absolute: "Damakese Events | Events in Ethiopia" },
   description:
-    "Damakese plans and produces conferences, state occasions, concerts, exhibitions and product launches in Addis Ababa. One crew, from the idea to the last truck.",
+    "Damakese Events is an event company in Ethiopia. Conferences, concerts, state occasions, exhibitions and launches, produced from Addis Ababa.",
   alternates: { canonical: "/" },
 };
 

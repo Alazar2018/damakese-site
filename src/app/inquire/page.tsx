@@ -4,9 +4,9 @@ import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 
 export const metadata: Metadata = {
-  title: "Inquire",
+  title: "Book an event",
   description:
-    "Request a proposal from Damakese in Addis Ababa. Send the date, the kind of event, and what the day has to achieve.",
+    "Book Damakese Events in Ethiopia. Send the date, the kind of event, and what the day has to achieve.",
   alternates: { canonical: "/inquire" },
 };
 
