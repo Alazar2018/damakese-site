@@ -1,6 +1,7 @@
 "use client";
 
 import { FormEvent, useState } from "react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Logo } from "@/components/logo";
 import { useDesk } from "@/lib/store";
@@ -28,7 +29,9 @@ export default function LoginPage() {
   return (
     <main id="content" className="grid min-h-screen bg-ivory md:grid-cols-2">
       <section className="on-green flex flex-col justify-between bg-green px-6 py-10 text-ivory md:px-12">
-        <Logo ink="#F6F7F3" className="h-auto w-40" />
+        <Link href="/" aria-label="Damakese site" className="inline-flex w-fit">
+          <Logo ink="#F6F7F3" className="h-auto w-40" />
+        </Link>
         <div>
           <p className="eyebrow">Studio desk</p>
           <h1 className="display mt-4 text-4xl sm:text-5xl">The day, kept in one place.</h1>

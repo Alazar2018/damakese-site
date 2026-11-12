@@ -38,7 +38,7 @@ export function AdminShell({ children }: { children: ReactNode }) {
     <div className="min-h-screen bg-ivory text-ink md:grid md:grid-cols-[16.5rem_1fr]">
       <aside className="on-green flex flex-col bg-green text-ivory md:min-h-screen">
         <div className="px-5 pt-6">
-          <Link href="/" aria-label="Damakese site">
+          <Link href="/" aria-label="Damakese site" className="inline-flex w-fit">
             <Logo ink="#F6F7F3" className="h-auto w-36" />
           </Link>
           <p className="eyebrow mt-6">Studio desk</p>

@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { List, X } from "@phosphor-icons/react";
 import { Logo } from "@/components/logo";
 import { addisTime } from "@/lib/format";
+import { useDesk } from "@/lib/store";
 
 const links = [
   { href: "/work", label: "Work" },
@@ -16,6 +17,7 @@ const links = [
 
 export function SiteHeader() {
   const pathname = usePathname();
+  const { authed } = useDesk();
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [wide, setWide] = useState(false);
@@ -96,6 +98,11 @@ export function SiteHeader() {
           <p className="ui hidden text-xs tracking-[0.14em] uppercase opacity-80 xl:block">
             {time ? `${time} Addis Ababa` : "Addis Ababa"}
           </p>
+          {authed ? (
+            <Link href="/admin" className="btn btn-ghost hidden sm:inline-flex">
+              My dashboard
+            </Link>
+          ) : null}
           <Link href="/inquire" className={`btn hidden sm:inline-flex ${overHero ? "btn-inverse" : "btn-solid"}`}>
             Start a brief
           </Link>
@@ -121,6 +128,13 @@ export function SiteHeader() {
                 </Link>
               </li>
             ))}
+            {authed ? (
+              <li className="border-b border-stone">
+                <Link href="/admin" className="ui flex min-h-12 items-center text-lg font-medium">
+                  My dashboard
+                </Link>
+              </li>
+            ) : null}
           </ul>
           <Link href="/inquire" className="btn btn-solid mt-6 w-full">
             Start a brief
