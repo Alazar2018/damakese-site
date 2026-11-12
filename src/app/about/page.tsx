@@ -11,7 +11,7 @@ import { frames } from "@/lib/photos";
 export const metadata: Metadata = {
   title: "About",
   description:
-    "Damakese Events is the Addis Ababa house that produces conferences, concerts, state occasions, exhibitions and launches across Ethiopia.",
+    "Damakese Marketing & Events is the Addis Ababa house that produces conferences, concerts, state occasions, exhibitions and launches across Ethiopia.",
   alternates: { canonical: "/about" },
 };
 

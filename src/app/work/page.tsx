@@ -9,7 +9,7 @@ import { frames } from "@/lib/photos";
 export const metadata: Metadata = {
   title: "Selected events",
   description:
-    "Damakese events in Ethiopia: conferences, state occasions, concerts, exhibitions and launches that can carry a client’s name.",
+    "Events by Damakese Marketing & Events in Ethiopia: conferences, state occasions, concerts, exhibitions and launches that can carry a client’s name.",
   alternates: { canonical: "/work" },
 };
 

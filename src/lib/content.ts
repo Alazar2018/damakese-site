@@ -155,7 +155,7 @@ export const faqs: { question: string; answer: string }[] = [
   {
     question: "What events does Damakese produce?",
     answer:
-      "Damakese Events produces conferences, state and protocol occasions, concerts and cultural programmes, exhibitions and trade fairs, and product launches and brand activations. The house is in Addis Ababa and the days run across Ethiopia. Travel is part of the quote when the programme leaves the city.",
+      "Damakese Marketing & Events produces conferences, state and protocol occasions, concerts and cultural programmes, exhibitions and trade fairs, and product launches and brand activations. The house is in Addis Ababa and the days run across Ethiopia. Travel is part of the quote when the programme leaves the city.",
   },
   {
     question: "What is included?",

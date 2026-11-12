@@ -6,7 +6,7 @@ import { SiteHeader } from "@/components/site-header";
 export const metadata: Metadata = {
   title: "Event services in Ethiopia",
   description:
-    "Damakese Events produces conferences, concerts, state occasions, exhibitions and product launches in Ethiopia. Concept, crew, and the day itself.",
+    "Damakese Marketing & Events produces conferences, concerts, state occasions, exhibitions and product launches in Ethiopia. Concept, crew, and the day itself.",
   alternates: { canonical: "/practice" },
 };
 

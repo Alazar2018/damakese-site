@@ -20,27 +20,27 @@ const sourceSerif = Source_Serif_4({
 });
 
 const description =
-  "Damakese Events produces conferences, concerts, state occasions, exhibitions and launches in Ethiopia. The crew is based in Addis Ababa.";
+  "Damakese Marketing & Events produces conferences, concerts, state occasions, exhibitions and launches in Ethiopia. The crew is based in Addis Ababa.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Damakese Events in Ethiopia",
-    template: "%s · Damakese Events",
+    default: "Damakese Marketing & Events",
+    template: "%s · Damakese Marketing & Events",
   },
   description,
-  applicationName: "Damakese Events",
+  applicationName: "Damakese Marketing & Events",
   openGraph: {
     type: "website",
     locale: "en_ET",
     url: siteUrl,
-    siteName: "Damakese Events",
-    title: "Damakese Events | Events in Ethiopia",
+    siteName: "Damakese Marketing & Events",
+    title: "Damakese Marketing & Events | Events in Ethiopia",
     description,
   },
   twitter: {
     card: "summary_large_image",
-    title: "Damakese Events | Events in Ethiopia",
+    title: "Damakese Marketing & Events | Events in Ethiopia",
     description,
   },
   robots: { index: true, follow: true },
@@ -62,8 +62,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "ProfessionalService",
-              name: "Damakese Events",
-              alternateName: ["Damakese Marketing & Events", "Damakese"],
+              name: "Damakese Marketing & Events",
+              alternateName: ["Damakese Events", "Damakese"],
               url: siteUrl,
               description,
               areaServed: [

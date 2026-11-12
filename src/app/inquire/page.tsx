@@ -6,7 +6,7 @@ import { SiteHeader } from "@/components/site-header";
 export const metadata: Metadata = {
   title: "Book an event",
   description:
-    "Book Damakese Events in Ethiopia. Send the date, the kind of event, and what the day has to achieve.",
+    "Book Damakese Marketing & Events in Ethiopia. Send the date, the kind of event, and what the day has to achieve.",
   alternates: { canonical: "/inquire" },
 };
 

@@ -34,7 +34,7 @@ export function HomeView() {
       <SiteHeader />
       <main id="content" className="min-h-screen overflow-hidden bg-ivory">
         <PageHero
-          eyebrow="Damakese events · Ethiopia"
+          eyebrow="Damakese Marketing & Events"
           title={"The room this day\nhas not been built."}
           lede="An event is a promise made in public. It either works, or everyone in the room knows it did not."
         />
@@ -42,9 +42,9 @@ export function HomeView() {
         <SpaceMarquee slides={rooms} topClass="text-green" />
 
         <section className="mx-auto max-w-2xl px-5 pt-2 pb-8 text-center sm:px-6">
-          <h2 className="display text-3xl text-green sm:text-4xl">Damakese events in Ethiopia.</h2>
+          <h2 className="display text-3xl text-green sm:text-4xl">Marketing and events in Ethiopia.</h2>
           <p className="mt-4 text-base leading-relaxed text-ink sm:text-lg md:text-xl">
-            Damakese Events is the event house in Addis Ababa. We plan and produce conferences, state occasions, concerts, exhibitions and launches across Ethiopia, from a blank page. No recycled floor. No borrowed run sheet.
+            Damakese Marketing & Events is the house in Addis Ababa. We plan and produce conferences, state occasions, concerts, exhibitions and launches across Ethiopia, from a blank page. No recycled floor. No borrowed run sheet.
           </p>
           <div className="mt-6 flex flex-col items-center justify-center gap-4 sm:mt-8 sm:flex-row sm:gap-8">
             <Link href="/inquire" className="ui font-semibold text-green underline decoration-stone underline-offset-4 transition-colors hover:decoration-green">
