@@ -5,7 +5,7 @@ import { faqs } from "@/lib/content";
 export const metadata: Metadata = {
   title: { absolute: "Damakese Marketing & Events | Events in Ethiopia" },
   description:
-    "Damakese Marketing & Events produces conferences, concerts, state occasions, exhibitions and launches in Ethiopia, from Addis Ababa.",
+    "Damakese Marketing & Events is a full-service marketing, events and entertainment company in Addis Ababa. Campaigns, identities, events and live shows.",
   alternates: { canonical: "/" },
 };
 

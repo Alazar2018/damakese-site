@@ -1,8 +1,8 @@
 "use client";
 
 import { useState } from "react";
+import { FilmRail } from "@/components/film-rail";
 import { InquireForm } from "@/components/inquire-form";
-import { frames } from "@/lib/photos";
 
 const holds = [
   { id: "brief-name", index: "01", line: "Who is asking.", note: "The name, and the organisation the day is for." },
@@ -13,7 +13,6 @@ const holds = [
 
 export function InquireStage() {
   const [step, setStep] = useState(0);
-  const current = holds[step];
 
   function go(index: number) {
     setStep(index);
@@ -21,26 +20,8 @@ export function InquireStage() {
   }
 
   return (
-    <div className="grid md:min-h-screen md:grid-cols-12">
-      <header className="on-green relative min-h-[78dvh] bg-green text-ivory md:sticky md:top-0 md:col-span-5 md:h-screen md:min-h-0 md:self-start">
-        <img src={frames.launch} alt="" className="absolute inset-0 h-full w-full object-cover object-[center_30%]" />
-        <div
-          aria-hidden
-          className="absolute inset-0"
-          style={{
-            background:
-              "linear-gradient(180deg, color-mix(in srgb, var(--green) 34%, transparent) 0%, color-mix(in srgb, var(--green) 78%, black) 100%)",
-          }}
-        />
-        <div className="relative flex h-full min-h-[78dvh] flex-col justify-end p-8 pt-32 md:min-h-screen md:p-12">
-          <p className="eyebrow">Inquire · {current.index}</p>
-          <h1 className="display mt-4 text-4xl md:text-5xl">Tell us what the day has to achieve.</h1>
-          <span className="rule mt-6" />
-          <p className="mt-6 max-w-sm text-2xl leading-snug text-ivory">{current.line}</p>
-          <p className="mt-4 max-w-sm text-ivory/80">{current.note}</p>
-        </div>
-      </header>
-      <div className="px-5 pt-28 pb-12 md:col-span-7 md:px-14 md:pt-32 md:pb-16">
+    <div>
+      <div className="mx-auto max-w-3xl px-5 pt-16 pb-12 md:px-8 md:pt-20 md:pb-16">
         <ol className="mb-10 grid gap-3 sm:grid-cols-2">
           {holds.map((hold, index) => {
             const selected = step === index;
@@ -64,6 +45,7 @@ export function InquireStage() {
           Addis Ababa, and the rooms this city actually has. Large days need months. A small room still needs a second plan.
         </p>
       </div>
+      <FilmRail />
     </div>
   );
 }

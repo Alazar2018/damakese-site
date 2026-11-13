@@ -6,7 +6,7 @@ import "./globals.css";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
-  weight: ["400", "500", "600"],
+  weight: ["400", "500", "600", "800"],
   variable: "--font-montserrat",
   display: "swap",
 });
@@ -20,7 +20,7 @@ const sourceSerif = Source_Serif_4({
 });
 
 const description =
-  "Damakese Marketing & Events produces conferences, concerts, state occasions, exhibitions and launches in Ethiopia. The crew is based in Addis Ababa.";
+  "Damakese Marketing & Events is a full-service marketing, events and entertainment company in Addis Ababa. Rooted in experience. Driven by creativity.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -48,7 +48,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${montserrat.variable} ${sourceSerif.variable} h-full`}>
+    <html lang="en" data-scroll-behavior="smooth" className={`${montserrat.variable} ${sourceSerif.variable} h-full`}>
       <body className="min-h-full">
         <a
           href="#content"
@@ -76,11 +76,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 addressCountry: "ET",
               },
               knowsAbout: [
-                "Conference production",
-                "Concert production",
-                "State occasions",
-                "Exhibitions and trade fairs",
-                "Product launches",
+                "Marketing and brand activations",
+                "Branding and visual identity",
+                "Event production",
+                "Concerts and live entertainment",
               ],
             }),
           }}

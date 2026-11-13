@@ -15,24 +15,27 @@ export function SiteFooter({ line = true }: { line?: boolean }) {
           <div className="md:col-span-4">
             <Logo className="h-auto w-40" />
             <p className="mt-6 max-w-xs text-[1.05rem] leading-relaxed">
-              Damakese Marketing & Events. Conferences, concerts, state occasions, exhibitions and launches in Ethiopia.
+              Damakese Marketing & Events. Marketing, events and entertainment in Addis Ababa.
             </p>
           </div>
           <div className="md:col-span-3">
             <p className="eyebrow">The book</p>
             <ul className="mt-4 space-y-2">
-              <li><Link className="ui text-sm" href="/work">Work</Link></li>
-              <li><Link className="ui text-sm" href="/practice">Practice</Link></li>
-              <li><Link className="ui text-sm" href="/about">About</Link></li>
-              <li><Link className="ui text-sm" href="/inquire">Inquire</Link></li>
+              <li><Link className="ui inline-flex min-h-11 items-center text-sm hover:underline hover:decoration-lime hover:decoration-2 hover:underline-offset-4" href="/about">About</Link></li>
+              <li><Link className="ui inline-flex min-h-11 items-center text-sm hover:underline hover:decoration-lime hover:decoration-2 hover:underline-offset-4" href="/practice">Services</Link></li>
+              <li><Link className="ui inline-flex min-h-11 items-center text-sm hover:underline hover:decoration-lime hover:decoration-2 hover:underline-offset-4" href="/work">Work</Link></li>
+              <li><Link className="ui inline-flex min-h-11 items-center text-sm hover:underline hover:decoration-lime hover:decoration-2 hover:underline-offset-4" href="/clients">Clients</Link></li>
+              <li><Link className="ui inline-flex min-h-11 items-center text-sm hover:underline hover:decoration-lime hover:decoration-2 hover:underline-offset-4" href="/newsroom">Newsroom</Link></li>
+              <li><Link className="ui inline-flex min-h-11 items-center text-sm hover:underline hover:decoration-lime hover:decoration-2 hover:underline-offset-4" href="/career">Career</Link></li>
+              <li><Link className="ui inline-flex min-h-11 items-center text-sm hover:underline hover:decoration-lime hover:decoration-2 hover:underline-offset-4" href="/inquire">Let&apos;s talk</Link></li>
             </ul>
           </div>
           <div className="md:col-span-3">
             <p className="eyebrow">Where</p>
             <p className="mt-4 text-[1.05rem]">Addis Ababa, Ethiopia</p>
-            <p className="mt-2 text-[1.05rem]">Nine years on the country’s largest stages.</p>
+            <p className="mt-2 text-[1.05rem]">Nine years of industry experience across the team.</p>
             <Link className="ui mt-4 inline-block text-sm underline decoration-green decoration-2 underline-offset-4" href="/inquire">
-              Start a brief
+              Let&apos;s talk
             </Link>
           </div>
           <div className="md:col-span-2">

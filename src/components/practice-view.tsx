@@ -1,17 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { FilmRail } from "@/components/film-rail";
 import { PracticeStack } from "@/components/practice-stack";
-import { practices } from "@/lib/content";
-
-const steps = [
-  "The brief: what the day has to achieve.",
-  "The idea, written before a supplier is called.",
-  "The plan, and the second plan.",
-  "Build, then test, then leave it alone.",
-  "Doors. The crew stays until the last truck.",
-];
+import { disciplines, howWeWork, practices } from "@/lib/content";
 
 export function PracticeView() {
   const [open, setOpen] = useState(0);
@@ -22,24 +15,53 @@ export function PracticeView() {
     document.getElementById("the-five")?.scrollIntoView({ behavior: "smooth", block: "start" });
   }
 
+  useEffect(() => {
+    const id = window.location.hash.replace("#", "");
+    if (!id) return;
+    document.getElementById(id)?.scrollIntoView({ block: "start" });
+  }, []);
+
   return (
     <>
+      <section className="bg-ivory">
+        <div className="mx-auto max-w-[90rem] px-5 py-16 md:px-12 md:py-24">
+          <p className="eyebrow">What we do</p>
+          <h2 className="display mt-4 max-w-3xl text-4xl text-green md:text-5xl">Four ways the work shows up.</h2>
+          <div className="mt-12 grid gap-10">
+            {disciplines.map((item) => (
+              <article id={item.id} key={item.id} className="grid scroll-mt-24 overflow-hidden bg-white md:grid-cols-2">
+                <img src={item.image} alt={item.imageAlt} className="aspect-[4/3] h-full w-full object-cover" />
+                <div className="flex flex-col justify-center px-6 py-10 md:px-12">
+                  <p className="ui text-xs font-medium tracking-[0.16em] text-forest uppercase">{item.index}</p>
+                  <h3 className="display mt-3 text-3xl text-green">{item.title}</h3>
+                  <p className="mt-3 text-xl text-green">{item.line}</p>
+                  <span className="rule mt-5" />
+                  <p className="mt-5 max-w-[var(--measure)] text-lg leading-relaxed">{item.body}</p>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <FilmRail />
+
       <header className="on-green bg-green text-ivory">
-        <div className="mx-auto max-w-[90rem] px-5 pt-32 pb-12 md:px-12 lg:pt-40">
+        <div className="mx-auto max-w-[90rem] px-5 pt-16 pb-12 md:px-12 md:pt-20">
           <p className="eyebrow fade-up">Practice</p>
-          <h1 className="display mt-4 max-w-4xl text-4xl sm:text-5xl md:text-7xl">
+          <h2 className="display mt-4 max-w-4xl text-4xl sm:text-5xl md:text-7xl">
             <span className="block overflow-hidden">
-              <span className="line-rise">Five kinds of day.</span>
+              <span className="line-rise">What do we want</span>
             </span>
             <span className="mt-2 block overflow-hidden">
-              <span className="line-rise" style={{ animationDelay: "120ms" }}>
-                One standard.
+              <span className="line-rise text-lime" style={{ animationDelay: "120ms" }}>
+                people to take away?
               </span>
             </span>
-          </h1>
+          </h2>
           <span className="rule rule-draw mt-7" />
           <p className="fade-up mt-6 max-w-xl text-lg text-ivory/85" style={{ animationDelay: "240ms" }}>
-            Choose a kind. The day below opens to it.
+            Campaigns, identities, events and live shows. Choose a day below and the practice opens to it.
           </p>
         </div>
         <div className="grid border-t border-ivory/20 sm:grid-cols-2 lg:grid-cols-5" role="list">
@@ -71,13 +93,13 @@ export function PracticeView() {
             <p className="eyebrow">End to end</p>
             <h2 className="display mt-4 text-4xl">The day, in the order it is made.</h2>
             <span className="rule mt-6" />
-            <p className="mt-6 max-w-sm text-lg text-ivory/85">{steps[step]}</p>
+            <p className="mt-6 max-w-sm text-lg text-ivory/85">{howWeWork[step]}</p>
             <Link href="/inquire" className="btn btn-inverse mt-8">
-              Start a brief
+              Let&apos;s talk
             </Link>
           </div>
           <ol className="md:col-span-6 md:col-start-7">
-            {steps.map((item, index) => {
+            {howWeWork.map((item, index) => {
               const selected = step === index;
               return (
                 <li key={item}>

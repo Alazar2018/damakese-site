@@ -4,9 +4,9 @@ import { useState } from "react";
 import Link from "next/link";
 
 const reasons = [
-  ["01", "Rooted here", "We know this city: its venues and their loading doors, its suppliers and who actually delivers, its permits, its protocol and its traffic."],
-  ["02", "Sharper under pressure", "Our standard rises when the schedule breaks. The hour a supplier fails is the hour a client finds out what they bought."],
-  ["03", "Relief, quickly", "Clients arrive with a date and a risk. We take the risk off them and give back a day that worked."],
+  ["01", "Communicate clearly", "We help brands and organisations say what they mean, and we keep the decisions in front of the client."],
+  ["02", "Bring people together", "Campaigns, events and entertainment are how an audience meets the work. The journey starts before the doors open."],
+  ["03", "Own the delivery", "We take responsibility for the quality of the work, and we stay through handover so the client knows where things stand."],
 ] as const;
 
 export function CallReasons() {
@@ -17,10 +17,10 @@ export function CallReasons() {
       <div className="mx-auto grid max-w-[90rem] gap-12 px-5 py-20 md:grid-cols-12 md:px-12 md:py-24">
         <div className="md:col-span-5">
           <p className="eyebrow">Why the call comes</p>
-          <h2 className="display mt-4 text-4xl md:text-5xl">We are hired for the hour nothing can go wrong.</h2>
+          <h2 className="display mt-4 text-4xl md:text-5xl">The work we take responsibility for.</h2>
           <span className="rule mt-6" />
           <Link href="/inquire" className="btn btn-inverse mt-8">
-            Start a brief
+            Let&apos;s talk
           </Link>
         </div>
         <div className="md:col-span-6 md:col-start-7" role="list">

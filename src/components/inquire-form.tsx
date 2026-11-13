@@ -4,6 +4,13 @@ import { FormEvent, useState } from "react";
 import { KINDS, type Kind } from "@/lib/content";
 import { useDesk } from "@/lib/store";
 
+const fieldIds: Record<string, string> = {
+  name: "brief-name",
+  organisation: "brief-organisation",
+  email: "brief-email",
+  brief: "brief-achieve",
+};
+
 const empty = {
   name: "",
   organisation: "",
@@ -20,6 +27,7 @@ export function InquireForm({ onStep }: { onStep?: (step: number) => void }) {
   const [values, setValues] = useState(empty);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [sent, setSent] = useState(false);
+  const [sending, setSending] = useState(false);
 
   function update(key: keyof typeof empty, value: string) {
     setValues((current) => ({ ...current, [key]: value }));
@@ -34,12 +42,19 @@ export function InquireForm({ onStep }: { onStep?: (step: number) => void }) {
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values.email)) next.email = "We need an email we can answer.";
     if (values.brief.trim().length < 12) next.brief = "Tell us what the day has to achieve.";
     setErrors(next);
-    if (Object.keys(next).length) return;
+    const first = Object.keys(next)[0];
+    if (first) {
+      document.getElementById(fieldIds[first] ?? "")?.focus();
+      return;
+    }
+    setSending(true);
     try {
       await addInquiry(values);
       setSent(true);
     } catch {
       setErrors({ brief: "The brief did not leave this page. Try again in a moment." });
+    } finally {
+      setSending(false);
     }
   }
 
@@ -61,20 +76,20 @@ export function InquireForm({ onStep }: { onStep?: (step: number) => void }) {
       <div className="grid gap-5 md:grid-cols-2">
         <label className="field">
           <span>Name</span>
-          <input id="brief-name" value={values.name} onFocus={() => onStep?.(0)} onChange={(event) => update("name", event.target.value)} autoComplete="name" />
-          {errors.name ? <p className="error">{errors.name}</p> : null}
+          <input id="brief-name" value={values.name} onFocus={() => onStep?.(0)} onChange={(event) => update("name", event.target.value)} autoComplete="name" aria-invalid={Boolean(errors.name)} aria-describedby={errors.name ? "brief-name-error" : undefined} />
+          {errors.name ? <p id="brief-name-error" className="error">{errors.name}</p> : null}
         </label>
         <label className="field">
           <span>Organisation</span>
-          <input id="brief-organisation" value={values.organisation} onFocus={() => onStep?.(0)} onChange={(event) => update("organisation", event.target.value)} autoComplete="organization" />
-          {errors.organisation ? <p className="error">{errors.organisation}</p> : null}
+          <input id="brief-organisation" value={values.organisation} onFocus={() => onStep?.(0)} onChange={(event) => update("organisation", event.target.value)} autoComplete="organization" aria-invalid={Boolean(errors.organisation)} aria-describedby={errors.organisation ? "brief-organisation-error" : undefined} />
+          {errors.organisation ? <p id="brief-organisation-error" className="error">{errors.organisation}</p> : null}
         </label>
       </div>
       <div className="grid gap-5 md:grid-cols-2">
         <label className="field">
           <span>Email</span>
-          <input id="brief-email" type="email" value={values.email} onFocus={() => onStep?.(0)} onChange={(event) => update("email", event.target.value)} autoComplete="email" />
-          {errors.email ? <p className="error">{errors.email}</p> : null}
+          <input id="brief-email" type="email" value={values.email} onFocus={() => onStep?.(0)} onChange={(event) => update("email", event.target.value)} autoComplete="email" aria-invalid={Boolean(errors.email)} aria-describedby={errors.email ? "brief-email-error" : undefined} />
+          {errors.email ? <p id="brief-email-error" className="error">{errors.email}</p> : null}
         </label>
         <label className="field">
           <span>Phone, if useful</span>
@@ -101,11 +116,11 @@ export function InquireForm({ onStep }: { onStep?: (step: number) => void }) {
       </div>
       <label className="field">
         <span>What the day has to achieve</span>
-        <textarea id="brief-achieve" value={values.brief} onFocus={() => onStep?.(3)} onChange={(event) => update("brief", event.target.value)} />
-        {errors.brief ? <p className="error">{errors.brief}</p> : null}
+        <textarea id="brief-achieve" value={values.brief} onFocus={() => onStep?.(3)} onChange={(event) => update("brief", event.target.value)} aria-invalid={Boolean(errors.brief)} aria-describedby={errors.brief ? "brief-achieve-error" : undefined} />
+        {errors.brief ? <p id="brief-achieve-error" className="error">{errors.brief}</p> : null}
       </label>
-      <button type="submit" className="btn btn-solid w-full sm:w-auto">
-        Send the brief
+      <button type="submit" className="btn btn-solid w-full sm:w-auto" disabled={sending}>
+        {sending ? "Sending the brief" : "Send the brief"}
       </button>
     </form>
   );

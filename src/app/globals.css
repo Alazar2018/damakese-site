@@ -313,6 +313,111 @@ body {
   animation: settle 1.8s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
+.hero-bounce {
+  animation: hero-bounce 0.9s cubic-bezier(0.22, 1.2, 0.36, 1) both;
+}
+
+.hero-bounce-2 {
+  animation-delay: 0.1s;
+}
+
+.hero-bounce-3 {
+  animation-delay: 0.2s;
+}
+
+@keyframes hero-bounce {
+  0% {
+    opacity: 0;
+    transform: translateY(32px);
+  }
+  58% {
+    opacity: 1;
+    transform: translateY(-10px);
+  }
+  78% {
+    transform: translateY(4px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.hero-drift {
+  animation: drift 9s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.stage-panel {
+  background:
+    radial-gradient(90% 70% at 18% 12%, rgba(156, 202, 59, 0.14), transparent 58%),
+    #0e2618;
+}
+
+.meteor-field {
+  position: absolute;
+  inset: 0;
+  z-index: 8;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.meteor {
+  position: absolute;
+  left: 0;
+  height: 1.5px;
+  width: var(--len, 8rem);
+  border-radius: 999px;
+  background: linear-gradient(90deg, transparent 0%, rgba(156, 202, 59, 0) 18%, rgba(198, 232, 106, 0.75) 72%, #fff 100%);
+  box-shadow: 0 0 8px 1px rgba(214, 242, 120, 0.45);
+  animation: meteor var(--dur, 3.2s) linear var(--delay, 0s) infinite;
+  opacity: 0;
+}
+
+@keyframes meteor {
+  0% {
+    transform: translate3d(-16rem, -1rem, 0) rotate(-28deg);
+    opacity: 0;
+  }
+  12% {
+    opacity: 1;
+  }
+  78% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate3d(92vw, 34vh, 0) rotate(-28deg);
+    opacity: 0;
+  }
+}
+
+.ribs-quiet {
+  background-image: repeating-linear-gradient(
+    90deg,
+    transparent 0 13px,
+    rgba(156, 202, 59, 0.09) 13px 14px
+  );
+}
+
+.hero-meter {
+  transform: scaleY(0);
+  transform-origin: top center;
+  animation: hero-meter 8.6s linear forwards;
+}
+
+@keyframes hero-meter {
+  to {
+    transform: scaleY(1);
+  }
+}
+
+@keyframes drift {
+  from {
+    transform: scale(1.12);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
 .photo-zoom {
   transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
 }
@@ -410,6 +515,9 @@ body {
   .stripe-in,
   .fade-up,
   .hero-settle,
+  .hero-drift,
+  .hero-bounce,
+  .hero-meter,
   .photo-zoom,
   .roll-track,
   .roll-arrow {
@@ -419,7 +527,8 @@ body {
     transition: none;
   }
 
-  .sheen::after {
+  .sheen::after,
+  .meteor {
     animation: none;
     opacity: 0;
   }

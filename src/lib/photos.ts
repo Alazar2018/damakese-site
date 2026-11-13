@@ -2,6 +2,14 @@ export function frame(id: string, width = 1600) {
   return `https://images.unsplash.com/${id}?auto=format&fit=crop&w=${width}&q=80`;
 }
 
+export function sharp(id: string) {
+  const url = (width: number) => `https://images.unsplash.com/${id}?auto=format&fit=crop&w=${width}&q=92&fm=jpg`;
+  return {
+    image: url(2560),
+    srcSet: `${url(1920)} 1920w, ${url(2560)} 2560w, ${url(3840)} 3840w`,
+  };
+}
+
 export const frames = {
   hero: frame("photo-1492684223066-81342ee5ff30", 2000),
   fair: frame("photo-1540575467063-178a50c2df87"),
