@@ -67,7 +67,7 @@ export function HomeView() {
             </Reveal>
             <Reveal className="on-green relative overflow-hidden bg-[#0e2618] px-8 py-12 text-ivory lg:col-span-5" delay={80}>
               <div className="ribs-quiet pointer-events-none absolute inset-0" aria-hidden />
-              <p className="display relative text-8xl leading-none text-lime md:text-9xl">
+              <p className="display relative text-8xl leading-none text-lime drop-shadow-[0_0_36px_rgba(156,202,59,0.55)] md:text-9xl">
                 <CountUp to={9} />
               </p>
               <p className="relative mt-4 text-xl leading-snug">years of industry experience across our team.</p>
@@ -113,8 +113,8 @@ export function HomeView() {
                 </button>
               ))}
             </div>
-            <article className="mt-8 grid overflow-hidden bg-ivory md:grid-cols-2">
-              <img key={active.title} src={active.image} alt={active.imageAlt} className="fade-up aspect-[4/3] h-full w-full object-cover" />
+            <article className="group mt-8 grid overflow-hidden bg-ivory md:grid-cols-2">
+              <img key={active.title} src={active.image} alt={active.imageAlt} className="fade-up aspect-[4/3] h-full w-full object-cover transition duration-700 group-hover:scale-[1.03]" />
               <div className="flex flex-col justify-center px-6 py-10 md:px-12">
                 <p className="ui text-xs font-medium tracking-[0.16em] text-forest uppercase">{active.index}</p>
                 <h3 className="display mt-3 text-3xl text-green md:text-4xl">{active.line}</h3>
@@ -156,7 +156,7 @@ export function HomeView() {
             </Reveal>
             <ul className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
               {values.map((value) => (
-                <li key={value.index} className="border-t border-stone pt-5">
+                <li key={value.index} className="invite border-t border-stone pt-5 hover:border-lime">
                   <p className="display text-5xl leading-none text-lime">{value.index}</p>
                   <h3 className="display mt-3 text-2xl text-green">{value.title}</h3>
                   <p className="mt-3 leading-relaxed">{value.body}</p>
@@ -213,7 +213,7 @@ export function HomeView() {
             </Reveal>
             <ol className="lg:col-span-6 lg:col-start-7">
               {howWeWork.map((step, index) => (
-                <li key={step} className="grid grid-cols-[2.5rem_1fr] gap-3 border-t border-stone py-4">
+                <li key={step} className="grid grid-cols-[2.5rem_1fr] gap-3 border-t border-stone py-4 transition-colors duration-300 hover:border-lime">
                   <span className="ui text-sm text-forest">0{index + 1}</span>
                   <span className="text-lg">{step}</span>
                 </li>

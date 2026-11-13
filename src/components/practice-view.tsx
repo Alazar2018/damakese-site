@@ -29,8 +29,8 @@ export function PracticeView() {
           <h2 className="display mt-4 max-w-3xl text-4xl text-green md:text-5xl">Four ways the work shows up.</h2>
           <div className="mt-12 grid gap-10">
             {disciplines.map((item) => (
-              <article id={item.id} key={item.id} className="grid scroll-mt-24 overflow-hidden bg-white md:grid-cols-2">
-                <img src={item.image} alt={item.imageAlt} className="aspect-[4/3] h-full w-full object-cover" />
+              <article id={item.id} key={item.id} className="group grid scroll-mt-24 overflow-hidden bg-white md:grid-cols-2">
+                <img src={item.image} alt={item.imageAlt} className="aspect-[4/3] h-full w-full object-cover transition duration-700 group-hover:scale-[1.03]" />
                 <div className="flex flex-col justify-center px-6 py-10 md:px-12">
                   <p className="ui text-xs font-medium tracking-[0.16em] text-forest uppercase">{item.index}</p>
                   <h3 className="display mt-3 text-3xl text-green">{item.title}</h3>

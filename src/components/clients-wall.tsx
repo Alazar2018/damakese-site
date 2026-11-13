@@ -107,12 +107,12 @@ function PartnerLogo({ name }: { name: string }) {
 
           <ul className="mt-10 grid grid-cols-2 gap-px bg-stone md:grid-cols-3 lg:grid-cols-4">
             {named.map((event) => (
-              <li key={event.id} className="flex min-h-40 items-center justify-center bg-white px-4 py-6" title={event.kind}>
+              <li key={event.id} className="mark-tile flex min-h-40 items-center justify-center bg-white px-4 py-6" title={event.kind}>
                 <PartnerLogo name={event.client} />
               </li>
             ))}
             {shown.map((item) => (
-              <li key={item.name} className="flex min-h-40 items-center justify-center bg-white px-4 py-6" title={item.line}>
+              <li key={item.name} className="mark-tile flex min-h-40 items-center justify-center bg-white px-4 py-6" title={item.line}>
                 <PartnerLogo name={item.name} />
               </li>
             ))}

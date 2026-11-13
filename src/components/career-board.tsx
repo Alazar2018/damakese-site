@@ -44,7 +44,7 @@ export function CareerBoard() {
                 <li key={role.slug}>
                   <Link
                     href={`/career/${role.slug}`}
-                    className={`group relative block overflow-hidden px-6 py-8 md:px-8 md:py-10 ${
+                    className={`invite group relative block overflow-hidden px-6 py-8 md:px-8 md:py-10 ${
                       lead ? "bg-lime text-green" : "on-green bg-green text-ivory"
                     }`}
                   >
@@ -52,7 +52,7 @@ export function CareerBoard() {
                     <span className="display mt-3 block max-w-xl text-3xl md:text-4xl">{role.title}</span>
                     <span className="mt-8 flex items-center justify-between gap-4">
                       <span className="text-sm">{role.type}</span>
-                      <span className={`inline-flex h-12 w-12 items-center justify-center rounded-full ${lead ? "bg-green text-lime" : "bg-ivory text-green"}`}>
+                      <span className={`inline-flex h-12 w-12 items-center justify-center rounded-full transition-transform duration-500 group-hover:translate-x-1 ${lead ? "bg-green text-lime" : "bg-ivory text-green"}`}>
                         <ArrowRight size={18} />
                         <span className="sr-only">Open {role.title}</span>
                       </span>

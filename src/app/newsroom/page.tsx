@@ -26,8 +26,10 @@ export default function NewsroomPage() {
           imageAlt="A conference room set for a briefing."
         />
 
-        <article className="mx-auto grid max-w-[90rem] items-center gap-8 px-5 py-16 md:px-12 lg:grid-cols-2">
-          <img src={lead.image} alt={lead.imageAlt} className="aspect-[16/10] w-full object-cover" />
+        <article className="group mx-auto grid max-w-[90rem] items-center gap-8 px-5 py-16 md:px-12 lg:grid-cols-2">
+          <div className="overflow-hidden">
+            <img src={lead.image} alt={lead.imageAlt} className="aspect-[16/10] w-full object-cover transition duration-700 group-hover:scale-[1.03]" />
+          </div>
           <div>
             <p className="ui text-sm text-forest">{lead.date}</p>
             <h2 className="display mt-3 text-4xl text-green md:text-5xl">{lead.title}</h2>
@@ -41,8 +43,10 @@ export default function NewsroomPage() {
           <div className="mx-auto max-w-[90rem] px-5 py-16 md:px-12 md:py-20">
             <ul className="grid gap-12">
               {rest.map((story) => (
-                <li key={story.slug} className="grid items-start gap-6 border-t border-stone pt-10 md:grid-cols-12">
-                  <img src={story.image} alt={story.imageAlt} className="aspect-[16/10] w-full object-cover md:col-span-5" />
+                <li key={story.slug} className="group grid items-start gap-6 border-t border-stone pt-10 transition-colors duration-500 hover:border-lime md:grid-cols-12">
+                  <div className="overflow-hidden md:col-span-5">
+                    <img src={story.image} alt={story.imageAlt} className="aspect-[16/10] w-full object-cover transition duration-700 group-hover:scale-[1.03]" />
+                  </div>
                   <div className="md:col-span-7">
                     <p className="ui text-sm text-forest">{story.date}</p>
                     <h2 className="display mt-3 text-3xl text-green md:text-4xl">{story.title}</h2>

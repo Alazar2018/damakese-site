@@ -88,10 +88,14 @@ export function WorkArchive() {
               onClick={() => setOpen(piece)}
               className="group mb-4 block w-full cursor-pointer break-inside-avoid text-left"
             >
-              <span className="relative block overflow-hidden bg-green">
-                <img src={piece.image} alt="" className={`${aspects[index % aspects.length]} w-full object-cover transition duration-500 group-hover:scale-[1.03]`} />
+              <span className="frame relative block overflow-hidden bg-green">
+                <img src={piece.image} alt="" className={`${aspects[index % aspects.length]} w-full object-cover transition duration-700 group-hover:scale-[1.04]`} />
                 <span className="ui absolute top-4 left-4 rounded-full bg-lime px-3 py-1 text-xs font-semibold tracking-[0.14em] text-green uppercase">
                   {piece.badge}
+                </span>
+                <span aria-hidden className="absolute top-4 right-4 h-2 w-2 rotate-45 bg-lime shadow-[0_0_14px_rgba(156,202,59,0.95)]" />
+                <span className="glass-in ui absolute right-4 bottom-4 bg-ivory/90 px-3 py-2 text-[11px] font-semibold tracking-[0.16em] text-green uppercase backdrop-blur-md">
+                  Open
                 </span>
                 {piece.video ? (
                   <span className="absolute top-1/2 left-1/2 inline-flex h-14 w-14 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-green text-lime">

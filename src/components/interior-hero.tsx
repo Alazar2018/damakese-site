@@ -15,7 +15,7 @@ export function InteriorHero({
 }) {
   return (
     <header className="relative min-h-[62vh] overflow-hidden bg-green text-ivory">
-      <img src={image} alt={imageAlt} className="absolute inset-0 h-full w-full object-cover object-[center_40%]" />
+      <img src={image} alt={imageAlt} className="hero-still absolute inset-0 h-full w-full object-cover object-[center_40%]" />
       <div
         aria-hidden
         className="absolute inset-0"
@@ -29,13 +29,14 @@ export function InteriorHero({
           <Link href="/" className="text-ivory/65">
             Home
           </Link>
-          <span className="text-ivory/45"> / </span>
+          <span aria-hidden className="mx-3 inline-block h-1.5 w-1.5 rotate-45 bg-lime shadow-[0_0_12px_rgba(156,202,59,0.85)]" />
           <span className="text-lime">{crumb}</span>
         </p>
         <h1 className="mt-4 font-[family-name:var(--font-montserrat)] text-[clamp(3.2rem,8vw,5.35rem)] leading-[0.92] font-extrabold tracking-[-0.03em] text-ivory lowercase">
           {title}
         </h1>
-        <p className="mt-3 max-w-2xl text-2xl font-medium text-ivory">{line}</p>
+        <span className="rule rule-lime mt-5" />
+        <p className="mt-4 max-w-2xl text-2xl font-medium text-ivory">{line}</p>
       </div>
     </header>
   );
