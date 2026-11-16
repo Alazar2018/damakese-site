@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { useState } from "react";
 import { CountUp } from "@/components/count-up";
-import { PartnerMarks } from "@/components/clients-wall";
 import { FilmRail } from "@/components/film-rail";
 import { HomeHero } from "@/components/home-hero";
 import { LineCycle } from "@/components/line-cycle";
@@ -290,23 +289,6 @@ export function HomeView() {
                 <span className="display block text-6xl text-lime">Addis</span>
                 <span className="mt-3 block text-lg">Ababa is home. The programme can travel when the brief does.</span>
               </p>
-            </div>
-          </div>
-        </section>
-
-        <section className="bg-ivory">
-          <div className="mx-auto max-w-[90rem] px-5 py-16 md:px-12 md:py-24">
-            <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-              <div>
-                <p className="eyebrow">Clients</p>
-                <h2 className="display mt-4 max-w-3xl text-4xl text-green md:text-5xl">The company we keep.</h2>
-              </div>
-              <Link href="/clients" className="ui font-semibold text-green underline decoration-lime decoration-2 underline-offset-4">
-                The full wall
-              </Link>
-            </div>
-            <div className="mt-10">
-              <PartnerMarks />
             </div>
           </div>
         </section>
