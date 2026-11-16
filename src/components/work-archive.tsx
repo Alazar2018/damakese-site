@@ -1,8 +1,8 @@
 "use client";
 
-import { Play, X } from "@phosphor-icons/react";
+import { ArrowLeft, ArrowRight, Play, X } from "@phosphor-icons/react";
 import { useEffect, useMemo, useRef, useState } from "react";
-import { workLanes, workPieces, type WorkLane, type WorkPiece } from "@/lib/content";
+import { laneForKind, workLanes, workPieces, type WorkLane, type WorkPiece } from "@/lib/content";
 import { frameFor } from "@/lib/photos";
 import { useDesk, type StudioEvent } from "@/lib/store";
 
@@ -12,7 +12,7 @@ function fromEvent(event: StudioEvent): WorkPiece {
   const image = event.images?.[0]?.src || event.image || frameFor(event.id, event.kind);
   return {
     id: event.id,
-    lane: "Events",
+    lane: laneForKind(event.kind),
     badge: event.kind,
     title: event.client?.trim() || event.name,
     line: event.note,
@@ -42,6 +42,15 @@ export function WorkArchive() {
     }
     if (!node.open) node.showModal();
   }, [open]);
+
+  function step(direction: number) {
+    if (!open) return;
+    const list = shown.some((piece) => piece.id === open.id) ? shown : pieces;
+    if (list.length < 2) return;
+    const index = list.findIndex((piece) => piece.id === open.id);
+    const next = list[(index + direction + list.length) % list.length];
+    setOpen(next);
+  }
 
   return (
     <section className="bg-ivory text-ink">
@@ -73,7 +82,7 @@ export function WorkArchive() {
           </div>
         </div>
         <p className="mt-6 max-w-2xl">
-          Film, campaigns, and the days themselves. A client’s name goes on a card when that day is on the public book.
+          Marketing, branding, events, and concerts. The same four shelves as the homepage. A client’s name goes on a card when that day is on the public book.
         </p>
       </div>
 
@@ -114,19 +123,47 @@ export function WorkArchive() {
 
       <dialog
         ref={dialog}
+        aria-label={open ? open.title : "Work"}
         className="m-auto w-[min(56rem,calc(100%-2rem))] bg-ivory p-0 text-green backdrop:bg-green/70"
         onClose={() => setOpen(null)}
+        onKeyDown={(event) => {
+          if (event.target instanceof HTMLMediaElement) return;
+          if (event.key === "ArrowRight") {
+            event.preventDefault();
+            step(1);
+          }
+          if (event.key === "ArrowLeft") {
+            event.preventDefault();
+            step(-1);
+          }
+        }}
       >
         {open ? (
           <div>
             <div className="relative bg-green">
               {open.video ? (
-                <video key={open.video} className="aspect-video w-full bg-black" controls autoPlay playsInline poster={open.image}>
+                <video key={open.id} className="aspect-video w-full bg-black" controls autoPlay playsInline poster={open.image}>
                   <source src={open.video} type="video/mp4" />
                 </video>
               ) : (
-                <img src={open.image} alt="" className="aspect-video w-full object-cover" />
+                <img key={open.id} src={open.image} alt="" className="aspect-video w-full object-cover" />
               )}
+              <button
+                type="button"
+                onClick={() => step(-1)}
+                className="absolute top-1/2 left-3 inline-flex h-11 w-11 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full bg-ivory text-green"
+              >
+                <ArrowLeft size={18} />
+                <span className="sr-only">Previous</span>
+              </button>
+              <button
+                type="button"
+                onClick={() => step(1)}
+                className="absolute top-1/2 right-3 inline-flex h-11 w-11 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full bg-ivory text-green"
+              >
+                <ArrowRight size={18} />
+                <span className="sr-only">Next</span>
+              </button>
               <button
                 type="button"
                 onClick={() => setOpen(null)}

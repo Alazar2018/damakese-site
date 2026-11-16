@@ -654,6 +654,30 @@ body {
   box-shadow: 0 0 0 3px color-mix(in srgb, var(--lime) 40%, transparent);
 }
 
+.footer-stage {
+  opacity: 0;
+  transform: translateY(3rem);
+}
+
+.footer-stage.is-in {
+  animation: footer-pop 0.9s cubic-bezier(0.22, 1.25, 0.36, 1) both;
+}
+
+@keyframes footer-pop {
+  0% {
+    opacity: 0;
+    transform: translateY(3rem) scale(0.98);
+  }
+  62% {
+    opacity: 1;
+    transform: translateY(-0.45rem) scale(1);
+  }
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
+
 
 @media (prefers-reduced-motion: reduce) {
   html {
@@ -686,8 +710,15 @@ body {
     opacity: 0;
   }
 
-  .on-green.bg-green {
+  .on-green.bg-green,
+  .footer-stage,
+  .footer-stage.is-in {
     animation: none;
+  }
+
+  .footer-stage {
+    opacity: 1;
+    transform: none;
   }
 
   .card-open {

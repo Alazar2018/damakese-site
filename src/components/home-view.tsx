@@ -3,8 +3,10 @@
 import Link from "next/link";
 import { useState } from "react";
 import { CountUp } from "@/components/count-up";
+import { PartnerMarks } from "@/components/clients-wall";
 import { FilmRail } from "@/components/film-rail";
 import { HomeHero } from "@/components/home-hero";
+import { InquireForm } from "@/components/inquire-form";
 import { LineCycle } from "@/components/line-cycle";
 import { Reveal } from "@/components/marks";
 import { SiteFooter } from "@/components/site-footer";
@@ -15,24 +17,38 @@ import {
   disciplines,
   faqs,
   howWeWork,
+  laneForKind,
   manifesto,
   mission,
   values,
   vision,
+  workLanes,
+  workPieces,
+  type WorkLane,
 } from "@/lib/content";
-import { formatDay } from "@/lib/format";
 import { frames } from "@/lib/photos";
 import { useDesk } from "@/lib/store";
 
 export function HomeView() {
   const { events } = useDesk();
   const [service, setService] = useState(0);
+  const [lane, setLane] = useState<WorkLane>("All");
   const active = disciplines[service];
-  const book = events
-    .filter((event) => event.visibility === "public")
-    .slice()
-    .sort((a, b) => a.date.localeCompare(b.date))
-    .slice(0, 3);
+  const shelf = [
+    ...events
+      .filter((event) => event.visibility === "public")
+      .map((event) => ({
+        id: event.id,
+        lane: laneForKind(event.kind),
+        badge: event.kind,
+        title: event.client?.trim() || event.name,
+        line: event.note,
+        image: event.images[0]?.src || event.image || frames.conference,
+        alt: event.images[0]?.alt || event.imageAlt || event.name,
+      })),
+    ...workPieces.map((piece) => ({ ...piece, alt: "" })),
+  ];
+  const shown = (lane === "All" ? shelf : shelf.filter((piece) => piece.lane === lane)).slice(0, 3);
 
   return (
     <>
@@ -170,37 +186,45 @@ export function HomeView() {
           <div className="mx-auto max-w-[90rem] px-5 py-16 md:px-12 md:py-24">
             <Reveal>
               <p className="eyebrow">Selected projects</p>
-              <h2 className="display mt-4 max-w-3xl text-4xl text-green md:text-5xl">Days that can carry a name.</h2>
+              <h2 className="display mt-4 max-w-3xl text-4xl text-green md:text-5xl">The same four shelves.</h2>
             </Reveal>
-            {book.length === 0 ? (
-              <>
-                <p className="mt-10 max-w-[var(--measure)] text-lg">
-                  Nothing on the public book yet. A day stays internal until it can carry someone’s name.
-                </p>
-                <Link href="/inquire" className="btn btn-solid mt-8">
-                  Start with a brief
+            <div className="mt-8 flex flex-wrap gap-2" role="tablist" aria-label="Filter the work">
+              {workLanes.map((item) => {
+                const selected = lane === item;
+                return (
+                  <button
+                    key={item}
+                    type="button"
+                    role="tab"
+                    aria-selected={selected}
+                    onClick={() => setLane(item)}
+                    className={`ui min-h-11 cursor-pointer rounded-full px-5 text-sm font-medium ${
+                      selected ? "bg-green text-ivory" : "border border-stone bg-white text-green"
+                    }`}
+                  >
+                    {item}
+                  </button>
+                );
+              })}
+            </div>
+            <p className="mt-6 max-w-2xl text-lg">
+              Marketing, branding, events, and concerts. A client’s name replaces the title when that day is public.
+            </p>
+            <div className="mt-10 grid gap-8 md:grid-cols-3">
+              {shown.map((piece) => (
+                <Link key={piece.id} href="/work" className="group block">
+                  <div className="overflow-hidden bg-green">
+                    <img src={piece.image} alt={piece.alt} className="photo-zoom aspect-[4/5] w-full object-cover" />
+                  </div>
+                  <p className="ui mt-4 text-xs font-medium tracking-[0.14em] text-forest uppercase">{piece.badge}</p>
+                  <h3 className="mt-2 text-2xl text-green italic">{piece.title}</h3>
+                  <p className="mt-2 leading-relaxed text-ink/80">{piece.line}</p>
                 </Link>
-              </>
-            ) : (
-              <div className="mt-12 grid gap-8 md:grid-cols-3">
-                {book.map((event) => {
-                  const photo = event.images[0]?.src || event.image || frames.conference;
-                  const alt = event.images[0]?.alt || event.imageAlt || event.name;
-                  return (
-                    <Link key={event.id} href="/work" className="group block">
-                      <div className="overflow-hidden bg-green">
-                        <img src={photo} alt={alt} className="photo-zoom aspect-[4/5] w-full object-cover" />
-                      </div>
-                      <p className="ui mt-4 text-xs font-medium tracking-[0.14em] text-forest uppercase">
-                        {event.kind} · {formatDay(event.date)}
-                      </p>
-                      <h3 className="mt-2 text-2xl text-green italic">{event.name}</h3>
-                      <p className="mt-2 leading-relaxed text-ink/80">{event.note}</p>
-                    </Link>
-                  );
-                })}
-              </div>
-            )}
+              ))}
+            </div>
+            <Link href="/work" className="btn btn-solid mt-8">
+              The full shelf
+            </Link>
           </div>
         </section>
 
@@ -244,19 +268,63 @@ export function HomeView() {
           </div>
         </section>
 
+        <section className="bg-white">
+          <div className="mx-auto max-w-[90rem] px-5 py-16 md:px-12 md:py-24">
+            <Reveal>
+              <p className="eyebrow">In numbers</p>
+              <h2 className="display mt-4 max-w-3xl text-4xl text-green md:text-5xl">What the house can say for itself.</h2>
+            </Reveal>
+            <div className="mt-12 grid gap-10 border-t border-stone pt-8 sm:grid-cols-3">
+              <p>
+                <span className="display block text-6xl text-green">
+                  <CountUp to={9} />
+                </span>
+                <span className="mt-3 block text-lg">years of industry experience across the team.</span>
+              </p>
+              <p>
+                <span className="display block text-6xl text-green">
+                  <CountUp to={4} />
+                </span>
+                <span className="mt-3 block text-lg">ways the work shows up, from a campaign to a live show.</span>
+              </p>
+              <p>
+                <span className="display block text-6xl text-lime">Addis</span>
+                <span className="mt-3 block text-lg">Ababa is home. The programme can travel when the brief does.</span>
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section className="bg-ivory">
+          <div className="mx-auto max-w-[90rem] px-5 py-16 md:px-12 md:py-24">
+            <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+              <div>
+                <p className="eyebrow">Clients</p>
+                <h2 className="display mt-4 max-w-3xl text-4xl text-green md:text-5xl">The company we keep.</h2>
+              </div>
+              <Link href="/clients" className="ui font-semibold text-green underline decoration-lime decoration-2 underline-offset-4">
+                The full wall
+              </Link>
+            </div>
+            <div className="mt-10">
+              <PartnerMarks />
+            </div>
+          </div>
+        </section>
+
         <section className="on-green bg-green text-ivory">
-          <div className="mx-auto flex max-w-[90rem] flex-col gap-8 px-5 py-20 md:flex-row md:items-end md:justify-between md:px-12 md:py-24">
-            <div className="max-w-2xl">
+          <div className="mx-auto grid max-w-[90rem] gap-12 px-5 py-16 md:px-12 md:py-24 lg:grid-cols-12">
+            <div className="lg:col-span-4">
               <p className="eyebrow">Contact</p>
-              <h2 className="display mt-4 text-4xl md:text-6xl">
-                Start the <span className="text-lime">conversation.</span>
+              <h2 className="display mt-4 text-4xl md:text-5xl">
+                Start the <span className="block text-lime">conversation.</span>
               </h2>
               <span className="rule mt-6" />
               <p className="mt-6 text-lg text-ivory/85">Addis Ababa. Tell us what the work has to achieve.</p>
             </div>
-            <Link href="/inquire" className="btn bg-lime text-green hover:bg-ivory">
-              Let&apos;s talk
-            </Link>
+            <div className="bg-ivory p-6 text-ink md:p-10 lg:col-span-8">
+              <InquireForm />
+            </div>
           </div>
         </section>
       </main>

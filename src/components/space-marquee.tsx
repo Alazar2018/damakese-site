@@ -1,5 +1,6 @@
 "use client";
 
+import { ArrowLeft, ArrowRight, X } from "@phosphor-icons/react";
 import { useEffect, useRef, useState } from "react";
 import { frames } from "@/lib/photos";
 
@@ -42,7 +43,10 @@ export function SpaceMarquee({
   const startOffset = useRef(0);
   const lastX = useRef(0);
   const lastT = useRef(0);
+  const draggedRef = useRef(false);
   const [grabbing, setGrabbing] = useState(false);
+  const [open, setOpen] = useState<number | null>(null);
+  const dialog = useRef<HTMLDialogElement>(null);
 
   useEffect(() => {
     reducedRef.current = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -52,7 +56,7 @@ export function SpaceMarquee({
       const track = trackRef.current;
       if (track) {
         const half = track.scrollWidth / 2;
-        if (!draggingRef.current && !reducedRef.current) {
+        if (!draggingRef.current && open === null && !reducedRef.current) {
           const velocity = velocityRef.current;
           if (Math.abs(velocity) > 0.1) {
             offsetRef.current += velocity;
@@ -89,16 +93,37 @@ export function SpaceMarquee({
 
     frame = window.requestAnimationFrame(tick);
     return () => window.cancelAnimationFrame(frame);
-  }, [slides]);
+  }, [open, slides]);
 
-  function nudge(velocity: number) {
-    velocityRef.current = velocity;
+  useEffect(() => {
+    const node = dialog.current;
+    if (!node) return;
+    if (open === null) {
+      if (node.open) node.close();
+      return;
+    }
+    if (!node.open) node.showModal();
+  }, [open]);
+
+  function step(direction: 1 | -1) {
+    const track = trackRef.current;
+    const card = track?.querySelector<HTMLElement>("[data-index]");
+    if (!track || !card) return;
+    const gap = Number.parseFloat(getComputedStyle(track).columnGap || "0") || 0;
+    velocityRef.current = 0;
+    offsetRef.current += direction * (card.offsetWidth + gap);
+  }
+
+  function show(index: number) {
+    if (draggedRef.current) return;
+    setOpen(index);
   }
 
   function onPointerDown(event: React.PointerEvent<HTMLDivElement>) {
     draggingRef.current = true;
     velocityRef.current = 0;
     event.currentTarget.setPointerCapture(event.pointerId);
+    draggedRef.current = false;
     startX.current = event.clientX;
     startOffset.current = offsetRef.current;
     lastX.current = event.clientX;
@@ -109,6 +134,7 @@ export function SpaceMarquee({
   function onPointerMove(event: React.PointerEvent<HTMLDivElement>) {
     if (!draggingRef.current) return;
     const now = performance.now();
+    if (Math.abs(event.clientX - startX.current) > 8) draggedRef.current = true;
     const dx = event.clientX - lastX.current;
     const dt = Math.max(now - lastT.current, 1);
     velocityRef.current = (dx / dt) * 16;
@@ -117,9 +143,14 @@ export function SpaceMarquee({
     offsetRef.current = startOffset.current + (event.clientX - startX.current);
   }
 
-  function endDrag() {
+  function endDrag(event?: React.PointerEvent<HTMLDivElement>) {
+    const moved = draggedRef.current;
     draggingRef.current = false;
     setGrabbing(false);
+    if (!event || moved) return;
+    const button = (event.target as HTMLElement).closest<HTMLElement>("button[data-index]");
+    if (!button) return;
+    setOpen(Number(button.dataset.index));
   }
 
   const loop = [...slides, ...slides];
@@ -149,28 +180,61 @@ export function SpaceMarquee({
           onPointerUp={endDrag}
           onPointerCancel={endDrag}
         >
-          {loop.map((slide, index) => (
-            <div
-              key={`${slide.label}-${index}`}
-              data-index={index % slides.length}
-              className="h-80 w-60 shrink-0 overflow-hidden rounded-2xl sm:h-[32rem] sm:w-80"
-            >
-              <img src={slide.src} alt={index < slides.length ? slide.alt : ""} className="pointer-events-none h-full w-full object-cover" draggable={false} />
-            </div>
-          ))}
+          {loop.map((slide, index) => {
+            const real = index % slides.length;
+            return (
+              <button
+                key={`${slide.label}-${index}`}
+                type="button"
+                data-index={real}
+                onClick={() => show(real)}
+                className="group h-80 w-60 shrink-0 cursor-pointer overflow-hidden rounded-2xl sm:h-[32rem] sm:w-80"
+              >
+                <img src={slide.src} alt={index < slides.length ? slide.alt : ""} className="pointer-events-none h-full w-full object-cover transition duration-700 group-hover:scale-[1.04]" draggable={false} />
+                <span className="sr-only">Open {slide.label}</span>
+              </button>
+            );
+          })}
         </div>
       </div>
       <div className="mx-auto flex max-w-xl items-center justify-center gap-6 px-5 pt-2">
-        <button type="button" className="ui min-h-11 cursor-pointer text-sm font-medium text-green underline decoration-stone underline-offset-4 hover:decoration-green" onClick={() => nudge(36)}>
-          Previous
+        <button type="button" aria-label="Previous room" className="inline-flex h-11 w-11 cursor-pointer items-center justify-center border border-green text-green hover:bg-green hover:text-lime" onClick={() => step(1)}>
+          <ArrowLeft size={18} />
         </button>
         <p ref={captionRef} className="eyebrow min-w-36 text-center">
           {slides[0]?.label}
         </p>
-        <button type="button" className="ui min-h-11 cursor-pointer text-sm font-medium text-green underline decoration-stone underline-offset-4 hover:decoration-green" onClick={() => nudge(-36)}>
-          Next
+        <button type="button" aria-label="Next room" className="inline-flex h-11 w-11 cursor-pointer items-center justify-center border border-green text-green hover:bg-green hover:text-lime" onClick={() => step(-1)}>
+          <ArrowRight size={18} />
         </button>
       </div>
+      <dialog
+        ref={dialog}
+        aria-label={open === null ? "Room" : slides[open]?.label}
+        className="m-auto w-[min(72rem,calc(100%-2rem))] bg-ivory p-0 text-green backdrop:bg-green/70"
+        onClose={() => setOpen(null)}
+      >
+        {open === null ? null : (
+          <div>
+            <div className="relative bg-green">
+              <img src={slides[open].src} alt={slides[open].alt} className="max-h-[78vh] w-full object-cover" />
+              <button type="button" onClick={() => setOpen((open + slides.length - 1) % slides.length)} className="absolute top-1/2 left-3 inline-flex h-11 w-11 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full bg-ivory text-green">
+                <ArrowLeft size={18} />
+                <span className="sr-only">Previous room</span>
+              </button>
+              <button type="button" onClick={() => setOpen((open + 1) % slides.length)} className="absolute top-1/2 right-3 inline-flex h-11 w-11 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full bg-ivory text-green">
+                <ArrowRight size={18} />
+                <span className="sr-only">Next room</span>
+              </button>
+              <button type="button" onClick={() => setOpen(null)} className="absolute top-3 right-3 inline-flex h-11 w-11 cursor-pointer items-center justify-center rounded-full bg-ivory text-green">
+                <X size={18} />
+                <span className="sr-only">Close</span>
+              </button>
+            </div>
+            <p className="px-6 py-5 text-lg">{slides[open].label}</p>
+          </div>
+        )}
+      </dialog>
     </section>
   );
 }

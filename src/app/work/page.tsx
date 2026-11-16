@@ -9,7 +9,7 @@ import { frames } from "@/lib/photos";
 export const metadata: Metadata = {
   title: "Work",
   description:
-    "Film, campaigns, and events by Damakese Marketing & Events. A client’s name goes on the work when the day can carry it.",
+    "Marketing, branding, events, and concerts by Damakese Marketing & Events. A client’s name goes on the work when the day can carry it.",
   alternates: { canonical: "/work" },
 };
 
@@ -21,7 +21,7 @@ export default function WorkPage() {
         <InteriorHero
           crumb="Work"
           title="work"
-          line="Film, campaigns, and the days themselves."
+          line="Marketing, branding, events, and concerts."
           image={frames.concert}
           imageAlt="A concert crowd under stage light."
         />

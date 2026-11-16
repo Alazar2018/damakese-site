@@ -5,7 +5,15 @@ import { CountUp } from "@/components/count-up";
 import { partnerSectors, partners, type PartnerSector } from "@/lib/content";
 import { useDesk } from "@/lib/store";
 
-export function ClientsWall() {
+function PartnerWord({ name }: { name: string }) {
+  return (
+    <span className="ui max-w-[16rem] text-center text-[13px] font-semibold tracking-[0.18em] text-forest/55 uppercase transition-colors duration-300 group-hover:text-green">
+      {name}
+    </span>
+  );
+}
+
+export function PartnerMarks({ quiet = false }: { quiet?: boolean }) {
   const { events } = useDesk();
   const [sector, setSector] = useState<PartnerSector>("All");
   const named = useMemo(() => {
@@ -19,43 +27,53 @@ export function ClientsWall() {
         return true;
       });
   }, [events]);
-
   const shown = sector === "All" ? partners : partners.filter((item) => item.sector === sector);
-
-function PartnerLogo({ name }: { name: string }) {
-  const words = name.split(" ").filter(Boolean);
-  const letters = words
-    .slice(0, 2)
-    .map((word) => word[0])
-    .join("")
-    .toUpperCase();
-  const seed = name.split("").reduce((sum, char) => sum + char.charCodeAt(0), 0);
-  const shape = seed % 3;
+  const marks = [
+    ...named.map((event) => ({ key: event.id, name: event.client, title: event.kind })),
+    ...shown.map((item) => ({ key: item.name, name: item.name, title: item.line })),
+  ];
+  const visible = quiet ? marks.slice(0, 8) : marks;
 
   return (
-    <span className="flex flex-col items-center gap-3">
-      <svg viewBox="0 0 64 64" aria-hidden className="h-14 w-14">
-        {shape === 0 ? <circle cx="32" cy="30" r="24" fill="none" stroke="#12341d" strokeWidth="2" /> : null}
-        {shape === 1 ? <rect x="8" y="6" width="48" height="48" fill="none" stroke="#12341d" strokeWidth="2" /> : null}
-        {shape === 2 ? <rect x="8" y="6" width="48" height="48" rx="14" fill="#12341d" /> : null}
-        <text
-          x="32"
-          y="36"
-          textAnchor="middle"
-          fontFamily="Montserrat, sans-serif"
-          fontSize="16"
-          fontWeight="700"
-          fill={shape === 2 ? "#9cca3b" : "#12341d"}
-        >
-          {letters}
-        </text>
-        <rect x="20" y="54" width="24" height="3" fill="#9cca3b" />
-      </svg>
-      <span className="ui max-w-[12rem] text-center text-[11px] font-semibold tracking-[0.12em] text-green uppercase">{name}</span>
-    </span>
+    <>
+      {quiet ? null : (
+      <div className="flex flex-wrap gap-2" role="tablist" aria-label="Filter who we work with">
+        {partnerSectors.map((item) => {
+          const selected = sector === item;
+          return (
+            <button
+              key={item}
+              type="button"
+              role="tab"
+              aria-selected={selected}
+              onClick={() => setSector(item)}
+              className={`ui min-h-11 cursor-pointer rounded-full px-5 text-sm font-medium ${
+                selected ? "bg-green text-ivory" : "border border-stone text-green"
+              }`}
+            >
+              {item}
+            </button>
+          );
+        })}
+      </div>
+      )}
+      <ul className={`grid grid-cols-2 gap-px bg-stone ${quiet ? "md:grid-cols-4" : "mt-10 md:grid-cols-3 lg:grid-cols-4"}`}>
+        {visible.map((item) => (
+          <li key={item.key} className="mark-tile group flex min-h-24 items-center justify-center bg-white px-4 py-5" title={item.title}>
+            <PartnerWord name={item.name} />
+          </li>
+        ))}
+      </ul>
+      {quiet ? null : (
+      <p className="mt-8 max-w-2xl text-sm">
+        One set, one ink. A real mark replaces the name when that day is public and can carry it.
+      </p>
+      )}
+    </>
   );
 }
 
+export function ClientsWall() {
   return (
     <>
       <section className="bg-ivory">
@@ -85,41 +103,7 @@ function PartnerLogo({ name }: { name: string }) {
 
       <section className="bg-white">
         <div className="mx-auto max-w-[90rem] px-5 py-12 md:px-12 md:py-16">
-          <div className="flex flex-wrap gap-2" role="tablist" aria-label="Filter who we work with">
-            {partnerSectors.map((item) => {
-              const selected = sector === item;
-              return (
-                <button
-                  key={item}
-                  type="button"
-                  role="tab"
-                  aria-selected={selected}
-                  onClick={() => setSector(item)}
-                  className={`ui min-h-11 cursor-pointer rounded-full px-5 text-sm font-medium ${
-                    selected ? "bg-green text-ivory" : "border border-stone text-green"
-                  }`}
-                >
-                  {item}
-                </button>
-              );
-            })}
-          </div>
-
-          <ul className="mt-10 grid grid-cols-2 gap-px bg-stone md:grid-cols-3 lg:grid-cols-4">
-            {named.map((event) => (
-              <li key={event.id} className="mark-tile flex min-h-40 items-center justify-center bg-white px-4 py-6" title={event.kind}>
-                <PartnerLogo name={event.client} />
-              </li>
-            ))}
-            {shown.map((item) => (
-              <li key={item.name} className="mark-tile flex min-h-40 items-center justify-center bg-white px-4 py-6" title={item.line}>
-                <PartnerLogo name={item.name} />
-              </li>
-            ))}
-          </ul>
-          <p className="mt-8 max-w-2xl text-sm">
-            These are the partners the work is built for. A name goes on this wall when the day is public and can carry it.
-          </p>
+          <PartnerMarks />
         </div>
       </section>
     </>

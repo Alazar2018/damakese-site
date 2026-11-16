@@ -210,7 +210,7 @@ export const faqs: { question: string; answer: string }[] = [
   },
 ];
 
-export const workLanes = ["All", "Film", "Campaigns", "Events"] as const;
+export const workLanes = ["All", "Marketing", "Branding", "Events", "Concerts"] as const;
 export type WorkLane = (typeof workLanes)[number];
 
 export type WorkPiece = {
@@ -223,11 +223,17 @@ export type WorkPiece = {
   video?: string;
 };
 
+export function laneForKind(kind: string): Exclude<WorkLane, "All"> {
+  if (kind === "Concert") return "Concerts";
+  if (kind === "Launch") return "Marketing";
+  return "Events";
+}
+
 export const workPieces: WorkPiece[] = [
   {
     id: "film-crowd",
-    lane: "Film",
-    badge: "Film",
+    lane: "Concerts",
+    badge: "Concerts",
     title: "The crowd",
     line: "A live show, from the door to the last cue. Reference film of the kind of night we produce.",
     image: frames.concert,
@@ -235,8 +241,8 @@ export const workPieces: WorkPiece[] = [
   },
   {
     id: "film-stage",
-    lane: "Film",
-    badge: "Film",
+    lane: "Concerts",
+    badge: "Concerts",
     title: "The stage",
     line: "Lights, sound, and a stage that is finished before the first guest is in the room.",
     image: frames.stage,
@@ -244,8 +250,8 @@ export const workPieces: WorkPiece[] = [
   },
   {
     id: "film-room",
-    lane: "Film",
-    badge: "Film",
+    lane: "Events",
+    badge: "Events",
     title: "The room",
     line: "The hour before doors. The plan is already in the room.",
     image: frames.hall,
@@ -253,8 +259,8 @@ export const workPieces: WorkPiece[] = [
   },
   {
     id: "film-brief",
-    lane: "Film",
-    badge: "Film",
+    lane: "Events",
+    badge: "Events",
     title: "The brief",
     line: "A working room, where the day is still being written.",
     image: frames.conference,
@@ -262,32 +268,32 @@ export const workPieces: WorkPiece[] = [
   },
   {
     id: "campaign-stop",
-    lane: "Campaigns",
-    badge: "Campaign",
+    lane: "Marketing",
+    badge: "Marketing",
     title: "A reason to stop",
     line: "Campaigns and brand activations that give people a reason to pay attention.",
     image: frames.launch,
   },
   {
     id: "campaign-identity",
-    lane: "Campaigns",
-    badge: "Campaign",
+    lane: "Branding",
+    badge: "Branding",
     title: "An identity that holds",
     line: "Visual identities and event branding that carry from the sign to the stage.",
     image: frames.about,
   },
   {
     id: "campaign-fair",
-    lane: "Campaigns",
-    badge: "Campaign",
+    lane: "Events",
+    badge: "Events",
     title: "The fair floor",
     line: "A route through the hall, with signage that holds for the public hours.",
     image: frames.exhibition,
   },
   {
     id: "campaign-launch",
-    lane: "Campaigns",
-    badge: "Campaign",
+    lane: "Marketing",
+    badge: "Marketing",
     title: "The launch",
     line: "One idea, and a room built around it.",
     image: frames.fair,
@@ -295,7 +301,7 @@ export const workPieces: WorkPiece[] = [
   {
     id: "event-doors",
     lane: "Events",
-    badge: "Event",
+    badge: "Events",
     title: "Before the doors",
     line: "Corporate and institutional days, finished before the first car is at the gate.",
     image: frames.hall,
@@ -303,7 +309,7 @@ export const workPieces: WorkPiece[] = [
   {
     id: "event-congress",
     lane: "Events",
-    badge: "Event",
+    badge: "Events",
     title: "The congress",
     line: "Three halls, one plan, a crew that stays for the turnover.",
     image: frames.conference,
@@ -311,15 +317,15 @@ export const workPieces: WorkPiece[] = [
   {
     id: "event-protocol",
     lane: "Events",
-    badge: "Event",
+    badge: "Events",
     title: "The protocol room",
     line: "Arrival, seating, and a room that is right before six.",
     image: frames.state,
   },
   {
     id: "event-show",
-    lane: "Events",
-    badge: "Event",
+    lane: "Concerts",
+    badge: "Concerts",
     title: "The show",
     line: "Concerts and live programmes, from rehearsal to the last truck.",
     image: frames.concert,
