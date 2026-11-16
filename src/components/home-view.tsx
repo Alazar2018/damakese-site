@@ -6,7 +6,6 @@ import { CountUp } from "@/components/count-up";
 import { PartnerMarks } from "@/components/clients-wall";
 import { FilmRail } from "@/components/film-rail";
 import { HomeHero } from "@/components/home-hero";
-import { InquireForm } from "@/components/inquire-form";
 import { LineCycle } from "@/components/line-cycle";
 import { Reveal } from "@/components/marks";
 import { SiteFooter } from "@/components/site-footer";
@@ -312,21 +311,6 @@ export function HomeView() {
           </div>
         </section>
 
-        <section className="on-green bg-green text-ivory">
-          <div className="mx-auto grid max-w-[90rem] gap-12 px-5 py-16 md:px-12 md:py-24 lg:grid-cols-12">
-            <div className="lg:col-span-4">
-              <p className="eyebrow">Contact</p>
-              <h2 className="display mt-4 text-4xl md:text-5xl">
-                Start the <span className="block text-lime">conversation.</span>
-              </h2>
-              <span className="rule mt-6" />
-              <p className="mt-6 text-lg text-ivory/85">Addis Ababa. Tell us what the work has to achieve.</p>
-            </div>
-            <div className="bg-ivory p-6 text-ink md:p-10 lg:col-span-8">
-              <InquireForm />
-            </div>
-          </div>
-        </section>
       </main>
       <SiteFooter line={false} />
     </>
