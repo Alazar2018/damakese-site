@@ -32,8 +32,8 @@ export function SiteFooter({ line = true }: { line?: boolean }) {
   }, []);
 
   return (
-    <footer ref={root} className="bg-ivory px-3 pb-3 text-green md:px-6 md:pb-6">
-      <div className={`footer-stage on-green relative overflow-hidden rounded-[1.75rem] bg-green text-ivory ${shown ? "is-in" : ""}`}>
+    <footer ref={root} className="bg-green text-ivory">
+      <div className={`footer-stage on-green relative overflow-hidden bg-green text-ivory ${shown ? "is-in" : ""}`}>
         <div className="pointer-events-none absolute -top-24 -right-16 h-56 w-56 rounded-full bg-lime/20 blur-3xl" />
         <div className="relative mx-auto max-w-[90rem] px-6 py-14 md:px-12 md:py-20">
           {line ? (
