@@ -3,6 +3,11 @@
 import { CaretLeft, CaretRight } from "@phosphor-icons/react";
 import { useCallback, useEffect, useRef, useState } from "react";
 
+function hd(id: string) {
+  const url = (width: number) => `https://images.unsplash.com/${id}?auto=format&fit=crop&w=${width}&q=85&fm=jpg`;
+  return { image: url(3840), srcSet: `${url(2560)} 2560w, ${url(3840)} 3840w` };
+}
+
 export type ReelSlide = {
   image: string;
   srcSet?: string;
@@ -13,42 +18,28 @@ export type ReelSlide = {
   focus?: string;
 };
 
-const table = { image: "/addis/table.jpg", credit: "ProtoplasmaKid · CC BY-SA" };
-const cups = { image: "/addis/cups.jpg", focus: "object-center", credit: "ProtoplasmaKid · Addis Ababa · CC BY-SA" };
-const grass = { image: "/addis/grass.jpg", credit: "USAID Ethiopia · CC BY" };
-const stage = { image: "/addis/stage.jpg", focus: "object-[center_32%]", credit: "Ninara · Addis Ababa · CC BY" };
-const field = { image: "/addis/field.jpg", credit: "Lucie Gürtler · Jan Meda · CC BY-SA" };
+const concert = { ...hd("photo-1514525253161-7a46d19cd819"), focus: "object-center" };
+const festival = { ...hd("photo-1505236858219-8359eb29e329"), focus: "object-center" };
+const lawn = { ...hd("photo-1472653431158-6364773b2a56"), focus: "object-[center_42%]" };
 
 const homeSlides: readonly ReelSlide[] = [
   {
-    ...table,
-    title: "Driven by",
-    accent: "creativity.",
-    lede: "Campaigns, identities, and the live moment people remember.",
-  },
-  {
-    ...cups,
-    title: "Rooted in",
-    accent: "experience.",
-    lede: "A full-service marketing, events and entertainment company in Addis Ababa.",
-  },
-  {
-    ...grass,
-    title: "Before the",
-    accent: "doors open.",
-    lede: "The room, the stage, and the crew are finished before the first guest arrives.",
-  },
-  {
-    ...stage,
+    ...concert,
     title: "The crowd",
     accent: "takes over.",
     lede: "Concerts, exhibitions, trade fairs, and corporate and institutional events.",
   },
   {
-    ...field,
-    title: "Nine years.",
-    accent: "One name.",
-    lede: "A new company, built on more than nine years of team experience.",
+    ...festival,
+    title: "Driven by",
+    accent: "creativity.",
+    lede: "Campaigns, identities, and the live moment people remember.",
+  },
+  {
+    ...lawn,
+    title: "Before the",
+    accent: "doors open.",
+    lede: "The room, the stage, and the crew are finished before the first guest arrives.",
   },
 ];
 

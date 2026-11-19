@@ -1,4 +1,4 @@
-import { frames } from "@/lib/photos";
+import { frames, sharp } from "@/lib/photos";
 
 export const KINDS = [
   "Conference",
@@ -142,8 +142,8 @@ export const disciplines: {
     title: "Marketing and brand activations",
     line: "Give people a reason to stop.",
     body: "We develop campaigns, product launches and promotional experiences that give people a reason to pay attention, take part or try something new. We start with what the audience needs to understand or do, then shape the message and how people encounter it, whether through a digital campaign or an experience they can take part in.",
-    image: "/addis/cups.jpg",
-    imageAlt: "Painted coffee cups and a jebena on a woven tray, with fresh green herbs.",
+    image: sharp("photo-1505236858219-8359eb29e329").image,
+    imageAlt: "A packed room under blue light, with confetti over the crowd.",
   },
   {
     index: "02",
@@ -160,8 +160,8 @@ export const disciplines: {
     title: "Event management and production",
     line: "Before the doors open.",
     body: "We plan and manage events from concept to completion. Depending on the brief, that can include venue planning, schedules, supplier coordination, stage and technical setup, rehearsals and on-site management. The client, crew and suppliers work from the same plan, so everyone knows what needs to happen and when.",
-    image: "/addis/grass.jpg",
-    imageAlt: "Guests seated on fresh grass for a coffee ceremony in Addis Ababa.",
+    image: sharp("photo-1472653431158-6364773b2a56").image,
+    imageAlt: "An outdoor crowd on the grass, facing a tented stage.",
   },
   {
     index: "04",
@@ -169,8 +169,8 @@ export const disciplines: {
     title: "Concerts and live entertainment",
     line: "The moment the crowd takes over.",
     body: "We work with promoters, artists and production teams to bring live shows to the stage. The work can cover technical coordination, rehearsals, backstage activity, show cues and audience movement, from the moment people enter the venue to the final performance.",
-    image: "/addis/stage.jpg",
-    imageAlt: "A live band playing for a seated crowd in Addis Ababa, with fresh grass on the floor.",
+    image: sharp("photo-1514525253161-7a46d19cd819").image,
+    imageAlt: "A concert crowd under green and blue stage light.",
   },
 ];
 
