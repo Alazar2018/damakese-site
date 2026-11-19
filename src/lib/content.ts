@@ -142,8 +142,8 @@ export const disciplines: {
     title: "Marketing and brand activations",
     line: "Give people a reason to stop.",
     body: "We develop campaigns, product launches and promotional experiences that give people a reason to pay attention, take part or try something new. We start with what the audience needs to understand or do, then shape the message and how people encounter it, whether through a digital campaign or an experience they can take part in.",
-    image: frames.launch,
-    imageAlt: "A presenter opening a launch in a seated room.",
+    image: frames.activation,
+    imageAlt: "A crowd moving through a cloud of lime and teal at a live activation.",
   },
   {
     index: "02",
@@ -151,8 +151,8 @@ export const disciplines: {
     title: "Branding and creative communication",
     line: "An identity that holds together.",
     body: "We develop visual identities, campaign concepts and event branding, from new identities to refreshing how an existing brand looks and communicates. The direction carries through packaging, signage, digital content, printed materials, campaign launches and live experiences. Each piece has a job to do within the wider identity.",
-    image: frames.about,
-    imageAlt: "People gathered in a room before an evening event.",
+    image: frames.beams,
+    imageAlt: "Green beams across a stage, held as one picture.",
   },
   {
     index: "03",
@@ -160,8 +160,8 @@ export const disciplines: {
     title: "Event management and production",
     line: "Before the doors open.",
     body: "We plan and manage events from concept to completion. Depending on the brief, that can include venue planning, schedules, supplier coordination, stage and technical setup, rehearsals and on-site management. The client, crew and suppliers work from the same plan, so everyone knows what needs to happen and when.",
-    image: frames.conference,
-    imageAlt: "A speaker at a lectern, with the room listening.",
+    image: frames.tables,
+    imageAlt: "A long table set with greenery, glass, and linen before the guests sit.",
   },
   {
     index: "04",
@@ -170,7 +170,7 @@ export const disciplines: {
     line: "The moment the crowd takes over.",
     body: "We work with promoters, artists and production teams to bring live shows to the stage. The work can cover technical coordination, rehearsals, backstage activity, show cues and audience movement, from the moment people enter the venue to the final performance.",
     image: frames.concert,
-    imageAlt: "Stage lights over a concert audience.",
+    imageAlt: "A concert crowd under green stage light.",
   },
 ];
 

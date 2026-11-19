@@ -22,7 +22,7 @@ export function FilmRail() {
   }, [open]);
 
   return (
-    <section className="bg-ivory">
+    <section className="bg-sand">
       <div className="mx-auto max-w-[90rem] px-5 py-16 md:px-12 md:py-20">
         <p className="eyebrow">Pictures and film</p>
         <h2 className="display mt-4 max-w-3xl text-4xl text-green md:text-5xl">Press play. The room moves.</h2>

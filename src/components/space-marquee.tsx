@@ -28,9 +28,13 @@ const SPEED = 0.8;
 export function SpaceMarquee({
   slides = rooms,
   topClass = "text-ivory",
+  groundClass = "bg-ivory",
+  bottomClass = "text-ivory",
 }: {
   slides?: RoomSlide[];
   topClass?: string;
+  groundClass?: string;
+  bottomClass?: string;
 }) {
   const trackRef = useRef<HTMLDivElement>(null);
   const captionRef = useRef<HTMLParagraphElement>(null);
@@ -156,7 +160,7 @@ export function SpaceMarquee({
   const loop = [...slides, ...slides];
 
   return (
-    <section className={`bg-ivory ${topClass === "text-green" ? "pt-0 pb-4" : "py-4"}`} aria-label="Rooms">
+    <section className={`${groundClass} ${topClass === "text-green" ? "pt-0 pb-4" : "py-4"}`} aria-label="Rooms">
       <p className="sr-only">
         A moving row of rooms. Drag horizontally, or use the previous and next buttons.
       </p>
@@ -166,7 +170,7 @@ export function SpaceMarquee({
             <path fill="currentColor" d="M0 0H1440V50C1440 50 1200 100 720 100C240 100 0 50 0 50V0Z" />
           </svg>
         </div>
-        <div aria-hidden className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-20 text-ivory sm:h-[100px]">
+        <div aria-hidden className={`pointer-events-none absolute inset-x-0 bottom-0 z-10 h-20 sm:h-[100px] ${bottomClass}`}>
           <svg viewBox="0 0 1440 100" preserveAspectRatio="none" className="h-full w-full">
             <path fill="currentColor" d="M0 100H1440V50C1440 50 1200 0 720 0C240 0 0 50 0 50V100Z" />
           </svg>

@@ -51,10 +51,10 @@ export function HomeView() {
   return (
     <>
       <SiteHeader />
-      <main id="content" className="min-h-screen overflow-hidden bg-ivory">
+      <main id="content" className="min-h-screen overflow-hidden bg-sand">
         <HomeHero />
 
-        <SpaceMarquee slides={rooms} topClass="text-ivory" />
+        <SpaceMarquee slides={rooms} topClass="text-sand" groundClass="bg-sand" bottomClass="text-green" />
 
         <section className="on-green relative bg-green text-ivory">
           <div className="ribs-quiet pointer-events-none absolute inset-0" aria-hidden />
@@ -67,7 +67,7 @@ export function HomeView() {
           </div>
         </section>
 
-        <section className="bg-ivory">
+        <section className="bg-sand">
           <div className="mx-auto grid max-w-[90rem] items-center gap-10 px-5 py-16 md:px-12 md:py-24 lg:grid-cols-12">
             <Reveal className="lg:col-span-7">
               <p className="eyebrow">About us</p>
@@ -90,12 +90,12 @@ export function HomeView() {
           </div>
         </section>
 
-        <section className="bg-sand">
+        <section className="on-green bg-green text-ivory">
           <div className="mx-auto max-w-[90rem] px-5 py-16 md:px-12 md:py-24">
             <Reveal>
               <p className="eyebrow">What we do</p>
-              <h2 className="display mt-4 max-w-3xl text-4xl text-green md:text-5xl">Each brief starts with a question.</h2>
-              <p className="mt-6 max-w-2xl text-lg leading-relaxed">
+              <h2 className="display mt-4 max-w-3xl text-4xl text-ivory md:text-5xl">Each brief starts with a question.</h2>
+              <p className="mt-6 max-w-2xl text-lg leading-relaxed text-ivory/85">
                 A brand finding its voice. A campaign that gives people a reason to take part. A stage ready for the first cue. What do we want people to take away?
               </p>
             </Reveal>
@@ -120,21 +120,21 @@ export function HomeView() {
                     tabs?.[next]?.focus();
                   }}
                   className={`ui shrink-0 cursor-pointer rounded-full px-4 py-2 text-sm ${
-                    service === index ? "bg-green text-ivory" : "bg-ivory text-green"
+                    service === index ? "bg-lime text-green" : "border border-lime/50 text-ivory"
                   }`}
                 >
                   {item.title}
                 </button>
               ))}
             </div>
-            <article className="group mt-8 grid overflow-hidden bg-ivory md:grid-cols-2">
+            <article className="group mt-8 grid overflow-hidden bg-[#0c2416] md:grid-cols-2">
               <img key={active.title} src={active.image} alt={active.imageAlt} className="fade-up aspect-[4/3] h-full w-full object-cover transition duration-700 group-hover:scale-[1.03]" />
               <div className="flex flex-col justify-center px-6 py-10 md:px-12">
-                <p className="ui text-xs font-medium tracking-[0.16em] text-forest uppercase">{active.index}</p>
-                <h3 className="display mt-3 text-3xl text-green md:text-4xl">{active.line}</h3>
+                <p className="ui text-xs font-medium tracking-[0.16em] text-lime uppercase">{active.index}</p>
+                <h3 className="display mt-3 text-3xl text-ivory md:text-4xl">{active.line}</h3>
                 <span className="rule mt-5" />
-                <p className="mt-5 max-w-[var(--measure)] text-lg leading-relaxed">{active.body}</p>
-                <Link href="/practice" className="ui mt-6 font-semibold text-green underline decoration-lime decoration-2 underline-offset-4">
+                <p className="mt-5 max-w-[var(--measure)] text-lg leading-relaxed text-ivory/85">{active.body}</p>
+                <Link href="/practice" className="ui mt-6 font-semibold text-lime underline decoration-lime decoration-2 underline-offset-4">
                   See the practice
                 </Link>
               </div>
@@ -162,7 +162,7 @@ export function HomeView() {
           </div>
         </section>
 
-        <section className="bg-ivory">
+        <section className="bg-sand">
           <div className="mx-auto max-w-[90rem] px-5 py-16 md:px-12 md:py-24">
             <Reveal>
               <p className="eyebrow">Our values</p>
@@ -197,7 +197,7 @@ export function HomeView() {
                     aria-selected={selected}
                     onClick={() => setLane(item)}
                     className={`ui min-h-11 cursor-pointer rounded-full px-5 text-sm font-medium ${
-                      selected ? "bg-green text-ivory" : "border border-stone bg-sand text-green"
+                      selected ? "bg-lime text-green" : "border border-green/20 bg-sand text-green"
                     }`}
                   >
                     {item}
@@ -244,7 +244,7 @@ export function HomeView() {
           </div>
         </section>
 
-        <section className="bg-ivory">
+        <section className="bg-sand">
           <div className="mx-auto grid max-w-[90rem] gap-12 px-5 py-16 md:px-12 md:py-24 lg:grid-cols-12">
             <Reveal className="lg:col-span-4">
               <p className="eyebrow">Before you write</p>
@@ -253,7 +253,7 @@ export function HomeView() {
             </Reveal>
             <div className="flex flex-col gap-3 lg:col-span-8">
               {faqs.map((item) => (
-                <details key={item.question} className="group border border-stone bg-white px-6 open:border-lime open:shadow-[0_16px_40px_rgba(18,52,29,0.08)]">
+                <details key={item.question} className="group border border-green/15 bg-[#f3f8e6] px-6 open:border-lime open:shadow-[0_16px_40px_rgba(18,52,29,0.08)]">
                   <summary className="flex min-h-16 cursor-pointer list-none items-center justify-between gap-6 text-xl text-green [&::-webkit-details-marker]:hidden">
                     <span>{item.question}</span>
                     <span aria-hidden className="ui inline-flex h-9 w-9 shrink-0 items-center justify-center bg-green text-lg text-lime transition-transform group-open:rotate-45">
@@ -267,27 +267,27 @@ export function HomeView() {
           </div>
         </section>
 
-        <section className="bg-ivory">
+        <section className="bg-sand">
           <div className="mx-auto max-w-[90rem] px-5 py-16 md:px-12 md:pb-24">
             <Reveal>
               <p className="eyebrow">In numbers</p>
               <h2 className="display mt-4 max-w-3xl text-4xl text-green md:text-5xl">What the house can say for itself.</h2>
             </Reveal>
             <div className="mt-12 grid gap-4 md:grid-cols-3">
-              <p className="bg-sand px-8 py-10">
-                <span className="display block text-7xl text-green">
+              <p className="on-green bg-green px-8 py-10 text-ivory">
+                <span className="display block text-7xl text-lime">
                   <CountUp to={9} />
                 </span>
                 <span className="mt-4 block text-lg">years of industry experience across the team.</span>
               </p>
-              <p className="on-green bg-green px-8 py-10 text-ivory">
-                <span className="display block text-7xl text-lime">
+              <p className="bg-lime px-8 py-10 text-green">
+                <span className="display block text-7xl">
                   <CountUp to={4} />
                 </span>
                 <span className="mt-4 block text-lg">ways the work shows up, from a campaign to a live show.</span>
               </p>
-              <p className="bg-sand px-8 py-10">
-                <span className="display block text-7xl text-green">Addis</span>
+              <p className="on-green bg-[#0c2416] px-8 py-10 text-ivory">
+                <span className="display block text-7xl text-lime">Addis</span>
                 <span className="mt-4 block text-lg">Ababa is home. The programme can travel when the brief does.</span>
               </p>
             </div>

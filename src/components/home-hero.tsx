@@ -12,39 +12,39 @@ export type ReelSlide = {
   lede: string;
 };
 
-const canopy = sharp("photo-1754752782540-301e26c83c51");
-const leaves = sharp("photo-1624461824006-9309ab403ad3");
-const trees = sharp("photo-1755322923423-d5124bffae0e");
-const grove = sharp("photo-1740106826271-968cdecf23d7");
-const mist = sharp("photo-1765958798803-64bc56536e54");
+const show = sharp("photo-1514525253161-7a46d19cd819");
+const activation = sharp("photo-1496024840928-4c417adf211d");
+const tables = sharp("photo-1519225421980-715cb0215aed");
+const beams = sharp("photo-1516450360452-9312f5e86fc7");
+const house = sharp("photo-1505236858219-8359eb29e329");
 
 const homeSlides: readonly ReelSlide[] = [
   {
-    ...canopy,
+    ...show,
     title: "Rooted in",
     accent: "experience.",
     lede: "A full-service marketing, events and entertainment company in Addis Ababa.",
   },
   {
-    ...leaves,
+    ...activation,
     title: "Driven by",
     accent: "creativity.",
     lede: "Campaigns, identities, and the live moment people remember.",
   },
   {
-    ...trees,
+    ...tables,
     title: "Before the",
     accent: "doors open.",
     lede: "The room, the stage, and the crew are finished before the first guest arrives.",
   },
   {
-    ...grove,
+    ...beams,
     title: "The crowd",
     accent: "takes over.",
     lede: "Concerts, exhibitions, trade fairs, and corporate and institutional events.",
   },
   {
-    ...mist,
+    ...house,
     title: "Nine years.",
     accent: "One name.",
     lede: "A new company, built on more than nine years of team experience.",
