@@ -12,39 +12,39 @@ export type ReelSlide = {
   lede: string;
 };
 
-const stage = sharp("photo-1540039155733-5bb30b53aa14");
-const lights = sharp("photo-1429962714451-bb934ecdc4ec");
-const crowd = sharp("photo-1501281668745-f7f57925c3b4");
-const room = sharp("photo-1511578314322-379afb476865");
-const night = sharp("photo-1492684223066-81342ee5ff30");
+const canopy = sharp("photo-1754752782540-301e26c83c51");
+const leaves = sharp("photo-1624461824006-9309ab403ad3");
+const trees = sharp("photo-1755322923423-d5124bffae0e");
+const grove = sharp("photo-1740106826271-968cdecf23d7");
+const mist = sharp("photo-1765958798803-64bc56536e54");
 
 const homeSlides: readonly ReelSlide[] = [
   {
-    ...stage,
+    ...canopy,
     title: "Rooted in",
     accent: "experience.",
     lede: "A full-service marketing, events and entertainment company in Addis Ababa.",
   },
   {
-    ...lights,
+    ...leaves,
     title: "Driven by",
     accent: "creativity.",
     lede: "Campaigns, identities, and the live moment people remember.",
   },
   {
-    ...room,
+    ...trees,
     title: "Before the",
     accent: "doors open.",
     lede: "The room, the stage, and the crew are finished before the first guest arrives.",
   },
   {
-    ...crowd,
+    ...grove,
     title: "The crowd",
     accent: "takes over.",
     lede: "Concerts, exhibitions, trade fairs, and corporate and institutional events.",
   },
   {
-    ...night,
+    ...mist,
     title: "Nine years.",
     accent: "One name.",
     lede: "A new company, built on more than nine years of team experience.",
@@ -181,11 +181,7 @@ export function PictureReel({
                 ? { transform: `translate3d(${look.x * -28}px, ${look.y * -18}px, 0) scale(1.08)` }
                 : undefined
             }
-            className={`absolute inset-0 h-full w-full object-cover object-[center_40%] transition-[opacity,transform] duration-700 ease-out ${
-              poster
-                ? "[filter:grayscale(0.45)_sepia(0.7)_hue-rotate(78deg)_saturate(1.45)_contrast(1.08)_brightness(0.86)]"
-                : ""
-            } ${active ? "opacity-100" : "opacity-0"} ${active && !reduce && !poster ? "hero-drift" : ""}`}
+            className={`absolute inset-0 h-full w-full object-cover object-[center_40%] transition-[opacity,transform] duration-700 ease-out ${active ? "opacity-100" : "opacity-0"} ${active && !reduce && !poster ? "hero-drift" : ""}`}
           />
         );
       })}
@@ -194,7 +190,7 @@ export function PictureReel({
         className="absolute inset-0"
         style={{
           background: poster
-            ? "linear-gradient(180deg, rgba(18, 52, 29, 0.55) 0%, transparent 22%), linear-gradient(0deg, rgba(18, 52, 29, 0.62) 0%, transparent 34%), linear-gradient(100deg, rgba(18, 52, 29, 0.78) 0%, rgba(18, 52, 29, 0.42) 36%, rgba(156, 202, 59, 0.16) 100%)"
+            ? "linear-gradient(180deg, rgba(8, 14, 10, 0.38) 0%, transparent 18%), linear-gradient(0deg, rgba(8, 14, 10, 0.42) 0%, transparent 26%), linear-gradient(100deg, rgba(8, 14, 10, 0.58) 0%, rgba(8, 14, 10, 0.18) 30%, transparent 58%)"
             : "linear-gradient(100deg, color-mix(in srgb, var(--green) 92%, black) 0%, color-mix(in srgb, var(--green) 72%, transparent) 46%, color-mix(in srgb, var(--green) 34%, transparent) 100%)",
         }}
       />

@@ -226,68 +226,69 @@ export function HomeView() {
           </div>
         </section>
 
-        <section className="bg-sand">
-          <div className="mx-auto grid max-w-[90rem] gap-12 px-5 py-16 md:px-12 md:py-24 lg:grid-cols-12">
-            <Reveal className="lg:col-span-5">
+        <section className="on-green bg-green text-ivory">
+          <div className="mx-auto max-w-[90rem] px-5 py-16 md:px-12 md:py-24">
+            <Reveal>
               <p className="eyebrow">How we work</p>
-              <h2 className="display mt-4 text-4xl text-green md:text-5xl">From the brief to the handover.</h2>
+              <h2 className="display mt-4 max-w-3xl text-4xl md:text-5xl">From the brief to the handover.</h2>
               <span className="rule mt-6" />
             </Reveal>
-            <ol className="lg:col-span-6 lg:col-start-7">
+            <ol className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
               {howWeWork.map((step, index) => (
-                <li key={step} className="grid grid-cols-[2.5rem_1fr] gap-3 border-t border-stone py-4 transition-colors duration-300 hover:border-lime">
-                  <span className="ui text-sm text-forest">0{index + 1}</span>
-                  <span className="text-lg">{step}</span>
+                <li key={step} className="invite flex min-h-72 flex-col justify-between border border-lime/30 bg-[#0c2416] p-5">
+                  <span className="display text-5xl text-lime">0{index + 1}</span>
+                  <span className="mt-10 text-lg leading-snug">{step}</span>
                 </li>
               ))}
             </ol>
           </div>
         </section>
 
-        <section className="bg-sand">
-          <div className="mx-auto max-w-[90rem] px-5 py-16 md:px-12 md:py-24">
-            <Reveal>
+        <section className="bg-ivory">
+          <div className="mx-auto grid max-w-[90rem] gap-12 px-5 py-16 md:px-12 md:py-24 lg:grid-cols-12">
+            <Reveal className="lg:col-span-4">
               <p className="eyebrow">Before you write</p>
-              <h2 className="display mt-4 max-w-3xl text-4xl text-green md:text-5xl">Questions clients ask first.</h2>
+              <h2 className="display mt-4 text-4xl text-green md:text-5xl">Questions clients ask first.</h2>
+              <span className="rule mt-6" />
             </Reveal>
-            <div className="mt-12 divide-y divide-stone border-y border-stone">
+            <div className="flex flex-col gap-3 lg:col-span-8">
               {faqs.map((item) => (
-                <details key={item.question} className="group py-5">
-                  <summary className="flex min-h-12 cursor-pointer list-none items-center justify-between gap-6 text-xl text-green [&::-webkit-details-marker]:hidden">
+                <details key={item.question} className="group border border-stone bg-white px-6 open:border-lime open:shadow-[0_16px_40px_rgba(18,52,29,0.08)]">
+                  <summary className="flex min-h-16 cursor-pointer list-none items-center justify-between gap-6 text-xl text-green [&::-webkit-details-marker]:hidden">
                     <span>{item.question}</span>
-                    <span aria-hidden className="ui text-2xl leading-none text-lime transition-transform group-open:rotate-45">
+                    <span aria-hidden className="ui inline-flex h-9 w-9 shrink-0 items-center justify-center bg-green text-lg text-lime transition-transform group-open:rotate-45">
                       +
                     </span>
                   </summary>
-                  <p className="mt-3 max-w-[var(--measure)] text-lg leading-relaxed">{item.answer}</p>
+                  <p className="max-w-[var(--measure)] pb-6 text-lg leading-relaxed">{item.answer}</p>
                 </details>
               ))}
             </div>
           </div>
         </section>
 
-        <section className="bg-sand">
-          <div className="mx-auto max-w-[90rem] px-5 py-16 md:px-12 md:py-24">
+        <section className="bg-ivory">
+          <div className="mx-auto max-w-[90rem] px-5 py-16 md:px-12 md:pb-24">
             <Reveal>
               <p className="eyebrow">In numbers</p>
               <h2 className="display mt-4 max-w-3xl text-4xl text-green md:text-5xl">What the house can say for itself.</h2>
             </Reveal>
-            <div className="mt-12 grid gap-10 border-t border-stone pt-8 sm:grid-cols-3">
-              <p>
-                <span className="display block text-6xl text-green">
+            <div className="mt-12 grid gap-4 md:grid-cols-3">
+              <p className="bg-sand px-8 py-10">
+                <span className="display block text-7xl text-green">
                   <CountUp to={9} />
                 </span>
-                <span className="mt-3 block text-lg">years of industry experience across the team.</span>
+                <span className="mt-4 block text-lg">years of industry experience across the team.</span>
               </p>
-              <p>
-                <span className="display block text-6xl text-green">
+              <p className="on-green bg-green px-8 py-10 text-ivory">
+                <span className="display block text-7xl text-lime">
                   <CountUp to={4} />
                 </span>
-                <span className="mt-3 block text-lg">ways the work shows up, from a campaign to a live show.</span>
+                <span className="mt-4 block text-lg">ways the work shows up, from a campaign to a live show.</span>
               </p>
-              <p>
-                <span className="display block text-6xl text-lime">Addis</span>
-                <span className="mt-3 block text-lg">Ababa is home. The programme can travel when the brief does.</span>
+              <p className="bg-sand px-8 py-10">
+                <span className="display block text-7xl text-green">Addis</span>
+                <span className="mt-4 block text-lg">Ababa is home. The programme can travel when the brief does.</span>
               </p>
             </div>
           </div>
