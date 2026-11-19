@@ -22,9 +22,9 @@ export const frames = {
   exhibition: frame("photo-1587825140708-dfaf72ae4b04"),
   about: frame("photo-1511578314322-379afb476865", 1800),
   hall: frame("photo-1531058020387-3be344556be6"),
-  activation: frame("photo-1496024840928-4c417adf211d"),
-  beams: frame("photo-1516450360452-9312f5e86fc7"),
-  tables: frame("photo-1519225421980-715cb0215aed"),
+  activation: frame("photo-1552664730-d307ca884978"),
+  beams: frame("photo-1511795409834-ef04bbd61622"),
+  tables: frame("photo-1511578314322-379afb476865"),
   keynote: frame("photo-1587825140708-dfaf72ae4b04"),
   house: frame("photo-1505236858219-8359eb29e329"),
 } as const;

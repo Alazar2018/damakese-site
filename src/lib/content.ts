@@ -142,8 +142,8 @@ export const disciplines: {
     title: "Marketing and brand activations",
     line: "Give people a reason to stop.",
     body: "We develop campaigns, product launches and promotional experiences that give people a reason to pay attention, take part or try something new. We start with what the audience needs to understand or do, then shape the message and how people encounter it, whether through a digital campaign or an experience they can take part in.",
-    image: frames.activation,
-    imageAlt: "A crowd moving through a cloud of lime and teal at a live activation.",
+    image: "/addis/pour.jpg",
+    imageAlt: "A woman in Addis Ababa pouring coffee from a jebena.",
   },
   {
     index: "02",
@@ -151,8 +151,8 @@ export const disciplines: {
     title: "Branding and creative communication",
     line: "An identity that holds together.",
     body: "We develop visual identities, campaign concepts and event branding, from new identities to refreshing how an existing brand looks and communicates. The direction carries through packaging, signage, digital content, printed materials, campaign launches and live experiences. Each piece has a job to do within the wider identity.",
-    image: frames.beams,
-    imageAlt: "Green beams across a stage, held as one picture.",
+    image: "/addis/table.jpg",
+    imageAlt: "A woven basket of roasted barley, edged in green.",
   },
   {
     index: "03",
@@ -160,8 +160,8 @@ export const disciplines: {
     title: "Event management and production",
     line: "Before the doors open.",
     body: "We plan and manage events from concept to completion. Depending on the brief, that can include venue planning, schedules, supplier coordination, stage and technical setup, rehearsals and on-site management. The client, crew and suppliers work from the same plan, so everyone knows what needs to happen and when.",
-    image: frames.tables,
-    imageAlt: "A long table set with greenery, glass, and linen before the guests sit.",
+    image: "/addis/grass.jpg",
+    imageAlt: "Guests seated on fresh grass for a coffee ceremony in Addis Ababa.",
   },
   {
     index: "04",
@@ -169,8 +169,8 @@ export const disciplines: {
     title: "Concerts and live entertainment",
     line: "The moment the crowd takes over.",
     body: "We work with promoters, artists and production teams to bring live shows to the stage. The work can cover technical coordination, rehearsals, backstage activity, show cues and audience movement, from the moment people enter the venue to the final performance.",
-    image: frames.concert,
-    imageAlt: "A concert crowd under green stage light.",
+    image: "/addis/procession.jpg",
+    imageAlt: "A procession in white, with drums, across green grass in Addis Ababa.",
   },
 ];
 

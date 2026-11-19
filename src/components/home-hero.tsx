@@ -2,7 +2,6 @@
 
 import { CaretLeft, CaretRight } from "@phosphor-icons/react";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { sharp } from "@/lib/photos";
 
 export type ReelSlide = {
   image: string;
@@ -10,41 +9,43 @@ export type ReelSlide = {
   title: string;
   accent: string;
   lede: string;
+  credit?: string;
+  focus?: string;
 };
 
-const show = sharp("photo-1514525253161-7a46d19cd819");
-const activation = sharp("photo-1496024840928-4c417adf211d");
-const tables = sharp("photo-1519225421980-715cb0215aed");
-const beams = sharp("photo-1516450360452-9312f5e86fc7");
-const house = sharp("photo-1505236858219-8359eb29e329");
+const pour = { image: "/addis/pour.jpg", focus: "object-top", credit: "Scanfers · Addis Ababa · CC BY-SA" };
+const table = { image: "/addis/table.jpg", credit: "ProtoplasmaKid · CC BY-SA" };
+const grass = { image: "/addis/grass.jpg", credit: "USAID Ethiopia · CC BY" };
+const procession = { image: "/addis/procession.jpg", credit: "Jean Rebiffé · CC BY" };
+const field = { image: "/addis/field.jpg", credit: "Lucie Gürtler · Jan Meda · CC BY-SA" };
 
 const homeSlides: readonly ReelSlide[] = [
   {
-    ...show,
+    ...pour,
     title: "Rooted in",
     accent: "experience.",
     lede: "A full-service marketing, events and entertainment company in Addis Ababa.",
   },
   {
-    ...activation,
+    ...table,
     title: "Driven by",
     accent: "creativity.",
     lede: "Campaigns, identities, and the live moment people remember.",
   },
   {
-    ...tables,
+    ...grass,
     title: "Before the",
     accent: "doors open.",
     lede: "The room, the stage, and the crew are finished before the first guest arrives.",
   },
   {
-    ...beams,
+    ...procession,
     title: "The crowd",
     accent: "takes over.",
     lede: "Concerts, exhibitions, trade fairs, and corporate and institutional events.",
   },
   {
-    ...house,
+    ...field,
     title: "Nine years.",
     accent: "One name.",
     lede: "A new company, built on more than nine years of team experience.",
@@ -181,7 +182,7 @@ export function PictureReel({
                 ? { transform: `translate3d(${look.x * -28}px, ${look.y * -18}px, 0) scale(1.08)` }
                 : undefined
             }
-            className={`absolute inset-0 h-full w-full object-cover object-[center_40%] transition-[opacity,transform] duration-700 ease-out ${active ? "opacity-100" : "opacity-0"} ${active && !reduce && !poster ? "hero-drift" : ""}`}
+            className={`absolute inset-0 h-full w-full object-cover ${slide.focus ?? "object-[center_40%]"} transition-[opacity,transform] duration-700 ease-out ${active ? "opacity-100" : "opacity-0"} ${active && !reduce && !poster ? "hero-drift" : ""}`}
           />
         );
       })}
@@ -236,7 +237,7 @@ export function PictureReel({
       <div
         className={`relative z-10 mx-auto flex max-w-[90rem] flex-col ${
           poster
-            ? "min-h-[100dvh] justify-center px-5 pt-28 pb-40 pl-20 md:pl-28 lg:pr-16"
+            ? "min-h-[100dvh] justify-center px-5 pt-28 pb-52 pl-20 md:pl-28 lg:pr-16"
             : `justify-end px-5 pt-36 pb-28 pl-20 md:px-12 md:pb-24 md:pl-24 ${height}`
         }`}
       >
@@ -266,6 +267,7 @@ export function PictureReel({
         </div>
       </div>
 
+      {current.credit ? <p className="absolute right-5 bottom-3 z-30 max-w-[16rem] text-right text-[10px] leading-snug tracking-wide text-ivory/70">{current.credit}</p> : null}
       <div className="absolute inset-x-0 bottom-0 z-30">
         <div className={poster ? "flex max-w-md flex-col gap-5 px-5 pb-8 pl-20 md:pl-28 lg:pb-10" : "mx-auto flex max-w-[90rem] items-end justify-between gap-6 px-5 pb-6 md:px-12 md:pb-8"}>
           <p key={poster ? index : "count"} className={poster ? `display text-5xl leading-none text-lime lg:text-6xl ${reduce ? "" : "hero-bounce"}` : "ui text-sm tracking-[0.16em]"}>
