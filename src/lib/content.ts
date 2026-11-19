@@ -142,8 +142,8 @@ export const disciplines: {
     title: "Marketing and brand activations",
     line: "Give people a reason to stop.",
     body: "We develop campaigns, product launches and promotional experiences that give people a reason to pay attention, take part or try something new. We start with what the audience needs to understand or do, then shape the message and how people encounter it, whether through a digital campaign or an experience they can take part in.",
-    image: "/addis/pour.jpg",
-    imageAlt: "A woman in Addis Ababa pouring coffee from a jebena.",
+    image: "/addis/cups.jpg",
+    imageAlt: "Painted coffee cups and a jebena on a woven tray, with fresh green herbs.",
   },
   {
     index: "02",
@@ -169,8 +169,8 @@ export const disciplines: {
     title: "Concerts and live entertainment",
     line: "The moment the crowd takes over.",
     body: "We work with promoters, artists and production teams to bring live shows to the stage. The work can cover technical coordination, rehearsals, backstage activity, show cues and audience movement, from the moment people enter the venue to the final performance.",
-    image: "/addis/procession.jpg",
-    imageAlt: "A procession in white, with drums, across green grass in Addis Ababa.",
+    image: "/addis/stage.jpg",
+    imageAlt: "A live band playing for a seated crowd in Addis Ababa, with fresh grass on the floor.",
   },
 ];
 

@@ -13,24 +13,24 @@ export type ReelSlide = {
   focus?: string;
 };
 
-const pour = { image: "/addis/pour.jpg", focus: "object-top", credit: "Scanfers · Addis Ababa · CC BY-SA" };
 const table = { image: "/addis/table.jpg", credit: "ProtoplasmaKid · CC BY-SA" };
+const cups = { image: "/addis/cups.jpg", focus: "object-center", credit: "ProtoplasmaKid · Addis Ababa · CC BY-SA" };
 const grass = { image: "/addis/grass.jpg", credit: "USAID Ethiopia · CC BY" };
-const procession = { image: "/addis/procession.jpg", credit: "Jean Rebiffé · CC BY" };
+const stage = { image: "/addis/stage.jpg", focus: "object-[center_32%]", credit: "Ninara · Addis Ababa · CC BY" };
 const field = { image: "/addis/field.jpg", credit: "Lucie Gürtler · Jan Meda · CC BY-SA" };
 
 const homeSlides: readonly ReelSlide[] = [
-  {
-    ...pour,
-    title: "Rooted in",
-    accent: "experience.",
-    lede: "A full-service marketing, events and entertainment company in Addis Ababa.",
-  },
   {
     ...table,
     title: "Driven by",
     accent: "creativity.",
     lede: "Campaigns, identities, and the live moment people remember.",
+  },
+  {
+    ...cups,
+    title: "Rooted in",
+    accent: "experience.",
+    lede: "A full-service marketing, events and entertainment company in Addis Ababa.",
   },
   {
     ...grass,
@@ -39,7 +39,7 @@ const homeSlides: readonly ReelSlide[] = [
     lede: "The room, the stage, and the crew are finished before the first guest arrives.",
   },
   {
-    ...procession,
+    ...stage,
     title: "The crowd",
     accent: "takes over.",
     lede: "Concerts, exhibitions, trade fairs, and corporate and institutional events.",
