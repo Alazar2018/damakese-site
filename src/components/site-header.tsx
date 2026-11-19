@@ -24,11 +24,20 @@ export function SiteHeader() {
   const servicesTimer = useRef<number | null>(null);
   const [scrolled, setScrolled] = useState(false);
   const [time, setTime] = useState("");
-  const heroRoute = ["/", "/work", "/practice", "/about", "/inquire", "/clients", "/newsroom", "/career"].includes(pathname);
-  const solid = scrolled || open;
-  const overHero = heroRoute && !solid;
+  const [bar, setBar] = useState({ x: 0, w: 0 });
+  const track = useRef<HTMLElement>(null);
   const servicesActive = pathname === "/practice";
-  const mark = overHero ? "decoration-lime" : "decoration-green";
+
+  function moveBar(node: HTMLElement | null) {
+    const root = track.current;
+    if (!root || !node) {
+      setBar({ x: 0, w: 0 });
+      return;
+    }
+    const from = root.getBoundingClientRect();
+    const to = node.getBoundingClientRect();
+    setBar({ x: to.left - from.left, w: to.width });
+  }
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -57,6 +66,8 @@ export function SiteHeader() {
   useEffect(() => {
     setOpen(false);
     setServicesOpen(false);
+    const current = track.current?.querySelector<HTMLElement>("[data-current='true']");
+    moveBar(current ?? null);
   }, [pathname]);
 
   useEffect(() => {
@@ -79,21 +90,28 @@ export function SiteHeader() {
   }, [open, servicesOpen]);
 
   return (
-    <header
-      className={`fixed inset-x-0 top-0 z-40 bg-ivory text-green transition-colors duration-300 ${
-        overHero ? "on-green lg:bg-transparent lg:text-ivory" : ""
-      }`}
-    >
-      <div className="mx-auto flex h-[4.5rem] max-w-[90rem] items-center justify-between gap-6 px-5 md:px-12">
+    <header className={`fixed inset-x-0 top-0 z-40 bg-green text-ivory transition-shadow duration-300 ${scrolled ? "shadow-[0_16px_40px_rgba(8,22,14,0.35)]" : ""}`}>
+      <div className="mx-auto flex h-24 max-w-[90rem] items-center justify-between gap-8 px-5 md:px-12">
         <Link href="/" className="block shrink-0" aria-label="Damakese, home">
-          <Logo ink="#12341D" className={`h-11 w-auto md:h-14 ${overHero ? "lg:hidden" : ""}`} />
-          {overHero ? <Logo ink="#F6F7F3" className="hidden h-11 w-auto md:h-14 lg:block" /> : null}
+          <Logo ink="#F6F7F3" className="h-14 w-auto md:h-16" />
         </Link>
-        <nav className="hidden items-center gap-4 xl:gap-6 lg:flex" aria-label="Primary">
+        <nav
+          ref={track}
+          className="relative hidden items-center gap-7 lg:flex xl:gap-9"
+          aria-label="Primary"
+          onMouseLeave={() => moveBar(track.current?.querySelector<HTMLElement>("[data-current='true']") ?? null)}
+        >
+          <span
+            aria-hidden
+            className="pointer-events-none absolute bottom-0 h-[3px] bg-lime transition-[transform,width] duration-500 ease-[cubic-bezier(0.22,1.2,0.36,1)]"
+            style={{ width: bar.w, transform: `translateX(${bar.x}px)` }}
+          />
           <Link
             href="/about"
+            data-current={pathname === "/about" ? "true" : undefined}
             aria-current={pathname === "/about" ? "page" : undefined}
-            className={`ui text-[0.8rem] font-medium xl:text-sm ${pathname === "/about" ? `underline decoration-2 underline-offset-8 ${mark}` : ""}`}
+            onMouseEnter={(event) => moveBar(event.currentTarget)}
+            className="ui py-3 text-lg font-semibold tracking-tight hover:text-lime"
           >
             About
           </Link>
@@ -112,26 +130,26 @@ export function SiteHeader() {
               aria-haspopup="menu"
               aria-controls="services-menu"
               onClick={showServices}
-              className={`ui inline-flex cursor-pointer items-center gap-1 text-[0.8rem] font-medium xl:text-sm ${
-                servicesActive ? `underline decoration-2 underline-offset-8 ${mark}` : ""
-              }`}
+              data-current={servicesActive ? "true" : undefined}
+              onMouseEnter={(event) => moveBar(event.currentTarget)}
+              className="ui inline-flex cursor-pointer items-center gap-1.5 py-3 text-lg font-semibold tracking-tight hover:text-lime"
             >
               Services
-              <CaretDown size={12} className={servicesOpen ? "rotate-180" : ""} />
+              <CaretDown size={16} className={`transition-transform duration-300 ${servicesOpen ? "rotate-180" : ""}`} />
             </button>
             {servicesOpen ? (
               <div className="absolute top-full left-1/2 z-50 w-80 -translate-x-1/2 pt-3">
-                <ul id="services-menu" className="border border-stone bg-ivory p-2 text-green">
+                <ul id="services-menu" className="border border-lime/40 bg-green p-2 text-ivory shadow-[0_18px_40px_rgba(8,22,14,0.35)]">
                   {disciplines.map((item) => (
                     <li key={item.id}>
-                      <Link href={`/practice#${item.id}`} className="block px-3 py-3 hover:bg-sand">
-                        <span className="ui block text-xs tracking-[0.14em] text-forest uppercase">{item.index}</span>
-                        <span className="mt-1 block text-sm font-medium">{item.title}</span>
+                      <Link href={`/practice#${item.id}`} className="block px-3 py-3 hover:bg-forest">
+                        <span className="ui block text-xs tracking-[0.14em] text-lime uppercase">{item.index}</span>
+                        <span className="mt-1 block text-base font-medium">{item.title}</span>
                       </Link>
                     </li>
                   ))}
-                  <li className="border-t border-stone">
-                    <Link href="/practice" className="ui block px-3 py-3 text-sm font-medium hover:bg-sand">
+                  <li className="border-t border-forest">
+                    <Link href="/practice" className="ui block px-3 py-3 text-base font-medium hover:bg-forest">
                       All services
                     </Link>
                   </li>
@@ -146,7 +164,9 @@ export function SiteHeader() {
                 key={link.href}
                 href={link.href}
                 aria-current={active ? "page" : undefined}
-                className={`ui text-[0.8rem] font-medium xl:text-sm ${active ? `underline decoration-2 underline-offset-8 ${mark}` : ""}`}
+                data-current={active ? "true" : undefined}
+                onMouseEnter={(event) => moveBar(event.currentTarget)}
+                className="ui py-3 text-lg font-semibold tracking-tight hover:text-lime"
               >
                 {link.label}
               </Link>
@@ -154,18 +174,15 @@ export function SiteHeader() {
           })}
         </nav>
         <div className="flex items-center gap-4">
-          <p className="ui hidden text-xs tracking-[0.14em] uppercase opacity-80 xl:block">
+          <p className="ui hidden text-sm tracking-[0.14em] text-ivory/75 uppercase xl:block">
             {time ? `${time} Addis Ababa` : "Addis Ababa"}
           </p>
           {authed ? (
-            <Link href="/admin" className="btn btn-ghost hidden sm:inline-flex">
+            <Link href="/admin" className="btn btn-ghost hidden text-ivory sm:inline-flex">
               My dashboard
             </Link>
           ) : null}
-          {overHero ? (
-            <style>{`@media (max-width:39.99rem){.talk-hero{display:none}}@media (min-width:64rem){.talk-hero{background:#f6f7f3;color:#12341d}.talk-hero:hover{background:#fff}}`}</style>
-          ) : null}
-          <Link href="/inquire" className={overHero ? "btn btn-solid talk-hero" : "btn btn-solid hidden sm:inline-flex"}>
+          <Link href="/inquire" className="btn hidden bg-lime text-green hover:bg-ivory sm:inline-flex">
             Let&apos;s talk
           </Link>
           <button
@@ -183,21 +200,21 @@ export function SiteHeader() {
       {open ? (
         <nav
           id="mobile-nav"
-          className="max-h-[calc(100dvh-4.5rem)] overflow-y-auto border-t border-stone bg-ivory px-5 py-6 text-green lg:hidden"
+          className="max-h-[calc(100dvh-6rem)] overflow-y-auto border-t border-forest bg-green px-5 py-6 text-ivory lg:hidden"
           aria-label="Mobile"
         >
           <ul className="flex flex-col">
-            <li className="border-b border-stone">
-              <Link href="/about" className="ui flex min-h-12 items-center text-lg font-medium">
+            <li className="border-b border-forest">
+              <Link href="/about" className="ui flex min-h-14 items-center text-xl font-semibold">
                 About
               </Link>
             </li>
-            <li className="border-b border-stone py-3">
-              <p className="ui text-xs tracking-[0.14em] text-forest uppercase">Services</p>
+            <li className="border-b border-forest py-3">
+              <p className="ui text-xs tracking-[0.14em] text-lime uppercase">Services</p>
               <ul className="mt-2">
                 {disciplines.map((item) => (
                   <li key={item.id}>
-                    <Link href={`/practice#${item.id}`} className="flex min-h-11 items-center text-base">
+                    <Link href={`/practice#${item.id}`} className="flex min-h-12 items-center text-lg">
                       {item.title}
                     </Link>
                   </li>
@@ -205,21 +222,21 @@ export function SiteHeader() {
               </ul>
             </li>
             {links.map((link) => (
-              <li key={link.href} className="border-b border-stone">
-                <Link href={link.href} className="ui flex min-h-12 items-center text-lg font-medium">
+              <li key={link.href} className="border-b border-forest">
+                <Link href={link.href} className="ui flex min-h-14 items-center text-xl font-semibold">
                   {link.label}
                 </Link>
               </li>
             ))}
             {authed ? (
-              <li className="border-b border-stone">
-                <Link href="/admin" className="ui flex min-h-12 items-center text-lg font-medium">
+              <li className="border-b border-forest">
+                <Link href="/admin" className="ui flex min-h-14 items-center text-xl font-semibold">
                   My dashboard
                 </Link>
               </li>
             ) : null}
           </ul>
-          <Link href="/inquire" className="btn btn-solid mt-6 w-full">
+          <Link href="/inquire" className="btn mt-6 w-full bg-lime text-green hover:bg-ivory">
             Let&apos;s talk
           </Link>
         </nav>

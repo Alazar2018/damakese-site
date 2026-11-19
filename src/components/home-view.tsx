@@ -90,7 +90,7 @@ export function HomeView() {
           </div>
         </section>
 
-        <section className="bg-white">
+        <section className="bg-sand">
           <div className="mx-auto max-w-[90rem] px-5 py-16 md:px-12 md:py-24">
             <Reveal>
               <p className="eyebrow">What we do</p>
@@ -197,7 +197,7 @@ export function HomeView() {
                     aria-selected={selected}
                     onClick={() => setLane(item)}
                     className={`ui min-h-11 cursor-pointer rounded-full px-5 text-sm font-medium ${
-                      selected ? "bg-green text-ivory" : "border border-stone bg-white text-green"
+                      selected ? "bg-green text-ivory" : "border border-stone bg-sand text-green"
                     }`}
                   >
                     {item}
@@ -226,7 +226,7 @@ export function HomeView() {
           </div>
         </section>
 
-        <section className="bg-white">
+        <section className="bg-sand">
           <div className="mx-auto grid max-w-[90rem] gap-12 px-5 py-16 md:px-12 md:py-24 lg:grid-cols-12">
             <Reveal className="lg:col-span-5">
               <p className="eyebrow">How we work</p>
@@ -266,7 +266,7 @@ export function HomeView() {
           </div>
         </section>
 
-        <section className="bg-white">
+        <section className="bg-sand">
           <div className="mx-auto max-w-[90rem] px-5 py-16 md:px-12 md:py-24">
             <Reveal>
               <p className="eyebrow">In numbers</p>

@@ -182,7 +182,9 @@ export function PictureReel({
                 : undefined
             }
             className={`absolute inset-0 h-full w-full object-cover object-[center_40%] transition-[opacity,transform] duration-700 ease-out ${
-              poster ? "[filter:contrast(1.08)_saturate(1.12)]" : ""
+              poster
+                ? "[filter:grayscale(0.45)_sepia(0.7)_hue-rotate(78deg)_saturate(1.45)_contrast(1.08)_brightness(0.86)]"
+                : ""
             } ${active ? "opacity-100" : "opacity-0"} ${active && !reduce && !poster ? "hero-drift" : ""}`}
           />
         );
@@ -192,7 +194,7 @@ export function PictureReel({
         className="absolute inset-0"
         style={{
           background: poster
-            ? "linear-gradient(180deg, rgba(8, 22, 14, 0.4) 0%, transparent 14%), linear-gradient(0deg, rgba(8, 22, 14, 0.45) 0%, transparent 22%), linear-gradient(100deg, rgba(14, 38, 24, 0.68) 0%, rgba(14, 38, 24, 0.28) 24%, transparent 58%)"
+            ? "linear-gradient(180deg, rgba(18, 52, 29, 0.55) 0%, transparent 22%), linear-gradient(0deg, rgba(18, 52, 29, 0.62) 0%, transparent 34%), linear-gradient(100deg, rgba(18, 52, 29, 0.78) 0%, rgba(18, 52, 29, 0.42) 36%, rgba(156, 202, 59, 0.16) 100%)"
             : "linear-gradient(100deg, color-mix(in srgb, var(--green) 92%, black) 0%, color-mix(in srgb, var(--green) 72%, transparent) 46%, color-mix(in srgb, var(--green) 34%, transparent) 100%)",
         }}
       />
