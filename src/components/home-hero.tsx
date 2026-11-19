@@ -190,10 +190,12 @@ export function PictureReel({
         className="absolute inset-0"
         style={{
           background: poster
-            ? "linear-gradient(180deg, rgba(8, 14, 10, 0.38) 0%, transparent 18%), linear-gradient(0deg, rgba(8, 14, 10, 0.42) 0%, transparent 26%), linear-gradient(100deg, rgba(8, 14, 10, 0.58) 0%, rgba(8, 14, 10, 0.18) 30%, transparent 58%)"
+            ? "linear-gradient(180deg, rgba(8, 14, 10, 0.3) 0%, transparent 18%), linear-gradient(0deg, rgba(8, 14, 10, 0.34) 0%, transparent 26%), linear-gradient(100deg, rgba(8, 14, 10, 0.46) 0%, rgba(8, 14, 10, 0.1) 32%, transparent 60%)"
             : "linear-gradient(100deg, color-mix(in srgb, var(--green) 92%, black) 0%, color-mix(in srgb, var(--green) 72%, transparent) 46%, color-mix(in srgb, var(--green) 34%, transparent) 100%)",
         }}
       />
+      {poster ? <div className="hero-wash" aria-hidden /> : null}
+      {poster ? <div className="hero-lights" aria-hidden /> : null}
       {poster ? null : <div className="stage-panel absolute inset-y-0 left-0 z-20 w-14" aria-hidden />}
       {poster ? null : <div className="absolute inset-y-0 left-14 z-20 w-px bg-lime" aria-hidden />}
       {poster && !reduce ? (

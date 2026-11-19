@@ -425,6 +425,29 @@ body {
     #0e2618;
 }
 
+.hero-wash {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background: rgba(156, 202, 59, 0.28);
+  mix-blend-mode: color;
+}
+
+.hero-lights {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 46% 38% at 78% 18%, rgba(186, 224, 78, 0.85), transparent 70%),
+    radial-gradient(ellipse 32% 28% at 22% 72%, rgba(156, 202, 59, 0.7), transparent 72%),
+    radial-gradient(ellipse 22% 20% at 62% 36%, rgba(214, 236, 120, 0.55), transparent 70%),
+    radial-gradient(circle at 88% 58%, rgba(156, 202, 59, 0.65) 0 8%, transparent 26%);
+  filter: blur(18px);
+  mix-blend-mode: soft-light;
+}
+
 .meteor-field {
   position: absolute;
   inset: 0;
