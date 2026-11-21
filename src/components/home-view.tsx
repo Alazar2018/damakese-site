@@ -188,7 +188,7 @@ export function HomeView() {
           </div>
         </section>
 
-        <section className="logo-field bg-sand">
+        <section className="bg-sand">
           <div className="mx-auto max-w-[90rem] px-5 py-16 md:px-12 md:py-24">
             <Reveal>
               <p className="eyebrow">Selected projects</p>
@@ -217,8 +217,8 @@ export function HomeView() {
               Marketing, branding, events, and concerts. A client’s name replaces the title when that day is public.
             </p>
             <div className="mt-10 grid items-start gap-8 md:grid-cols-3">
-              {shown.map((piece, index) => (
-                <Link key={piece.id} href="/work" className={`group block ${index === 1 ? "md:mt-16" : ""}`}>
+              {shown.map((piece) => (
+                <Link key={piece.id} href="/work" className="group block">
                   <div className="overflow-hidden rounded-[1.35rem] bg-green">
                     <img src={piece.image} alt={piece.alt} className="photo-zoom aspect-[4/5] w-full object-cover" />
                   </div>
