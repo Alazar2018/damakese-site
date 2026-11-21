@@ -67,7 +67,7 @@ export function HomeView() {
           </div>
         </section>
 
-        <section className="bg-sand">
+        <section className="logo-field bg-sand">
           <div className="mx-auto grid max-w-[90rem] items-center gap-10 px-5 py-16 md:px-12 md:py-24 lg:grid-cols-12">
             <Reveal className="lg:col-span-7">
               <p className="eyebrow">About us</p>
@@ -161,7 +161,7 @@ export function HomeView() {
           </div>
         </section>
 
-        <section className="bg-sand">
+        <section className="logo-field bg-sand">
           <div className="mx-auto max-w-[90rem] px-5 py-16 md:px-12 md:py-24">
             <Reveal>
               <p className="eyebrow">Our values</p>
@@ -188,7 +188,7 @@ export function HomeView() {
           </div>
         </section>
 
-        <section className="bg-sand">
+        <section className="logo-field bg-sand">
           <div className="mx-auto max-w-[90rem] px-5 py-16 md:px-12 md:py-24">
             <Reveal>
               <p className="eyebrow">Selected projects</p>
@@ -258,7 +258,7 @@ export function HomeView() {
           </div>
         </section>
 
-        <section className="bg-sand">
+        <section className="logo-field bg-sand">
           <div className="mx-auto grid max-w-[90rem] gap-12 px-5 py-16 md:px-12 md:py-24 lg:grid-cols-12">
             <Reveal className="lg:col-span-4">
               <p className="eyebrow">Before you write</p>
@@ -281,7 +281,7 @@ export function HomeView() {
           </div>
         </section>
 
-        <section className="bg-sand">
+        <section className="logo-field bg-sand">
           <div className="mx-auto max-w-[90rem] px-5 py-16 md:px-12 md:pb-24">
             <Reveal>
               <p className="eyebrow">In numbers</p>

@@ -515,6 +515,13 @@ body {
   background-size: 16px 16px;
 }
 
+.logo-field {
+  background-image: url("/pattern-mark.svg");
+  background-repeat: repeat;
+  background-size: 280px 280px;
+  background-position: 12px 24px;
+}
+
 .bento-tile {
   border-radius: 1.35rem;
   transition:
