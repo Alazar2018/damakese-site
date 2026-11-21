@@ -57,7 +57,7 @@ export function HomeView() {
         <SpaceMarquee slides={rooms} topClass="text-sand" groundClass="bg-sand" bottomClass="text-green" />
 
         <section className="on-green relative bg-green text-ivory">
-          <div className="ribs-quiet pointer-events-none absolute inset-0" aria-hidden />
+          <div className="weave pointer-events-none absolute inset-0" aria-hidden />
           <div className="relative mx-auto max-w-[90rem] px-5 py-16 md:px-12 md:py-24">
             <p className="eyebrow">We are</p>
             <div className="mt-6 max-w-5xl">
@@ -79,8 +79,7 @@ export function HomeView() {
                 About the company
               </Link>
             </Reveal>
-            <Reveal className="on-green relative overflow-hidden bg-[#0e2618] px-8 py-12 text-ivory lg:col-span-5" delay={80}>
-              <div className="ribs-quiet pointer-events-none absolute inset-0" aria-hidden />
+            <Reveal className="bento-tile on-green relative overflow-hidden bg-[#0e2618] px-8 py-12 text-ivory weave lg:col-span-5" delay={80}>
               <p className="display relative text-8xl leading-none text-lime drop-shadow-[0_0_36px_rgba(156,202,59,0.55)] md:text-9xl">
                 <CountUp to={9} />
               </p>
@@ -127,7 +126,7 @@ export function HomeView() {
                 </button>
               ))}
             </div>
-            <article className="group mt-8 grid overflow-hidden bg-[#0c2416] md:grid-cols-2">
+            <article className="group mt-8 grid overflow-hidden rounded-[1.35rem] bg-[#0c2416] md:grid-cols-2">
               <img key={active.title} src={active.image} alt={active.imageAlt} className="fade-up aspect-[4/3] h-full w-full object-cover transition duration-700 group-hover:scale-[1.03]" />
               <div className="flex flex-col justify-center px-6 py-10 md:px-12">
                 <p className="ui text-xs font-medium tracking-[0.16em] text-lime uppercase">{active.index}</p>
@@ -145,15 +144,15 @@ export function HomeView() {
         <FilmRail />
 
         <section className="on-green relative bg-green text-ivory">
-          <div className="ribs-quiet pointer-events-none absolute inset-0" aria-hidden />
-          <div className="relative mx-auto grid max-w-[90rem] gap-12 px-5 py-16 md:grid-cols-2 md:px-12 md:py-24">
-            <div>
+          <div className="weave pointer-events-none absolute inset-0 opacity-70" aria-hidden />
+          <div className="relative mx-auto grid max-w-[90rem] items-start gap-6 px-5 py-16 md:grid-cols-12 md:px-12 md:py-24">
+            <div className="md:col-span-7 md:pr-8">
               <p className="eyebrow">Our mission</p>
-              <h2 className="display mt-4 text-4xl">Communicate clearly. Bring people together.</h2>
+              <h2 className="display mt-4 text-4xl md:text-6xl">Communicate clearly. Bring people together.</h2>
               <span className="rule mt-6" />
-              <p className="mt-6 text-lg leading-relaxed text-ivory/85">{mission}</p>
+              <p className="mt-6 max-w-[var(--measure)] text-lg leading-relaxed text-ivory/85">{mission}</p>
             </div>
-            <div>
+            <div className="bento-tile relative overflow-hidden bg-[#0c2416] p-8 dot-field md:col-span-5 md:mt-20">
               <p className="eyebrow">Our vision</p>
               <h2 className="display mt-4 text-4xl text-lime">Original thinking. Dependable work.</h2>
               <span className="rule mt-6" />
@@ -168,14 +167,23 @@ export function HomeView() {
               <p className="eyebrow">Our values</p>
               <h2 className="display mt-4 max-w-3xl text-4xl text-green md:text-5xl">How the work is kept.</h2>
             </Reveal>
-            <ul className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-              {values.map((value) => (
-                <li key={value.index} className="invite border-t border-stone pt-5 hover:border-lime">
-                  <p className="display text-5xl leading-none text-lime">{value.index}</p>
-                  <h3 className="display mt-3 text-2xl text-green">{value.title}</h3>
-                  <p className="mt-3 leading-relaxed">{value.body}</p>
-                </li>
-              ))}
+            <ul className="mt-12 grid auto-rows-fr gap-4 md:grid-cols-6">
+              {values.map((value, index) => {
+                const face = [
+                  "md:col-span-3 md:row-span-2 min-h-80 bg-green text-ivory weave",
+                  "md:col-span-3 bg-[#f3f8e6] text-green weave-sand",
+                  "md:col-span-3 bg-ivory text-green",
+                  "md:col-span-3 bg-lime text-green dot-field-ink",
+                  "md:col-span-3 bg-[#0c2416] text-ivory",
+                ][index];
+                return (
+                  <li key={value.index} className={`bento-tile relative overflow-hidden p-7 ${face}`}>
+                    <p className={`display text-5xl leading-none ${index === 3 ? "text-green" : "text-lime"}`}>{value.index}</p>
+                    <h3 className={`display mt-4 text-2xl ${index === 0 || index === 4 ? "text-ivory" : "text-green"}`}>{value.title}</h3>
+                    <p className={`mt-3 max-w-[36ch] leading-relaxed ${index === 0 || index === 4 ? "text-ivory/85" : ""}`}>{value.body}</p>
+                  </li>
+                );
+              })}
             </ul>
           </div>
         </section>
@@ -208,10 +216,10 @@ export function HomeView() {
             <p className="mt-6 max-w-2xl text-lg">
               Marketing, branding, events, and concerts. A client’s name replaces the title when that day is public.
             </p>
-            <div className="mt-10 grid gap-8 md:grid-cols-3">
-              {shown.map((piece) => (
-                <Link key={piece.id} href="/work" className="group block">
-                  <div className="overflow-hidden bg-green">
+            <div className="mt-10 grid items-start gap-8 md:grid-cols-3">
+              {shown.map((piece, index) => (
+                <Link key={piece.id} href="/work" className={`group block ${index === 1 ? "md:mt-16" : ""}`}>
+                  <div className="overflow-hidden rounded-[1.35rem] bg-green">
                     <img src={piece.image} alt={piece.alt} className="photo-zoom aspect-[4/5] w-full object-cover" />
                   </div>
                   <p className="ui mt-4 text-xs font-medium tracking-[0.14em] text-forest uppercase">{piece.badge}</p>
@@ -233,9 +241,15 @@ export function HomeView() {
               <h2 className="display mt-4 max-w-3xl text-4xl md:text-5xl">From the brief to the handover.</h2>
               <span className="rule mt-6" />
             </Reveal>
-            <ol className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+            <ol className="mt-12 grid items-end gap-4 sm:grid-cols-2 lg:grid-cols-5">
               {howWeWork.map((step, index) => (
-                <li key={step} className="invite flex min-h-72 flex-col justify-between border border-lime/30 bg-[#0c2416] p-5">
+                <li
+                  key={step}
+                  style={{ ["--step" as string]: index }}
+                  className={`bento-tile flex min-h-80 flex-col justify-between overflow-hidden border border-lime/30 p-5 lg:mb-[calc(var(--step)*1.15rem)] ${
+                    index % 2 === 0 ? "bg-[#0c2416] weave" : "bg-[#163526] dot-field"
+                  }`}
+                >
                   <span className="display text-5xl text-lime">0{index + 1}</span>
                   <span className="mt-10 text-lg leading-snug">{step}</span>
                 </li>
@@ -273,22 +287,22 @@ export function HomeView() {
               <p className="eyebrow">In numbers</p>
               <h2 className="display mt-4 max-w-3xl text-4xl text-green md:text-5xl">What the house can say for itself.</h2>
             </Reveal>
-            <div className="mt-12 grid gap-4 md:grid-cols-3">
-              <p className="on-green bg-green px-8 py-10 text-ivory">
-                <span className="display block text-7xl text-lime">
+            <div className="mt-12 grid gap-4 md:grid-cols-12">
+              <p className="bento-tile on-green relative overflow-hidden bg-green px-8 py-12 text-ivory weave md:col-span-7 md:min-h-72">
+                <span className="display relative block text-7xl text-lime md:text-8xl">
                   <CountUp to={9} />
                 </span>
-                <span className="mt-4 block text-lg">years of industry experience across the team.</span>
+                <span className="relative mt-4 block max-w-[22ch] text-lg">years of industry experience across the team.</span>
               </p>
-              <p className="bg-lime px-8 py-10 text-green">
-                <span className="display block text-7xl">
+              <p className="bento-tile relative overflow-hidden bg-lime px-8 py-12 text-green dot-field-ink md:col-span-5">
+                <span className="display relative block text-7xl md:text-8xl">
                   <CountUp to={4} />
                 </span>
-                <span className="mt-4 block text-lg">ways the work shows up, from a campaign to a live show.</span>
+                <span className="relative mt-4 block text-lg">ways the work shows up, from a campaign to a live show.</span>
               </p>
-              <p className="on-green bg-[#0c2416] px-8 py-10 text-ivory">
-                <span className="display block text-7xl text-lime">Addis</span>
-                <span className="mt-4 block text-lg">Ababa is home. The programme can travel when the brief does.</span>
+              <p className="bento-tile on-green relative flex flex-col justify-between gap-6 overflow-hidden bg-[#0c2416] px-8 py-10 text-ivory dot-field md:col-span-12 md:flex-row md:items-end">
+                <span className="display relative block text-6xl text-lime md:text-7xl">Addis Ababa</span>
+                <span className="relative max-w-sm text-lg">Home. The programme can travel when the brief does.</span>
               </p>
             </div>
           </div>
