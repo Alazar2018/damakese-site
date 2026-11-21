@@ -63,9 +63,6 @@ export function PictureReel({
   const [index, setIndex] = useState(0);
   const [reduce, setReduce] = useState(false);
   const [paused, setPaused] = useState(false);
-  const [look, setLook] = useState({ x: 0, y: 0 });
-  const lookRef = useRef({ x: 0, y: 0 });
-  const lookFrame = useRef(0);
   const root = useRef<HTMLElement>(null);
   const seen = useRef(true);
   const count = slides.length;
@@ -78,12 +75,6 @@ export function PictureReel({
     },
     [count],
   );
-
-  useEffect(() => {
-    return () => {
-      if (lookFrame.current) window.cancelAnimationFrame(lookFrame.current);
-    };
-  }, []);
 
   useEffect(() => {
     const media = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -136,23 +127,7 @@ export function PictureReel({
       aria-label="Pictures"
       className={`on-green relative overflow-hidden bg-green text-ivory ${height}`}
       onMouseEnter={() => setPaused(true)}
-      onMouseLeave={() => {
-        setPaused(false);
-        setLook({ x: 0, y: 0 });
-      }}
-      onPointerMove={(event) => {
-        if (!poster || reduce) return;
-        const box = event.currentTarget.getBoundingClientRect();
-        lookRef.current = {
-          x: (event.clientX - box.left) / box.width - 0.5,
-          y: (event.clientY - box.top) / box.height - 0.5,
-        };
-        if (lookFrame.current) return;
-        lookFrame.current = window.requestAnimationFrame(() => {
-          lookFrame.current = 0;
-          setLook(lookRef.current);
-        });
-      }}
+      onMouseLeave={() => setPaused(false)}
       onFocusCapture={() => setPaused(true)}
       onBlurCapture={(event) => {
         if (!event.currentTarget.contains(event.relatedTarget as Node | null)) setPaused(false);
@@ -170,12 +145,7 @@ export function PictureReel({
             fetchPriority={poster && item === 0 ? "high" : "auto"}
             decoding="async"
             draggable={false}
-            style={
-              poster && active && !reduce
-                ? { transform: `translate3d(${look.x * -28}px, ${look.y * -18}px, 0) scale(1.08)` }
-                : undefined
-            }
-            className={`absolute inset-0 h-full w-full object-cover ${slide.focus ?? "object-[center_40%]"} transition-[opacity,transform] duration-700 ease-out ${active ? "opacity-100" : "opacity-0"} ${active && !reduce && !poster ? "hero-drift" : ""}`}
+            className={`absolute inset-0 h-full w-full object-cover ${slide.focus ?? "object-[center_40%]"} transition-opacity duration-700 ease-out ${active ? "opacity-100" : "opacity-0"} ${active && !reduce && !poster ? "hero-drift" : ""}`}
           />
         );
       })}
