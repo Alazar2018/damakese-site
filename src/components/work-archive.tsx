@@ -72,7 +72,7 @@ export function WorkArchive() {
                   aria-selected={selected}
                   onClick={() => setLane(item)}
                   className={`ui min-h-11 cursor-pointer rounded-full px-5 text-sm font-medium ${
-                    selected ? "bg-green text-ivory" : "border border-stone bg-white text-green"
+                    selected ? "bg-lime text-green" : "border border-green/20 bg-sand text-green"
                   }`}
                 >
                   {item}
@@ -97,7 +97,7 @@ export function WorkArchive() {
               onClick={() => setOpen(piece)}
               className="group mb-4 block w-full cursor-pointer break-inside-avoid text-left"
             >
-              <span className="frame relative block overflow-hidden bg-green">
+              <span className="frame relative block overflow-hidden rounded-[1.35rem] bg-green">
                 <img src={piece.image} alt="" className={`${aspects[index % aspects.length]} w-full object-cover transition duration-700 group-hover:scale-[1.04]`} />
                 <span className="ui absolute top-4 left-4 rounded-full bg-lime px-3 py-1 text-xs font-semibold tracking-[0.14em] text-green uppercase">
                   {piece.badge}

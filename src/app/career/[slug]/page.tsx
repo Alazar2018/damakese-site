@@ -34,15 +34,20 @@ export default async function CareerRolePage({ params }: { params: Promise<Param
     <>
       <SiteHeader />
       <main id="content" className="bg-ivory">
-        <article className="mx-auto grid max-w-[90rem] gap-12 px-5 pt-32 pb-20 md:px-12 md:pt-40 lg:grid-cols-12">
+        <header className="on-green relative overflow-hidden bg-green text-ivory">
+          <div className="weave pointer-events-none absolute inset-0 opacity-70" aria-hidden />
+          <div className="relative mx-auto max-w-[90rem] px-5 pt-32 pb-12 md:px-12 md:pt-40">
+            <p className="eyebrow">{role.desk}</p>
+            <h1 className="display mt-4 max-w-4xl text-4xl md:text-6xl">{role.title}</h1>
+            <p className="mt-4 text-ivory/80">{role.type}</p>
+          </div>
+        </header>
+        <article className="mx-auto grid max-w-[90rem] gap-12 px-5 py-16 md:px-12 md:py-20 lg:grid-cols-12">
           <div className="lg:col-span-7">
             <Link href="/career" className="ui text-sm font-medium text-forest underline decoration-lime decoration-2 underline-offset-4">
               All roles
             </Link>
-            <p className="eyebrow mt-8">{role.desk}</p>
-            <h1 className="display mt-3 text-4xl text-green md:text-6xl">{role.title}</h1>
-            <p className="mt-3 text-sm">{role.type}</p>
-            <span className="rule mt-6" />
+            <span className="rule mt-8" />
             <p className="mt-6 max-w-[var(--measure)] text-xl">{role.summary}</p>
             <h2 className="display mt-10 text-2xl text-green">What the seat asks</h2>
             <ul className="mt-4 max-w-[var(--measure)] space-y-3">

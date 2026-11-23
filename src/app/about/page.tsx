@@ -35,7 +35,7 @@ export default function AboutPage() {
               <p className="eyebrow">Our story</p>
               <h2 className="display mt-4 max-w-3xl text-4xl text-green md:text-5xl">A new company. Nine years in the work.</h2>
             </Reveal>
-            <article className="mt-16 grid bg-ivory md:mt-24 md:grid-cols-2">
+            <article className="mt-16 grid overflow-hidden rounded-[1.35rem] bg-ivory md:mt-24 md:grid-cols-2">
               <img
                 src={frames.hall}
                 alt="An event floor, lit and empty, before the doors open."
@@ -51,15 +51,16 @@ export default function AboutPage() {
           </div>
         </section>
 
-        <section className="on-green bg-green text-ivory">
-          <div className="mx-auto grid max-w-[90rem] gap-12 px-5 py-16 md:grid-cols-2 md:px-12 md:py-24">
-            <div>
+        <section className="on-green relative bg-green text-ivory">
+          <div className="weave pointer-events-none absolute inset-0 opacity-70" aria-hidden />
+          <div className="relative mx-auto grid max-w-[90rem] items-start gap-6 px-5 py-16 md:grid-cols-12 md:px-12 md:py-24">
+            <div className="md:col-span-7 md:pr-8">
               <p className="eyebrow">Our mission</p>
-              <h2 className="display mt-4 text-4xl">Communicate clearly. Bring people together.</h2>
+              <h2 className="display mt-4 text-4xl md:text-6xl">Communicate clearly. Bring people together.</h2>
               <span className="rule mt-6" />
-              <p className="mt-6 text-lg leading-relaxed text-ivory/85">{mission}</p>
+              <p className="mt-6 max-w-[var(--measure)] text-lg leading-relaxed text-ivory/85">{mission}</p>
             </div>
-            <div>
+            <div className="bento-tile relative overflow-hidden bg-[#0c2416] p-8 dot-field md:col-span-5 md:mt-16">
               <p className="eyebrow">Our vision</p>
               <h2 className="display mt-4 text-4xl text-lime">Original thinking. Dependable work.</h2>
               <span className="rule mt-6" />

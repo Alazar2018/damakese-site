@@ -44,8 +44,8 @@ export function CareerBoard() {
                 <li key={role.slug}>
                   <Link
                     href={`/career/${role.slug}`}
-                    className={`invite group relative block overflow-hidden px-6 py-8 md:px-8 md:py-10 ${
-                      lead ? "bg-lime text-green" : "on-green bg-green text-ivory"
+                    className={`bento-tile invite group relative block overflow-hidden px-6 py-8 md:px-8 md:py-10 ${
+                      lead ? "bg-lime text-green" : "on-green bg-green text-ivory weave"
                     }`}
                   >
                     <span className={`ui text-xs tracking-[0.16em] uppercase ${lead ? "text-forest" : "text-lime"}`}>{role.desk}</span>
@@ -64,10 +64,10 @@ export function CareerBoard() {
           </ul>
         </div>
 
-        <aside className="lg:col-span-5 lg:pt-16">
-          <p className="text-lg leading-relaxed text-green/80">{aboutCopy.who}</p>
-          <p className="mt-6 text-lg leading-relaxed text-green/80">{aboutCopy.years}</p>
-          <p className="mt-6 text-lg leading-relaxed text-green/80">{aboutCopy.close}</p>
+        <aside className="bento-tile on-green relative overflow-hidden bg-[#0e2618] p-8 text-ivory weave lg:col-span-5 lg:mt-16">
+          <p className="relative text-lg leading-relaxed text-ivory/85">{aboutCopy.who}</p>
+          <p className="relative mt-6 text-lg leading-relaxed text-ivory/85">{aboutCopy.years}</p>
+          <p className="relative mt-6 text-lg leading-relaxed text-ivory/85">{aboutCopy.close}</p>
         </aside>
       </div>
     </section>

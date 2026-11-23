@@ -27,13 +27,17 @@ export function PracticeView() {
         <div className="mx-auto max-w-[90rem] px-5 py-16 md:px-12 md:py-24">
           <p className="eyebrow">What we do</p>
           <h2 className="display mt-4 max-w-3xl text-4xl text-green md:text-5xl">Four ways the work shows up.</h2>
-          <div className="mt-12 grid gap-10">
-            {disciplines.map((item) => (
-              <article id={item.id} key={item.id} className="group grid scroll-mt-24 overflow-hidden bg-white md:grid-cols-2">
-                <img src={item.image} alt={item.imageAlt} className="aspect-[4/3] h-full w-full object-cover transition duration-700 group-hover:scale-[1.03]" />
+          <div className="mt-12 grid gap-8">
+            {disciplines.map((item, index) => (
+              <article id={item.id} key={item.id} className="group grid scroll-mt-24 overflow-hidden rounded-[1.35rem] bg-sand md:grid-cols-2">
+                <img
+                  src={item.image}
+                  alt={item.imageAlt}
+                  className={`aspect-[4/3] h-full w-full object-cover transition duration-700 group-hover:scale-[1.03] ${index % 2 ? "md:order-2" : ""}`}
+                />
                 <div className="flex flex-col justify-center px-6 py-10 md:px-12">
                   <p className="ui text-xs font-medium tracking-[0.16em] text-forest uppercase">{item.index}</p>
-                  <h3 className="display mt-3 text-3xl text-green">{item.title}</h3>
+                  <h3 className="display mt-3 text-3xl text-green transition-transform duration-200 group-hover:translate-x-2">{item.title}</h3>
                   <p className="mt-3 text-xl text-green">{item.line}</p>
                   <span className="rule mt-5" />
                   <p className="mt-5 max-w-[var(--measure)] text-lg leading-relaxed">{item.body}</p>

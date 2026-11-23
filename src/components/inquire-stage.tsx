@@ -31,7 +31,7 @@ export function InquireStage() {
                   type="button"
                   aria-pressed={selected}
                   onClick={() => go(index)}
-                  className={`w-full cursor-pointer border-t px-1 py-3 text-left ${selected ? "border-green" : "border-stone"}`}
+                  className={`bento-tile w-full cursor-pointer px-4 py-4 text-left ${selected ? "bg-lime text-green" : "bg-sand text-green"}`}
                 >
                   <span className="ui block text-sm font-medium text-forest">{hold.index}</span>
                   <span className="mt-1 block text-green">{hold.line}</span>

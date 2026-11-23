@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { LogoMark } from "@/components/logo";
 
 export function InteriorHero({
   crumb,
@@ -24,7 +25,9 @@ export function InteriorHero({
             "linear-gradient(180deg, rgba(8, 22, 14, 0.72) 0%, rgba(8, 22, 14, 0.28) 40%, rgba(8, 22, 14, 0.8) 100%)",
         }}
       />
-      <div className="relative mx-auto flex min-h-[62vh] max-w-[90rem] flex-col justify-end px-5 pt-28 pb-10 md:px-12 md:pb-14">
+      <div aria-hidden className="hero-wash !opacity-[0.16]" />
+      <LogoMark className="pointer-events-none absolute top-28 right-6 z-[4] h-24 w-24 text-lime/45 md:right-12 md:h-36 md:w-36" />
+      <div className="relative z-10 mx-auto flex min-h-[62vh] max-w-[90rem] flex-col justify-end px-5 pt-28 pb-10 md:px-12 md:pb-14">
         <p className="ui text-[13px] font-semibold tracking-[0.14em] uppercase">
           <Link href="/" className="text-ivory/65">
             Home

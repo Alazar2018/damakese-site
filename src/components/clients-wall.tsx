@@ -48,7 +48,7 @@ export function PartnerMarks({ quiet = false }: { quiet?: boolean }) {
               aria-selected={selected}
               onClick={() => setSector(item)}
               className={`ui min-h-11 cursor-pointer rounded-full px-5 text-sm font-medium ${
-                selected ? "bg-green text-ivory" : "border border-stone text-green"
+                selected ? "bg-lime text-green" : "border border-green/20 bg-sand text-green"
               }`}
             >
               {item}
@@ -57,9 +57,9 @@ export function PartnerMarks({ quiet = false }: { quiet?: boolean }) {
         })}
       </div>
       )}
-      <ul className={`grid grid-cols-2 gap-px bg-stone ${quiet ? "md:grid-cols-4" : "mt-10 md:grid-cols-3 lg:grid-cols-4"}`}>
+      <ul className={`grid grid-cols-2 gap-3 ${quiet ? "md:grid-cols-4" : "mt-10 md:grid-cols-3 lg:grid-cols-4"}`}>
         {visible.map((item) => (
-          <li key={item.key} className="mark-tile group flex min-h-24 items-center justify-center bg-white px-4 py-5" title={item.title}>
+          <li key={item.key} className="bento-tile mark-tile group flex min-h-24 items-center justify-center bg-sand px-4 py-5" title={item.title}>
             <PartnerWord name={item.name} />
           </li>
         ))}
@@ -80,22 +80,22 @@ export function ClientsWall() {
         <div className="mx-auto max-w-[90rem] px-5 pt-16 pb-10 md:px-12 md:pt-20">
           <p className="eyebrow">Clients</p>
           <h2 className="display mt-4 max-w-4xl text-5xl text-green md:text-7xl">The company we keep.</h2>
-          <div className="mt-12 grid gap-8 border-t border-stone pt-8 sm:grid-cols-3">
-            <p>
-              <span className="display block text-5xl text-green">
+          <div className="mt-12 grid gap-4 md:grid-cols-12">
+            <p className="bento-tile on-green bg-green px-8 py-10 text-ivory weave md:col-span-5">
+              <span className="display relative block text-6xl text-lime">
                 <CountUp to={9} />
               </span>
-              <span className="mt-2 block">years of industry experience across the team.</span>
+              <span className="relative mt-3 block">years of industry experience across the team.</span>
             </p>
-            <p>
-              <span className="display block text-5xl text-green">
+            <p className="bento-tile bg-lime px-8 py-10 text-green dot-field-ink md:col-span-3">
+              <span className="display relative block text-6xl">
                 <CountUp to={4} />
               </span>
-              <span className="mt-2 block">ways the work shows up, from a campaign to a live show.</span>
+              <span className="relative mt-3 block">ways the work shows up.</span>
             </p>
-            <p>
-              <span className="display block text-5xl text-green">Addis</span>
-              <span className="mt-2 block">Ababa is home. The programme can travel when the brief does.</span>
+            <p className="bento-tile on-green bg-[#0c2416] px-8 py-10 text-ivory dot-field md:col-span-4">
+              <span className="display relative block text-5xl text-lime">Addis</span>
+              <span className="relative mt-3 block">Ababa is home. The programme can travel when the brief does.</span>
             </p>
           </div>
         </div>
