@@ -34,7 +34,7 @@ export function AboutValues() {
                   className="lean-card group block w-full cursor-pointer text-left"
                   style={{ ["--lean" as string]: selected ? "0deg" : index % 2 === 0 ? "-2.5deg" : "2.5deg" }}
                 >
-                  <span className="block overflow-hidden bg-green">
+                  <span className="block overflow-hidden rounded-[1.15rem] bg-green">
                     <img src={shots[index].src} alt="" className="photo-zoom aspect-[4/5] w-full object-cover" />
                   </span>
                   <span className="mt-4 block min-h-11">
@@ -47,7 +47,7 @@ export function AboutValues() {
             );
           })}
         </ul>
-        <article key={current.index} className="fade-up mt-16 grid bg-ivory md:mt-24 md:grid-cols-2">
+        <article key={current.index} className="fade-up mt-16 grid overflow-hidden rounded-[1.35rem] bg-ivory md:mt-24 md:grid-cols-2">
           <img src={shot.src} alt={shot.alt} className="aspect-[4/3] h-full w-full object-cover" />
           <div className="flex flex-col justify-center px-8 py-12 md:px-14 md:py-16">
             <p className="eyebrow">{current.index}</p>

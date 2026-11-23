@@ -60,7 +60,7 @@ export function InquireForm({ onStep }: { onStep?: (step: number) => void }) {
 
   if (sent) {
     return (
-      <div role="status" className="bg-sand p-8 md:p-10">
+      <div role="status" className="rounded-[1.35rem] bg-sand p-8 md:p-10">
         <p className="eyebrow">Received</p>
         <h2 className="display mt-4 text-4xl text-green">We have the date.</h2>
         <span className="rule mt-5" />
@@ -72,7 +72,7 @@ export function InquireForm({ onStep }: { onStep?: (step: number) => void }) {
   }
 
   return (
-    <form onSubmit={onSubmit} noValidate className="grid gap-5">
+    <form onSubmit={onSubmit} noValidate className="grid gap-5 rounded-[1.35rem] bg-sand p-6 md:p-8">
       <div className="grid gap-5 md:grid-cols-2">
         <label className="field">
           <span>Name</span>

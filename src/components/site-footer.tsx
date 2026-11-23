@@ -60,8 +60,8 @@ export function SiteFooter({ line = true }: { line?: boolean }) {
               <ul className="mt-4 grid grid-cols-2 gap-x-6">
                 {book.map((item) => (
                   <li key={item.href}>
-                    <Link className="ui group inline-flex min-h-11 items-center gap-2 text-sm" href={item.href}>
-                      <span className="h-1.5 w-1.5 bg-lime transition group-hover:scale-150" />
+                    <Link className="ui group inline-flex min-h-11 items-center gap-2 text-sm transition-transform duration-200 hover:translate-x-1" href={item.href}>
+                      <span className="h-1.5 w-1.5 rotate-45 bg-lime transition group-hover:scale-150" />
                       {item.label}
                     </Link>
                   </li>

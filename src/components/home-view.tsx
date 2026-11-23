@@ -269,16 +269,17 @@ export function HomeView() {
               <h2 className="display mt-4 text-4xl text-green md:text-5xl">Questions clients ask first.</h2>
               <span className="rule mt-6" />
             </Reveal>
-            <div className="flex flex-col gap-3 lg:col-span-8">
-              {faqs.map((item) => (
-                <details key={item.question} className="group border border-green/15 bg-[#f3f8e6] px-6 open:border-lime open:shadow-[0_16px_40px_rgba(18,52,29,0.08)]">
-                  <summary className="flex min-h-16 cursor-pointer list-none items-center justify-between gap-6 text-xl text-green [&::-webkit-details-marker]:hidden">
-                    <span>{item.question}</span>
-                    <span aria-hidden className="ui inline-flex h-9 w-9 shrink-0 items-center justify-center bg-green text-lg text-lime transition-transform group-open:rotate-45">
+            <div className="lg:col-span-8">
+              {faqs.map((item, index) => (
+                <details key={item.question} className="group border-t border-green/20 open:border-lime">
+                  <summary className="flex min-h-16 cursor-pointer list-none items-center gap-4 py-4 text-green [&::-webkit-details-marker]:hidden">
+                    <span className="ui w-8 shrink-0 text-xs tracking-[0.16em] text-forest">{`0${index + 1}`}</span>
+                    <span className="display flex-1 text-xl transition-transform duration-200 group-open:translate-x-2 group-hover:translate-x-2 md:text-2xl">{item.question}</span>
+                    <span aria-hidden className="ui inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-green text-lg text-lime transition-transform group-open:rotate-45">
                       +
                     </span>
                   </summary>
-                  <p className="max-w-[var(--measure)] pb-6 text-lg leading-relaxed">{item.answer}</p>
+                  <p className="max-w-[var(--measure)] pb-6 pl-12 text-lg leading-relaxed">{item.answer}</p>
                 </details>
               ))}
             </div>
