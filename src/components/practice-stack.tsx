@@ -36,7 +36,7 @@ export function PracticeStack({
                   className="lean-card group block w-full cursor-pointer text-left"
                   style={{ ["--lean" as string]: selected ? "0deg" : index % 2 === 0 ? "-2.5deg" : "2.5deg" }}
                 >
-                  <span className="block overflow-hidden bg-green">
+                  <span className="block overflow-hidden rounded-[1.15rem] bg-green">
                     <img src={item.image} alt="" className="photo-zoom aspect-[4/5] w-full object-cover" />
                   </span>
                   <span className="mt-4 block min-h-11">
@@ -58,8 +58,11 @@ export function PracticeStack({
             <p className="mt-5 text-xl text-green">{current.line}</p>
             <p className="mt-4 max-w-[var(--measure)] text-lg">{current.detail}</p>
             <ul className="mt-6 space-y-2">
-              {current.includes.map((point) => (
-                <li key={point} className="border-t border-stone pt-2">{point}</li>
+              {current.includes.map((point, index) => (
+                <li key={point} className="flex gap-3 border-t border-stone pt-3">
+                  <span className="ui w-6 shrink-0 text-xs tracking-[0.14em] text-forest">{`0${index + 1}`}</span>
+                  <span>{point}</span>
+                </li>
               ))}
             </ul>
           </div>

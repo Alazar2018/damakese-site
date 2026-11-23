@@ -68,7 +68,7 @@ export function PracticeView() {
             Campaigns, identities, events and live shows. Choose a day below and the practice opens to it.
           </p>
         </div>
-        <div className="grid border-t border-ivory/20 sm:grid-cols-2 lg:grid-cols-5" role="list">
+        <div className="mx-auto grid max-w-[90rem] items-end gap-3 px-5 pb-16 sm:grid-cols-2 md:px-12 lg:grid-cols-5" role="list">
           {practices.map((item, index) => {
             const selected = open === index;
             return (
@@ -78,11 +78,14 @@ export function PracticeView() {
                 role="listitem"
                 aria-pressed={selected}
                 onClick={() => choose(index)}
-                className={`cursor-pointer border-ivory/20 px-5 py-6 text-left md:px-8 lg:border-l lg:first:border-l-0 ${selected ? "bg-ivory/10" : "hover:bg-ivory/5"}`}
+                style={{ ["--step" as string]: index }}
+                className={`bento-tile cursor-pointer px-5 py-6 text-left lg:mb-[calc(var(--step)*0.7rem)] ${
+                  selected ? "bg-lime text-green" : "bg-[#0c2416] text-ivory weave hover:bg-[#163526]"
+                }`}
               >
-                <span className="ui block text-xs font-medium tracking-[0.16em] text-lime uppercase">{item.index}</span>
+                <span className={`ui block text-xs font-medium tracking-[0.16em] uppercase ${selected ? "text-forest" : "text-lime"}`}>{item.index}</span>
                 <span className="display mt-3 block text-2xl">{item.title}</span>
-                <span className="mt-2 block text-sm leading-relaxed text-ivory/75">{item.line}</span>
+                <span className={`mt-2 block text-sm leading-relaxed ${selected ? "text-green/80" : "text-ivory/75"}`}>{item.line}</span>
               </button>
             );
           })}
@@ -91,8 +94,9 @@ export function PracticeView() {
 
       <PracticeStack open={open} onOpen={setOpen} />
 
-      <section className="on-green bg-green text-ivory">
-        <div className="mx-auto grid max-w-[90rem] gap-12 px-5 py-20 md:grid-cols-12 md:px-12 md:py-24">
+      <section className="on-green relative overflow-hidden bg-green text-ivory">
+        <div className="weave pointer-events-none absolute inset-0 opacity-50" aria-hidden />
+        <div className="relative mx-auto grid max-w-[90rem] gap-12 px-5 py-20 md:grid-cols-12 md:px-12 md:py-24">
           <div className="md:col-span-5">
             <p className="eyebrow">End to end</p>
             <h2 className="display mt-4 text-4xl">The day, in the order it is made.</h2>
@@ -111,7 +115,7 @@ export function PracticeView() {
                     type="button"
                     aria-pressed={selected}
                     onClick={() => setStep(index)}
-                    className={`grid w-full cursor-pointer grid-cols-[2.5rem_1fr] gap-3 border-t border-ivory/25 py-4 text-left ${selected ? "text-ivory" : "text-ivory/65"}`}
+                    className={`grid w-full cursor-pointer grid-cols-[2.5rem_1fr] gap-3 border-t py-4 text-left transition-transform duration-200 ${selected ? "translate-x-2 border-lime text-lime" : "border-ivory/25 text-ivory/65 hover:translate-x-2"}`}
                   >
                     <span className="ui text-sm">{`0${index + 1}`}</span>
                     <span>{item}</span>

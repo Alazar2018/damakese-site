@@ -50,10 +50,11 @@ export default async function CareerRolePage({ params }: { params: Promise<Param
             <span className="rule mt-8" />
             <p className="mt-6 max-w-[var(--measure)] text-xl">{role.summary}</p>
             <h2 className="display mt-10 text-2xl text-green">What the seat asks</h2>
-            <ul className="mt-4 max-w-[var(--measure)] space-y-3">
-              {role.asks.map((ask) => (
-                <li key={ask} className="border-t border-stone pt-3">
-                  {ask}
+            <ul className="mt-4 max-w-[var(--measure)]">
+              {role.asks.map((ask, index) => (
+                <li key={ask} className="flex gap-4 border-t border-green/15 py-4">
+                  <span className="ui w-8 shrink-0 text-xs tracking-[0.16em] text-forest">{`0${index + 1}`}</span>
+                  <span className="text-lg">{ask}</span>
                 </li>
               ))}
             </ul>

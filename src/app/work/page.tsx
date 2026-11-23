@@ -26,8 +26,9 @@ export default function WorkPage() {
           imageAlt="A concert crowd under stage light."
         />
         <WorkArchive />
-        <section className="on-green bg-green text-ivory">
-          <div className="mx-auto flex max-w-[90rem] flex-col gap-8 px-5 py-16 md:flex-row md:items-end md:justify-between md:px-12 md:py-20">
+        <section className="on-green relative overflow-hidden bg-green text-ivory">
+          <div className="weave pointer-events-none absolute inset-0 opacity-60" aria-hidden />
+          <div className="relative mx-auto flex max-w-[90rem] flex-col gap-8 px-5 py-16 md:flex-row md:items-end md:justify-between md:px-12 md:py-20">
             <h2 className="display max-w-2xl text-4xl md:text-5xl">
               Your brief, <span className="text-lime">next.</span>
             </h2>

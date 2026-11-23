@@ -26,8 +26,9 @@ export default function ClientsPage() {
           imageAlt="An exhibition floor before the doors open."
         />
         <ClientsWall />
-        <section className="on-green bg-green text-ivory">
-          <div className="mx-auto flex max-w-[90rem] flex-col gap-8 px-5 py-16 md:flex-row md:items-end md:justify-between md:px-12 md:py-20">
+        <section className="on-green relative overflow-hidden bg-green text-ivory">
+          <div className="weave pointer-events-none absolute inset-0 opacity-60" aria-hidden />
+          <div className="relative mx-auto flex max-w-[90rem] flex-col gap-8 px-5 py-16 md:flex-row md:items-end md:justify-between md:px-12 md:py-20">
             <div>
               <h2 className="display max-w-2xl text-4xl md:text-5xl">Your brand, in the room.</h2>
               <p className="mt-4 max-w-xl text-ivory/80">Every brief starts with what the work has to achieve.</p>

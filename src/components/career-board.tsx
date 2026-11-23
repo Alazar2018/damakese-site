@@ -28,9 +28,9 @@ export function CareerBoard() {
                 value={query}
                 onChange={(event) => setQuery(event.target.value)}
                 placeholder="Search..."
-                className="min-h-12 w-48 border border-stone bg-white px-4 text-green outline-none"
+                className="min-h-12 w-48 rounded-l-[0.85rem] border border-stone bg-white px-4 text-green outline-none"
               />
-              <span className="inline-flex w-12 items-center justify-center border border-l-0 border-stone bg-white text-green">
+              <span className="inline-flex w-12 items-center justify-center rounded-r-[0.85rem] border border-l-0 border-stone bg-white text-green">
                 <MagnifyingGlass size={18} />
               </span>
             </form>

@@ -202,13 +202,13 @@ export function SpaceMarquee({
         </div>
       </div>
       <div className="mx-auto flex max-w-xl items-center justify-center gap-6 px-5 pt-2">
-        <button type="button" aria-label="Previous room" className="inline-flex h-11 w-11 cursor-pointer items-center justify-center border border-green text-green hover:bg-green hover:text-lime" onClick={() => step(1)}>
+        <button type="button" aria-label="Previous room" className="inline-flex h-11 w-11 cursor-pointer items-center justify-center rounded-full border border-green text-green hover:bg-green hover:text-lime" onClick={() => step(1)}>
           <ArrowLeft size={18} />
         </button>
         <p ref={captionRef} className="eyebrow min-w-36 text-center">
           {slides[0]?.label}
         </p>
-        <button type="button" aria-label="Next room" className="inline-flex h-11 w-11 cursor-pointer items-center justify-center border border-green text-green hover:bg-green hover:text-lime" onClick={() => step(-1)}>
+        <button type="button" aria-label="Next room" className="inline-flex h-11 w-11 cursor-pointer items-center justify-center rounded-full border border-green text-green hover:bg-green hover:text-lime" onClick={() => step(-1)}>
           <ArrowRight size={18} />
         </button>
       </div>

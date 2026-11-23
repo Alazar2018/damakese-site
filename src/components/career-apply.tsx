@@ -47,7 +47,7 @@ export function CareerApply({ role }: { role: string }) {
 
   if (sent) {
     return (
-      <div role="status" className="bg-sand p-8">
+      <div role="status" className="rounded-[1.35rem] bg-sand p-8">
         <p className="eyebrow">Received</p>
         <h2 className="display mt-4 text-3xl text-green">We have your note.</h2>
         <p className="mt-4">If the seat is one we can talk about, we will write back.</p>
@@ -56,7 +56,7 @@ export function CareerApply({ role }: { role: string }) {
   }
 
   return (
-    <form onSubmit={onSubmit} noValidate className="grid gap-5">
+    <form onSubmit={onSubmit} noValidate className="grid gap-5 rounded-[1.35rem] bg-sand p-6 md:p-8">
       <label className="field">
         <span>Name</span>
         <input id="career-name" value={name} onChange={(event) => setName(event.target.value)} autoComplete="name" aria-invalid={Boolean(errors.name)} aria-describedby={errors.name ? "career-name-error" : undefined} />
