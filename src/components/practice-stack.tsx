@@ -49,7 +49,7 @@ export function PracticeStack({
             );
           })}
         </ul>
-        <article key={current.kind} className="fade-up mt-16 grid bg-ivory md:mt-24 md:grid-cols-2">
+        <article key={current.kind} className="fade-up mt-16 grid overflow-hidden rounded-[1.35rem] bg-ivory md:mt-24 md:grid-cols-2">
           <img src={current.image} alt={current.imageAlt} className="aspect-[4/3] h-full w-full object-cover" />
           <div className="flex flex-col justify-center px-8 py-12 md:px-14 md:py-16">
             <p className="eyebrow">{current.index}</p>

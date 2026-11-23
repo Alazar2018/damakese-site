@@ -13,8 +13,9 @@ export function CallReasons() {
   const [open, setOpen] = useState(0);
 
   return (
-    <section className="on-green bg-green text-ivory">
-      <div className="mx-auto grid max-w-[90rem] gap-12 px-5 py-20 md:grid-cols-12 md:px-12 md:py-24">
+    <section className="on-green relative bg-green text-ivory">
+      <div className="weave pointer-events-none absolute inset-0 opacity-60" aria-hidden />
+      <div className="relative mx-auto grid max-w-[90rem] gap-12 px-5 py-20 md:grid-cols-12 md:px-12 md:py-24">
         <div className="md:col-span-5">
           <p className="eyebrow">Why the call comes</p>
           <h2 className="display mt-4 text-4xl md:text-5xl">The work we take responsibility for.</h2>
@@ -36,7 +37,7 @@ export function CallReasons() {
                 className={`block w-full cursor-pointer border-t border-ivory/25 py-5 text-left ${selected ? "" : "opacity-70"}`}
               >
                 <span className="ui block text-sm text-ivory/70">{index}</span>
-                <span className="display mt-2 block text-2xl">{title}</span>
+                <span className={`display mt-2 block text-2xl transition-transform duration-200 ${selected ? "translate-x-2 text-lime" : ""}`}>{title}</span>
                 <span className={`mt-3 block text-ivory/85 ${selected ? "" : "hidden"}`}>{body}</span>
               </button>
             );

@@ -98,46 +98,50 @@ export function HomeView() {
                 A brand finding its voice. A campaign that gives people a reason to take part. A stage ready for the first cue. What do we want people to take away?
               </p>
             </Reveal>
-            <div className="mt-10 flex gap-2 overflow-x-auto pb-2" role="tablist" aria-label="What we do">
-              {disciplines.map((item, index) => (
-                <button
-                  key={item.title}
-                  type="button"
-                  role="tab"
-                  aria-selected={service === index}
-                  tabIndex={service === index ? 0 : -1}
-                  onClick={() => setService(index)}
-                  onKeyDown={(event) => {
-                    if (event.key !== "ArrowRight" && event.key !== "ArrowLeft") return;
-                    event.preventDefault();
-                    const next =
-                      event.key === "ArrowRight"
-                        ? (index + 1) % disciplines.length
-                        : (index - 1 + disciplines.length) % disciplines.length;
-                    setService(next);
-                    const tabs = event.currentTarget.parentElement?.querySelectorAll<HTMLButtonElement>('[role="tab"]');
-                    tabs?.[next]?.focus();
-                  }}
-                  className={`ui shrink-0 cursor-pointer rounded-full px-4 py-2 text-sm ${
-                    service === index ? "bg-lime text-green" : "border border-lime/50 text-ivory"
-                  }`}
-                >
-                  {item.title}
-                </button>
-              ))}
-            </div>
-            <article className="group mt-8 grid overflow-hidden rounded-[1.35rem] bg-[#0c2416] md:grid-cols-2">
-              <img key={active.title} src={active.image} alt={active.imageAlt} className="fade-up aspect-[4/3] h-full w-full object-cover transition duration-700 group-hover:scale-[1.03]" />
-              <div className="flex flex-col justify-center px-6 py-10 md:px-12">
-                <p className="ui text-xs font-medium tracking-[0.16em] text-lime uppercase">{active.index}</p>
-                <h3 className="display mt-3 text-3xl text-ivory md:text-4xl">{active.line}</h3>
-                <span className="rule mt-5" />
-                <p className="mt-5 max-w-[var(--measure)] text-lg leading-relaxed text-ivory/85">{active.body}</p>
-                <Link href="/practice" className="ui mt-6 font-semibold text-lime underline decoration-lime decoration-2 underline-offset-4">
-                  See the practice
-                </Link>
+            <div className="mt-12 grid items-stretch gap-10 lg:grid-cols-12">
+              <div role="tablist" aria-label="What we do" className="lg:col-span-5">
+                {disciplines.map((item, index) => {
+                  const selected = service === index;
+                  return (
+                    <button
+                      key={item.title}
+                      type="button"
+                      role="tab"
+                      aria-selected={selected}
+                      tabIndex={selected ? 0 : -1}
+                      onClick={() => setService(index)}
+                      onKeyDown={(event) => {
+                        if (event.key !== "ArrowRight" && event.key !== "ArrowLeft" && event.key !== "ArrowDown" && event.key !== "ArrowUp") return;
+                        event.preventDefault();
+                        const forward = event.key === "ArrowRight" || event.key === "ArrowDown";
+                        const next = forward ? (index + 1) % disciplines.length : (index - 1 + disciplines.length) % disciplines.length;
+                        setService(next);
+                        const tabs = event.currentTarget.parentElement?.querySelectorAll<HTMLButtonElement>('[role="tab"]');
+                        tabs?.[next]?.focus();
+                      }}
+                      className={`group flex w-full cursor-pointer items-baseline gap-4 border-t border-ivory/25 py-5 text-left ${selected ? "text-ivory" : "text-ivory/65"}`}
+                    >
+                      <span className="ui w-8 shrink-0 text-xs tracking-[0.16em] text-lime">{item.index}</span>
+                      <span className={`display text-2xl transition-transform duration-200 md:text-3xl ${selected ? "translate-x-2 text-lime" : "group-hover:translate-x-2"}`}>
+                        {item.title}
+                      </span>
+                    </button>
+                  );
+                })}
               </div>
-            </article>
+              <article className="group relative min-h-80 overflow-hidden rounded-[1.35rem] bg-[#0c2416] lg:col-span-7">
+                <img key={active.title} src={active.image} alt={active.imageAlt} className="fade-up absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-[1.03]" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0c2416] via-[#0c2416]/25 to-transparent" />
+                <div className="relative flex h-full min-h-80 flex-col justify-end p-6 md:p-10">
+                  <p className="ui text-xs font-medium tracking-[0.16em] text-lime uppercase">{active.index}</p>
+                  <h3 className="display mt-3 max-w-xl text-3xl text-ivory md:text-4xl">{active.line}</h3>
+                  <p className="mt-4 max-w-[var(--measure)] text-lg leading-relaxed text-ivory/85">{active.body}</p>
+                  <Link href="/practice" className="ui mt-6 font-semibold text-lime underline decoration-lime decoration-2 underline-offset-4">
+                    See the practice
+                  </Link>
+                </div>
+              </article>
+            </div>
           </div>
         </section>
 

@@ -36,7 +36,7 @@ export function FilmRail() {
             key={item.title}
             type="button"
             onClick={() => setOpen(index)}
-            className="group relative h-80 w-64 shrink-0 cursor-pointer overflow-hidden bg-green text-left sm:h-[26rem] sm:w-80"
+            className="group relative h-80 w-64 shrink-0 cursor-pointer overflow-hidden rounded-[1.35rem] bg-green text-left sm:h-[26rem] sm:w-80"
             style={{ scrollSnapAlign: "start" }}
           >
             <img src={item.image} alt="" className="photo-zoom h-full w-full object-cover" />
